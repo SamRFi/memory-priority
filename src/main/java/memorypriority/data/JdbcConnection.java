@@ -9,24 +9,29 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class JdbcConnection {
-
-    public static final String MSSQL_URL;
+    public static final String MYSQL_URL;
+    public static final String USERNAME;
+    public static final String PASSWORD;
     private static String url;
 
     private JdbcConnection() {
     }
 
+
     static {
-        MSSQL_URL = Config.getInstance().readSetting("msSqlUrl");
-        url = MSSQL_URL;
+        USERNAME = Crypto.getInstance().decrypt(Config.getInstance().readSetting("dbUsername"));
+        PASSWORD = Crypto.getInstance().decrypt(Config.getInstance().readSetting("dbPassword"));
+        MYSQL_URL = Config.getInstance().readSetting("mySqlUrl");
+        url = MYSQL_URL;
     }
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url);
+    public static Connection getConnection() throws SQLException{
+        return DriverManager.getConnection(url, USERNAME, PASSWORD);
     }
 
     public static void setConnection(String url) {
         Objects.requireNonNull(url);
         JdbcConnection.url = url;
     }
+
 }
