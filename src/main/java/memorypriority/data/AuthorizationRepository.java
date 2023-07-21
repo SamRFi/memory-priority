@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class AuthorizationRepository {
 
-    public static final Logger LOGGER = Logger.getLogger(Config.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(AuthorizationRepository.class.getName());
     public User authenticateUser(String username, String hashedPassword) {
         String sql = "SELECT * FROM users WHERE username = ? AND hashed_password = ?";
         try (Connection conn = JdbcConnection.getConnection();

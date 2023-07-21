@@ -5,12 +5,11 @@ import memorypriority.util.MemoryPriorityException;
 
 import java.util.Comparator;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MemoryCollection {
 
-    public static final Logger LOGGER = Logger.getLogger(Config.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(MemoryCollection.class.getName());
     private Set<MemorySet> memorySets;
 
     private long calculateScore(MemorySet memorySet) {
