@@ -14,7 +14,14 @@ public class MemorySet {
         this.name = name;
         this.memorySet = memorySet;
         this.priorityLevel = priorityLevel;
-        lastTimeRehearsed = new Date(System.currentTimeMillis());
+        this.lastTimeRehearsed = new Date(System.currentTimeMillis());
+    }
+
+    public MemorySet(String name, Map<String, String> memorySet, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
+        this.name = name;
+        this.memorySet = memorySet;
+        this.priorityLevel = priorityLevel;
+        this.lastTimeRehearsed = lastTimeRehearsed;
     }
 
     public void rehearsedNow() {
