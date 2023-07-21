@@ -52,4 +52,8 @@ public class MemoryCollection {
     public Set<MemorySet> getMemorySets() {
         return memorySets;
     }
+
+    public void setMemorySets(Set<MemorySet> memorySets) {
+        this.memorySets = memorySets;
+    }
 }
