@@ -12,6 +12,10 @@ public class MemoryCollection {
     public static final Logger LOGGER = Logger.getLogger(MemoryCollection.class.getName());
     private Set<MemorySet> memorySets;
 
+    public MemoryCollection(Set<MemorySet> memorySets) {
+        this.memorySets = memorySets;
+    }
+
     private long calculateScore(MemorySet memorySet) {
         long priorityScore;
         switch (memorySet.getPriorityLevel()) {

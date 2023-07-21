@@ -1,14 +1,13 @@
 package memorypriority.data;
 
+import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
 import memorypriority.util.MemoryPriorityException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +34,7 @@ public class JdbcMemorySetRepository {
         }
     }
 
-    private List<MemorySet> getMemorySetsForUser(String username) {
+    private Set<MemorySet> getMemorySetsForUser(String username) {
         String sql = "SELECT * FROM memory_sets WHERE username = ?";
         try (Connection conn = JdbcConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -43,7 +42,7 @@ public class JdbcMemorySetRepository {
             stmt.setString(1, username);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                List<MemorySet> memorySets = new ArrayList<>();
+                Set<MemorySet> memorySets = new HashSet<>();
                 while (rs.next()) {
                     Map<String, String> entries = getMemorySetEntries(rs.getInt("id"));
                     memorySets.add(new MemorySet(
@@ -60,6 +59,9 @@ public class JdbcMemorySetRepository {
         }
     }
 
+    public MemoryCollection getMemoryCollectionOfUser(String username) {
+        return new MemoryCollection(getMemorySetsForUser(username));
+    }
 
 }
 
