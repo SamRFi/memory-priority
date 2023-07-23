@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JdbcMemorySetRepository {
+public class JdbcMemorySetRepository implements MemorySetRepository {
     public static final Logger LOGGER = Logger.getLogger(JdbcMemorySetRepository.class.getName());
     private final Supplier<Connection> connectionSupplier;
 
@@ -87,6 +87,10 @@ public class JdbcMemorySetRepository {
             LOGGER.log(Level.SEVERE, "Database Error", ex);
             throw new MemoryPriorityException("Database error", ex);
         }
+    }
+
+    public void addMemorySetToUser(String username) {
+
     }
 
 
