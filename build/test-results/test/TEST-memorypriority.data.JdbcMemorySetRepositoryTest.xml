@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="memorypriority.data.JdbcMemorySetRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-07-23T13:42:07" hostname="LAPTOP-SAM" time="0.044">
+  <properties/>
+  <testcase name="testGetMemoryCollectionOfUserWithMemorySetNoEntries()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.036"/>
+  <testcase name="testGetMemoryCollectionOfUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.004"/>
+  <testcase name="testGetMemoryCollectionOfUserWithNoMemorySets()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.002"/>
+  <testcase name="testGetMemoryCollectionOfNonExistentUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {key1=value1}
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {}
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithMemorySetNoEntries
+INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {key1=value1}
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {}
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUser
+INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: []
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithNoMemorySets
+INFO: []
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: []
+Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfNonExistentUser
+INFO: []
+]]></system-err>
+</testsuite>

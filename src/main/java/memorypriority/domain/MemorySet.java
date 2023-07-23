@@ -3,6 +3,7 @@ package memorypriority.domain;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class MemorySet {
     private String name;
@@ -48,5 +49,17 @@ public class MemorySet {
         return lastTimeRehearsed;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MemorySet memorySet1 = (MemorySet) o;
+        return Objects.equals(name, memorySet1.name) && Objects.equals(memorySet, memorySet1.memorySet) && priorityLevel == memorySet1.priorityLevel && Objects.equals(lastTimeRehearsed, memorySet1.lastTimeRehearsed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, memorySet, priorityLevel, lastTimeRehearsed);
+    }
 }
 

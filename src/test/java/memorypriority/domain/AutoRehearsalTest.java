@@ -14,14 +14,12 @@ class AutoRehearsalTest {
 
     @BeforeEach
     public void setUp() {
-        memoryCollection = new MemoryCollection();
-
         Set<MemorySet> memorySets = new HashSet<>();
         memorySets.add(new MemorySet("Set1", new HashMap<>(), PriorityLevel.HIGH));
         memorySets.add(new MemorySet("Set2", new HashMap<>(), PriorityLevel.MEDIUM));
         memorySets.add(new MemorySet("Set3", new HashMap<>(), PriorityLevel.LOW));
 
-        memoryCollection.setMemorySets(memorySets); // assuming you have this setter method
+        memoryCollection = new MemoryCollection(memorySets);
     }
 
     @Test

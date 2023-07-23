@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="memorypriority.domain.AutoRehearsalTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-07-21T14:02:30" hostname="LAPTOP-SAM" time="0.022">
-  <properties/>
-  <testcase name="testAutoRehearse()" classname="memorypriority.domain.AutoRehearsalTest" time="0.02"/>
-  <testcase name="testAutoRehearseWithEmptyMemoryCollection()" classname="memorypriority.domain.AutoRehearsalTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

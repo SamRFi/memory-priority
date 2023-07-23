@@ -8,16 +8,31 @@ import memorypriority.util.MemoryPriorityException;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JdbcMemorySetRepository {
     public static final Logger LOGGER = Logger.getLogger(JdbcMemorySetRepository.class.getName());
+    private final Supplier<Connection> connectionSupplier;
 
-    private Map<String, String> getMemorySetEntries(int memorySetId) {
+    public JdbcMemorySetRepository(Supplier<Connection> connectionSupplier) {
+        this.connectionSupplier = connectionSupplier;
+    }
+
+    public JdbcMemorySetRepository() throws SQLException {
+        this.connectionSupplier = () -> {
+            try {
+                return JdbcConnection.getConnection();
+            } catch (SQLException e) {
+                throw new MemoryPriorityException("Failed to get connection to the database", e);
+            }
+        };
+    }
+
+    private Map<String, String> getMemorySetEntries(Connection conn, int memorySetId) {
         String sql = "SELECT key_name, value_name FROM memory_set_entries WHERE memory_set_id = ?";
-        try (Connection conn = JdbcConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, memorySetId);
 
@@ -26,6 +41,7 @@ public class JdbcMemorySetRepository {
                 while (rs.next()) {
                     entries.put(rs.getString("key_name"), rs.getString("value_name"));
                 }
+                LOGGER.log(Level.INFO, entries.toString());
                 return entries;
             }
         } catch (SQLException ex) {
@@ -34,33 +50,48 @@ public class JdbcMemorySetRepository {
         }
     }
 
-    private Set<MemorySet> getMemorySetsForUser(String username) {
+
+    private Set<MemorySet> getMemorySetsForUser(Connection conn, String username) {
         String sql = "SELECT * FROM memory_sets WHERE username = ?";
-        try (Connection conn = JdbcConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 Set<MemorySet> memorySets = new HashSet<>();
                 while (rs.next()) {
-                    Map<String, String> entries = getMemorySetEntries(rs.getInt("id"));
-                    memorySets.add(new MemorySet(
-                            rs.getString("name"),
-                            entries,
-                            PriorityLevel.valueOf(rs.getString("priority_level")),
-                            new Date(rs.getTimestamp("last_time_rehearsed").getTime())));
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    PriorityLevel priorityLevel = PriorityLevel.valueOf(rs.getString("priority_level"));
+                    Date lastTimeRehearsed = new Date(rs.getTimestamp("last_time_rehearsed").getTime());
+
+                    // Get entries for this MemorySet.
+                    Map<String, String> entries = getMemorySetEntries(conn, id);
+
+                    // Construct MemorySet and add to the set.
+                    memorySets.add(new MemorySet(name, entries, priorityLevel, lastTimeRehearsed));
                 }
+                LOGGER.log(Level.INFO, memorySets.toString());
                 return memorySets;
             }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Database Error when getting memory sets for user", ex);
+            throw new MemoryPriorityException("Database error", ex);
+        }
+    }
+
+    public MemoryCollection getMemoryCollectionOfUser(String username) {
+        try (Connection conn = connectionSupplier.get()) {
+            return new MemoryCollection(getMemorySetsForUser(conn, username));
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Database Error", ex);
             throw new MemoryPriorityException("Database error", ex);
         }
     }
 
-    public MemoryCollection getMemoryCollectionOfUser(String username) {
-        return new MemoryCollection(getMemorySetsForUser(username));
+
+    protected Connection getConnection() throws SQLException {
+        return JdbcConnection.getConnection();
     }
 
 }
