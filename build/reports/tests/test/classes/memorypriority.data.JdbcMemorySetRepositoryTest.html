@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">4</div>
+<div class="counter">5</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.044s</div>
+<div class="counter">0.062s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,6 +78,11 @@
 </tr>
 </thead>
 <tr>
+<td class="success">testAddMemorySetToUser()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testGetMemoryCollectionOfNonExistentUser()</td>
 <td class="success">0.002s</td>
 <td class="success">passed</td>
@@ -89,12 +94,12 @@
 </tr>
 <tr>
 <td class="success">testGetMemoryCollectionOfUserWithMemorySetNoEntries()</td>
-<td class="success">0.036s</td>
+<td class="success">0.044s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetMemoryCollectionOfUserWithNoMemorySets()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -102,29 +107,41 @@
 <div id="tab1" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+<pre>Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
 INFO: {key1=value1}
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
 INFO: {}
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithMemorySetNoEntries
-INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithMemorySetNoEntries
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
 INFO: {key1=value1}
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
 INFO: {}
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUser
-INFO: [memorypriority.domain.MemorySet@f273f676, memorypriority.domain.MemorySet@7ac3c5fd]
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {key1=value1, key2=value2}
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testAddMemorySetToUser
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {key1=value1}
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {}
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
+INFO: {key1=value1, key2=value2}
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUser
+INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
 INFO: []
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithNoMemorySets
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithNoMemorySets
 INFO: []
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
 INFO: []
-Jul 23, 2023 3:42:07 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfNonExistentUser
+Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfNonExistentUser
 INFO: []
 </pre>
 </span>
@@ -137,7 +154,7 @@ INFO: []
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4</a> at 23 Jul 2023, 15:42:07</p>
+<a href="http://www.gradle.org">Gradle 7.4</a> at 25 Jul 2023, 01:02:35</p>
 </div>
 </div>
 </body>

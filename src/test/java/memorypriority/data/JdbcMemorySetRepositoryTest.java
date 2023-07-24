@@ -3,12 +3,10 @@ package memorypriority.data;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
-import memorypriority.util.MemoryPriorityException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -17,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class JdbcMemorySetRepositoryTest {
 
@@ -61,13 +58,13 @@ public class JdbcMemorySetRepositoryTest {
     }
 
     @BeforeEach
-    void setUpEachTest() throws Exception {
+    void openDatabaseConnection() throws Exception {
         conn = DriverManager.getConnection("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         repository = new JdbcMemorySetRepository(() -> conn);
     }
 
     @AfterEach
-    void tearDownEachTest() throws Exception {
+    void closeDatabaseConnection() throws Exception {
         conn.close();
     }
 
@@ -111,6 +108,29 @@ public class JdbcMemorySetRepositoryTest {
         assertNotNull(set2);
         assertTrue(set2.getMemorySet().isEmpty());
     }
+
+    @Test
+    void testAddMemorySetToUser() throws Exception {
+        Map<String, String> memorySetMap = new HashMap<>();
+        memorySetMap.put("key1", "value1");
+        memorySetMap.put("key2", "value2");
+        MemorySet memorySet = new MemorySet("Set2", memorySetMap, PriorityLevel.HIGH);
+
+        repository.addMemorySetToUser("user1", memorySet);
+
+        openDatabaseConnection();
+
+        MemoryCollection memoryCollection = repository.getMemoryCollectionOfUser("user1");
+        LOGGER.log(Level.INFO, memoryCollection.getMemorySets().toString());
+
+        assertNotNull(memoryCollection);
+        assertTrue(memoryCollection.getMemorySets().stream().anyMatch(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set2")));
+
+        MemorySet set2 = memoryCollection.getMemorySets().stream().filter(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set2")).findFirst().orElse(null);
+        assertNotNull(set2);
+        assertEquals(memorySet, set2);
+    }
+
 
 
 }
