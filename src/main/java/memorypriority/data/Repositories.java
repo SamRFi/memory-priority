@@ -16,9 +16,6 @@ public class Repositories {
         }
     }
 
-    public Repositories() {
-    }
-
     public static AuthorizationRepository getAuthorizationRepository() {
         return authorizationRepository;
     }

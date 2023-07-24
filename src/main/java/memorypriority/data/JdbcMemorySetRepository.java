@@ -65,10 +65,8 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(rs.getString("priority_level"));
                     Date lastTimeRehearsed = new Date(rs.getTimestamp("last_time_rehearsed").getTime());
 
-                    // Get entries for this MemorySet.
                     Map<String, String> entries = getMemorySetEntries(conn, id);
 
-                    // Construct MemorySet and add to the set.
                     memorySets.add(new MemorySet(name, entries, priorityLevel, lastTimeRehearsed));
                 }
                 LOGGER.log(Level.INFO, memorySets.toString());
@@ -89,9 +87,48 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         }
     }
 
-    public void addMemorySetToUser(String username) {
+    public void addMemorySetToUser(String username, MemorySet memorySet) {
+        String insertMemorySetSql = "INSERT INTO memory_sets (name, priority_level, last_time_rehearsed, username) VALUES (?, ?, ?, ?)";
 
+        try (Connection conn = connectionSupplier.get();
+             PreparedStatement insertMemorySetStmt = conn.prepareStatement(insertMemorySetSql, Statement.RETURN_GENERATED_KEYS)) {
+
+            insertMemorySetStmt.setString(1, memorySet.getName());
+            insertMemorySetStmt.setString(2, memorySet.getPriorityLevel().toString());
+            insertMemorySetStmt.setTimestamp(3, new Timestamp(memorySet.getLastTimeRehearsed().getTime()));
+            insertMemorySetStmt.setString(4, username);
+
+            int affectedRows = insertMemorySetStmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new MemoryPriorityException("Creating memory set failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = insertMemorySetStmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int memorySetId = generatedKeys.getInt(1);
+
+                    String insertEntrySql = "INSERT INTO memory_set_entries (memory_set_id, key_name, value_name) VALUES (?, ?, ?)";
+                    for (Map.Entry<String, String> entry : memorySet.getMemorySet().entrySet()) {
+                        try (PreparedStatement insertEntryStmt = conn.prepareStatement(insertEntrySql)) {
+                            insertEntryStmt.setInt(1, memorySetId);
+                            insertEntryStmt.setString(2, entry.getKey());
+                            insertEntryStmt.setString(3, entry.getValue());
+                            insertEntryStmt.executeUpdate();
+                        }
+                    }
+
+                } else {
+                    throw new MemoryPriorityException("Creating memory set failed, no ID obtained.");
+                }
+            }
+
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Database Error", ex);
+            throw new MemoryPriorityException("Database error", ex);
+        }
     }
+
 
 
     protected Connection getConnection() throws SQLException {
