@@ -5,7 +5,7 @@ import memorypriority.util.MemoryPriorityException;
 import java.sql.SQLException;
 
 public class Repositories {
-    private static AuthorizationRepository authorizationRepository = new AuthorizationRepository();
+    private static JdbcAuthorizationRepository jdbcAuthorizationRepository = new JdbcAuthorizationRepository();
     private static MemorySetRepository memorySetRepository;
 
     static {
@@ -16,8 +16,8 @@ public class Repositories {
         }
     }
 
-    public static AuthorizationRepository getAuthorizationRepository() {
-        return authorizationRepository;
+    public static JdbcAuthorizationRepository getAuthorizationRepository() {
+        return jdbcAuthorizationRepository;
     }
 
     public static MemorySetRepository getMemorySetRepository() {

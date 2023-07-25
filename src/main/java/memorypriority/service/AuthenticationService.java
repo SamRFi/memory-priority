@@ -1,6 +1,7 @@
 package memorypriority.service;
 
 import memorypriority.data.AuthorizationRepository;
+import memorypriority.data.JdbcAuthorizationRepository;
 import memorypriority.data.Repositories;
 import memorypriority.domain.User;
 import memorypriority.util.MemoryPriorityException;
