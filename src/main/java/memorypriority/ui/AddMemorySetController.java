@@ -20,13 +20,17 @@ public class AddMemorySetController {
 
 
     private MemorySetService memorySetService;
+    private DashboardController dashboardController;
 
     private Map<String, String> keyValueCache = new HashMap<>();
 
 
-    // Setter for MemorySetService
     public void setMemorySetService(MemorySetService memorySetService) {
         this.memorySetService = memorySetService;
+    }
+
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
     }
 
     @FXML
@@ -128,6 +132,7 @@ public class AddMemorySetController {
 
         memorySetService.addMemorySetToUser(memorySet);
         ((Node) (saveButton)).getScene().getWindow().hide();
+        dashboardController.refreshUI();
     }
 
 

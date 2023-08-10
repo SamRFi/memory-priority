@@ -117,7 +117,7 @@ public class DashboardController {
         refreshUI();
     }
 
-    private void refreshUI() {
+    public void refreshUI() {
         highPriorityColumn.getChildren().clear();
         mediumPriorityColumn.getChildren().clear();
         lowPriorityColumn.getChildren().clear();
@@ -153,6 +153,7 @@ public class DashboardController {
         // Get the controller and set the MemorySetService
         AddMemorySetController addMemorySetController = loader.getController();
         addMemorySetController.setMemorySetService(memorySetService);
+        addMemorySetController.setDashboardController(this);
 
         // Create the dialog
         Dialog<Void> dialog = new Dialog<>();
