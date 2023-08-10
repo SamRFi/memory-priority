@@ -1,10 +1,11 @@
 package memorypriority.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -15,6 +16,7 @@ import memorypriority.domain.PriorityLevel;
 import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -137,5 +139,28 @@ public class DashboardController {
     }
 
 
+    public void showAddMemorySetDialog() {
+        // Load the FXML for the dialog
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addMemorySet.fxml"));
+        Parent dialogContent;
+        try {
+            dialogContent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
 
+        // Create the dialog
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Add Memory Set");
+        dialog.getDialogPane().setContent(dialogContent);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Show the dialog
+        dialog.showAndWait();
+    }
+
+    public void handleAddSet(ActionEvent actionEvent) {
+        showAddMemorySetDialog();
+    }
 }
