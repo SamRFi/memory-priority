@@ -1,14 +1,26 @@
 package memorypriority.ui;
 
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import memorypriority.domain.MemorySet;
+import memorypriority.domain.PriorityLevel;
 import memorypriority.service.MemorySetService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddMemorySetController {
 
     private MemorySetService memorySetService;
+
+    private Map<String, String> keyValueCache = new HashMap<>();
+
 
     // Setter for MemorySetService
     public void setMemorySetService(MemorySetService memorySetService) {
@@ -19,9 +31,14 @@ public class AddMemorySetController {
     private GridPane keyValuePairsContainer;
 
     @FXML
-    private void initialize() {
-        // This method will be called after all FXML components are loaded
-        // Here you can place initialization code if needed
+    private TextField memorySetName;
+
+    @FXML
+    private ComboBox<String> priorityLevel;
+
+    @FXML
+    public void initialize() {
+        handleAddMoreRowsButtonAction();
     }
 
     @FXML
@@ -30,17 +47,62 @@ public class AddMemorySetController {
     }
 
     @FXML
-    private void handleRemoveButtonAction() {
-        // Implement the logic for the remove button here
+    private void handleRemoveButtonAction(ActionEvent actionEvent) {
+        // Retrieve the clicked button from the event source
+        Button clickedRemoveButton = (Button) actionEvent.getSource();
+
+        // Assuming each row is an HBox, find the parent HBox for the clicked button
+        HBox rowContainer = (HBox) clickedRemoveButton.getParent();
+
+        // Find the TextField for the key within this HBox (assuming it's the second child)
+        TextField keyField = (TextField) rowContainer.getChildren().get(1);
+
+        // Remove the key from the cache
+        keyValueCache.remove(keyField.getText());
+
+        // Remove the entire HBox (row) from the GridPane
+        keyValuePairsContainer.getChildren().remove(rowContainer);
     }
+
+
+
 
     @FXML
     private void handleAddMoreRowsButtonAction() {
-        // Implement the logic to add more key-value pairs rows
+        TextField keyField = new TextField();
+        TextField valueField = new TextField();
+        Button searchButton = new Button("Search");
+        Button removeButton = new Button("X");
+        removeButton.setOnAction(this::handleRemoveButtonAction);
+
+        // Listeners to update the cache
+        keyField.textProperty().addListener((obs, oldText, newText) -> {
+            keyValueCache.put(newText, valueField.getText());
+        });
+
+        valueField.textProperty().addListener((obs, oldText, newText) -> {
+            keyValueCache.put(keyField.getText(), newText);
+        });
+
+        HBox container = new HBox(5); // 5 is spacing between elements
+        container.getChildren().addAll(searchButton, keyField, valueField, removeButton);
+
+        // Add them to the GridPane
+        int rowIndex = keyValuePairsContainer.getRowCount(); // Assuming you don't have this method, you can replace with a counter.
+        keyValuePairsContainer.addRow(rowIndex, container);
     }
+
+
 
     @FXML
     private void handleSaveButtonAction() {
-        // Implement the logic to save key-value pairs
+        String setName = memorySetName.getText();
+        PriorityLevel setPriority = PriorityLevel.valueOf(priorityLevel.getSelectionModel().getSelectedItem());
+
+        MemorySet memorySet = new MemorySet(setName, keyValueCache, setPriority);
+
+        memorySetService.addMemorySetToUser(memorySet);
     }
+
+
 }

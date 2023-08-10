@@ -41,7 +41,6 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
                 while (rs.next()) {
                     entries.put(rs.getString("key_name"), rs.getString("value_name"));
                 }
-                LOGGER.log(Level.INFO, entries.toString());
                 return entries;
             }
         } catch (SQLException ex) {
@@ -69,7 +68,6 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
 
                     memorySets.add(new MemorySet(id, name, entries, priorityLevel, lastTimeRehearsed));
                 }
-                LOGGER.log(Level.INFO, memorySets.toString());
                 return memorySets;
             }
         } catch (SQLException ex) {

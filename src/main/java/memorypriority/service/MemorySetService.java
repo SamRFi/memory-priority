@@ -7,7 +7,12 @@ import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
 import memorypriority.domain.User;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class MemorySetService {
+
+    public static final Logger LOGGER = Logger.getLogger(MemorySetService.class.getName());
     private final User loggedInUser;
     private final MemorySetRepository memorySetRepository;
 
@@ -21,7 +26,9 @@ public class MemorySetService {
     }
 
     public void addMemorySetToUser(MemorySet memorySet) {
+
         memorySetRepository.addMemorySetToUser(loggedInUser.getUsername(), memorySet);
+        LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getMemorySet().toString(), memorySet);
     }
 
     public void increasePriority(MemorySet memorySet) {
