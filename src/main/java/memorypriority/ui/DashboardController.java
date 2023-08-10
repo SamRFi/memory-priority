@@ -101,9 +101,6 @@ public class DashboardController {
         return memorySetBox;
     }
 
-
-
-
     private void rehearseMemorySet(MemorySet memorySet) {
         // Implement rehearse logic
     }
