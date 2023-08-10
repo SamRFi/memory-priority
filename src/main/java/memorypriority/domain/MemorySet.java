@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class MemorySet {
+
+    private int Id;
     private String name;
     private Map<String, String> memorySet;
     private PriorityLevel priorityLevel;
@@ -25,12 +27,24 @@ public class MemorySet {
         this.lastTimeRehearsed = lastTimeRehearsed;
     }
 
+    public MemorySet(int id, String name, Map<String, String> memorySet, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
+        this.Id = id;
+        this.name = name;
+        this.memorySet = memorySet;
+        this.priorityLevel = priorityLevel;
+        this.lastTimeRehearsed = lastTimeRehearsed;
+    }
+
     public void rehearsedNow() {
         lastTimeRehearsed = new Date(System.currentTimeMillis());
     }
 
     public void setPriorityLevel(PriorityLevel priorityLevel) {
         this.priorityLevel = priorityLevel;
+    }
+
+    public int getId() {
+        return Id;
     }
 
     public String getName() {

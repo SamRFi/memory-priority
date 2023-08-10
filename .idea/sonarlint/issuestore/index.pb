@@ -12,6 +12,10 @@ j
 c
 3src/main/java/memorypriority/data/Repositories.java,9\5\95e471713896a1e86d20cdae4a252e6e2d9b95f0
 n
->src/main/java/memorypriority/data/JdbcMemorySetRepository.java,e\e\eef0297a1bc47907d7b6026a4c2c9dad24ec36e2
-n
 >src/main/java/memorypriority/util/MemoryPriorityException.java,1\5\1556f7d799b54219901fe57ec2293ba7858fdd9b
+r
+Bsrc/main/java/memorypriority/data/JdbcAuthorizationRepository.java,0\c\0c77ee69bb8f07cc2a5f27d365974b080afc5b15
+n
+>src/main/java/memorypriority/data/AuthorizationRepository.java,f\5\f54f98f3a13b5903174c32bc82f812b5dc24d026
+r
+Bsrc/test/java/memorypriority/data/JdbcMemorySetRepositoryTest.java,7\0\70b13f34c3b0941f11d0dcc3a872ec2aa200b6ef

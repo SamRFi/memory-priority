@@ -67,7 +67,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
 
                     Map<String, String> entries = getMemorySetEntries(conn, id);
 
-                    memorySets.add(new MemorySet(name, entries, priorityLevel, lastTimeRehearsed));
+                    memorySets.add(new MemorySet(id, name, entries, priorityLevel, lastTimeRehearsed));
                 }
                 LOGGER.log(Level.INFO, memorySets.toString());
                 return memorySets;
@@ -128,6 +128,27 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
             throw new MemoryPriorityException("Database error", ex);
         }
     }
+
+    public void changePriority(MemorySet memorySet, PriorityLevel newPriority) {
+        String sql = "UPDATE memory_sets SET priority_level = ? WHERE id = ?";
+        try (Connection conn = connectionSupplier.get();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newPriority.toString());
+            stmt.setInt(2, memorySet.getId());
+
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new MemoryPriorityException("Changing priority failed, no rows affected.");
+            }
+
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Database Error when changing priority", ex);
+            throw new MemoryPriorityException("Database error", ex);
+        }
+    }
+
 
 
 

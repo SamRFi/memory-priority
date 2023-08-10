@@ -11,12 +11,17 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
+import memorypriority.domain.PriorityLevel;
 import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DashboardController {
+
+    public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
     @FXML
     private VBox highPriorityColumn;
@@ -97,10 +102,23 @@ public class DashboardController {
     }
 
     private void increasePriority(MemorySet memorySet) {
-        // Implement increase priority logic
+        memorySetService.increasePriority(memorySet);
+        refreshUI();
     }
 
     private void decreasePriority(MemorySet memorySet) {
-        // Implement decrease priority logic
+        memorySetService.decreasePriority(memorySet);
+        refreshUI();
     }
+
+    private void refreshUI() {
+        // Clear all memory sets from the columns
+        highPriorityColumn.getChildren().clear();
+        mediumPriorityColumn.getChildren().clear();
+        lowPriorityColumn.getChildren().clear();
+
+        // Repopulate the memory sets based on their updated priorities
+        populateMemorySets();
+    }
+
 }
