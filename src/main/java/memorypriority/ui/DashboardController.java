@@ -150,6 +150,10 @@ public class DashboardController {
             return;
         }
 
+        // Get the controller and set the MemorySetService
+        AddMemorySetController addMemorySetController = loader.getController();
+        addMemorySetController.setMemorySetService(memorySetService);
+
         // Create the dialog
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Add Memory Set");
@@ -159,6 +163,7 @@ public class DashboardController {
         // Show the dialog
         dialog.showAndWait();
     }
+
 
     public void handleAddSet(ActionEvent actionEvent) {
         showAddMemorySetDialog();

@@ -4,8 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import memorypriority.service.MemorySetService;
 
 public class AddMemorySetController {
+
+    private MemorySetService memorySetService;
+
+    // Setter for MemorySetService
+    public void setMemorySetService(MemorySetService memorySetService) {
+        this.memorySetService = memorySetService;
+    }
 
     @FXML
     private GridPane keyValuePairsContainer;
@@ -18,12 +26,12 @@ public class AddMemorySetController {
 
     @FXML
     private void handleSearchButtonAction() {
-        // Implement the logic for the search button (🔍) here
+        // Implement the logic for the search button here
     }
 
     @FXML
     private void handleRemoveButtonAction() {
-        // Implement the logic for the remove button (❌) here
+        // Implement the logic for the remove button here
     }
 
     @FXML
