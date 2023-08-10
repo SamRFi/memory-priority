@@ -15,6 +15,9 @@ import memorypriority.domain.PriorityLevel;
 import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,22 +46,26 @@ public class DashboardController {
 
     public void populateMemorySets() {
         MemoryCollection memoryCollection = memorySetService.getMemoryCollectionOfUser();
-        Set<MemorySet> memorySets = memoryCollection.getMemorySets();
+        Set<MemorySet> memorySetSet = memoryCollection.getMemorySets();
+
+        List<MemorySet> memorySets = new ArrayList<>(memorySetSet);
+        memorySets.sort(Comparator.comparing(MemorySet::getLastTimeRehearsed));
 
         for (MemorySet memorySet : memorySets) {
             switch (memorySet.getPriorityLevel()) {
                 case HIGH:
-                    highPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
+                    highPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
                     break;
                 case MEDIUM:
-                    mediumPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
+                    mediumPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
                     break;
                 case LOW:
-                    lowPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
+                    lowPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
                     break;
             }
         }
     }
+
 
     private GridPane createMemorySetBox(MemorySet memorySet) {
         Label nameLabel = new Label(memorySet.getName());
