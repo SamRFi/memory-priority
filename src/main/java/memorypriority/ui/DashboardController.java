@@ -54,13 +54,13 @@ public class DashboardController {
         for (MemorySet memorySet : memorySets) {
             switch (memorySet.getPriorityLevel()) {
                 case HIGH:
-                    highPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
+                    highPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
                     break;
                 case MEDIUM:
-                    mediumPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
+                    mediumPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
                     break;
                 case LOW:
-                    lowPriorityColumn.getChildren().add(0, createMemorySetBox(memorySet)); // Add at the top
+                    lowPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
                     break;
             }
         }
@@ -119,13 +119,26 @@ public class DashboardController {
     }
 
     private void refreshUI() {
-        // Clear all memory sets from the columns
         highPriorityColumn.getChildren().clear();
         mediumPriorityColumn.getChildren().clear();
         lowPriorityColumn.getChildren().clear();
 
-        // Repopulate the memory sets based on their updated priorities
+        highPriorityColumn.getChildren().add(createPriorityLabel("High Priority"));
+        mediumPriorityColumn.getChildren().add(createPriorityLabel("Medium Priority"));
+        lowPriorityColumn.getChildren().add(createPriorityLabel("Low Priority"));
+
         populateMemorySets();
     }
+
+
+    private Label createPriorityLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-size: 20");
+        label.setPrefWidth(150);
+        label.setPrefHeight(30);
+        return label;
+    }
+
+
 
 }
