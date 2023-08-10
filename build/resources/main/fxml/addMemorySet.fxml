@@ -35,6 +35,6 @@
         <Button text="+" onAction="#handleAddMoreRowsButtonAction"/>
 
         <!-- Save Button -->
-        <Button text="Save" onAction="#handleSaveButtonAction"/>
+        <Button text="Save" onAction="#handleSaveButtonAction" fx:id="saveButton"/>
     </VBox>
 </AnchorPane>

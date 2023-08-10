@@ -3,6 +3,7 @@ package memorypriority.ui;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public class AddMemorySetController {
 
+
     private MemorySetService memorySetService;
 
     private Map<String, String> keyValueCache = new HashMap<>();
@@ -26,6 +28,9 @@ public class AddMemorySetController {
     public void setMemorySetService(MemorySetService memorySetService) {
         this.memorySetService = memorySetService;
     }
+
+    @FXML
+    public Button saveButton;
 
     @FXML
     private GridPane keyValuePairsContainer;
@@ -39,7 +44,14 @@ public class AddMemorySetController {
     @FXML
     public void initialize() {
         handleAddMoreRowsButtonAction();
+
+        // Bind the 'disabled' property of the saveButton to the emptiness of the memorySetName and priorityLevel fields
+        saveButton.disableProperty().bind(
+                memorySetName.textProperty().isEmpty()
+                        .or(priorityLevel.valueProperty().isNull())
+        );
     }
+
 
     @FXML
     private void handleSearchButtonAction() {
@@ -96,13 +108,28 @@ public class AddMemorySetController {
 
     @FXML
     private void handleSaveButtonAction() {
+        // Clear the existing cache
+        keyValueCache.clear();
+
+        // Iterate over all rows in the GridPane and extract key-value pairs
+        for (Node node : keyValuePairsContainer.getChildren()) {
+            if (node instanceof HBox) {
+                HBox row = (HBox) node;
+                TextField keyField = (TextField) row.getChildren().get(1);
+                TextField valueField = (TextField) row.getChildren().get(2);
+                keyValueCache.put(keyField.getText(), valueField.getText());
+            }
+        }
+
         String setName = memorySetName.getText();
         PriorityLevel setPriority = PriorityLevel.valueOf(priorityLevel.getSelectionModel().getSelectedItem());
 
         MemorySet memorySet = new MemorySet(setName, keyValueCache, setPriority);
 
         memorySetService.addMemorySetToUser(memorySet);
+        ((Node) (saveButton)).getScene().getWindow().hide();
     }
+
 
 
 }

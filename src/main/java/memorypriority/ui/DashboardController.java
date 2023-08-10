@@ -158,7 +158,7 @@ public class DashboardController {
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Add Memory Set");
         dialog.getDialogPane().setContent(dialogContent);
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
 
         // Show the dialog
         dialog.showAndWait();
