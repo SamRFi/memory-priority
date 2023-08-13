@@ -33,4 +33,8 @@ public class Repositories {
     public static MemorySetRepository getMemorySetRepository() {
         return memorySetRepository;
     }
+
+    public static AsyncVerseRepository getAsyncVerseRepository() {
+        return asyncVerseRepository;
+    }
 }

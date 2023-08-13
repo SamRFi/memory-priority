@@ -1,5 +1,7 @@
 package memorypriority.service;
 
+import io.vertx.core.Future;
+import memorypriority.data.AsyncVerseRepository;
 import memorypriority.data.MemorySetRepository;
 import memorypriority.data.Repositories;
 import memorypriority.domain.MemoryCollection;
@@ -15,9 +17,11 @@ public class MemorySetService {
     public static final Logger LOGGER = Logger.getLogger(MemorySetService.class.getName());
     private final User loggedInUser;
     private final MemorySetRepository memorySetRepository;
+    private final AsyncVerseRepository asyncVerseRepository;
 
     public MemorySetService(User loggedInUser) {
         this.memorySetRepository = Repositories.getMemorySetRepository();
+        this.asyncVerseRepository = Repositories.getAsyncVerseRepository();
         this.loggedInUser = loggedInUser;
     }
 
@@ -66,4 +70,9 @@ public class MemorySetService {
 
         memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
     }
+
+    public Future<String> getVerse(String verseReference) {
+        return asyncVerseRepository.getVerse(verseReference);
+    }
+
 }
