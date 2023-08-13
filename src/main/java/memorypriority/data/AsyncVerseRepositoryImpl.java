@@ -8,7 +8,7 @@ import io.vertx.ext.web.codec.BodyCodec;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AsyncVerseRepositoryImpl {
+public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
 
     private static final Logger LOGGER = Logger.getLogger(AsyncVerseRepositoryImpl.class.getName());
 
