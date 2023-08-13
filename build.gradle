@@ -25,6 +25,13 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation 'com.mysql:mysql-connector-j:8.0.33'
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
+
+    // https://mvnrepository.com/artifact/io.vertx/vertx-core
+    implementation 'io.vertx:vertx-core:4.4.4'
+
+    // https://mvnrepository.com/artifact/io.vertx/vertx-web-client
+    implementation 'io.vertx:vertx-web-client:4.4.4'
+
     testImplementation 'org.mockito:mockito-core:5.4.0'
 
 
