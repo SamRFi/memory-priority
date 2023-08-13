@@ -158,7 +158,7 @@ public class AddMemorySetController {
             valueField.setText(verseText); // set the verse text in the value field
         }).onFailure(ex -> {
             // Handle error (for now, we'll just print it, but you could display an error message to the user)
-            LOGGER.log(Level.SEVERE,"Error fetching verse: " + ex.getMessage() );
+            valueField.setText("Verse not found!");
         });
     }
 
