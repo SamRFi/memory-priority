@@ -1,6 +1,7 @@
 package memorypriority.data;
 
 import io.vertx.core.Future;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.codec.BodyCodec;
@@ -14,24 +15,30 @@ public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
 
     private final int port;
     private final String host;
-    private final String requestUrl;
     private final WebClient webClient;
     private final boolean enableSSL;
 
-    public AsyncVerseRepositoryImpl(int port, String host, String requestUrl, WebClient webClient, boolean enableSSL) {
+    public AsyncVerseRepositoryImpl(int port, String host, WebClient webClient, boolean enableSSL) {
         this.port = port;
         this.host = host;
-        this.requestUrl = requestUrl;
         this.webClient = webClient;
         this.enableSSL = enableSSL;
     }
 
-    public Future<String> getVerse() {
+    public Future<String> getVerse(String verseReference) {
+        String requestUrl = "/"+ verseReference + "?translation=kjv";
+
         return webClient.get(port, host, requestUrl)
                 .ssl(enableSSL)
-                .as(BodyCodec.string())
+                .as(BodyCodec.jsonObject())
                 .send()
-                .map(HttpResponse::body)
+                .map(response -> {
+                    JsonObject body = response.body();
+                    if (body.containsKey("error")) {
+                        throw new RuntimeException(body.getString("error"));
+                    }
+                    return body.getString("text");
+                })
                 .onFailure(ex -> LOGGER.log(Level.SEVERE, "Could not load verse", ex));
     }
 }
