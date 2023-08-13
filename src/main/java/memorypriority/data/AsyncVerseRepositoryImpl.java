@@ -2,7 +2,6 @@ package memorypriority.data;
 
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.codec.BodyCodec;
 
@@ -26,7 +25,8 @@ public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
     }
 
     public Future<String> getVerse(String verseReference) {
-        String requestUrl = "/"+ verseReference + "?translation=kjv";
+        String formattedReference = formatVerseReference(verseReference);
+        String requestUrl = "/" + formattedReference + "?translation=kjv";
 
         return webClient.get(port, host, requestUrl)
                 .ssl(enableSSL)
@@ -41,4 +41,12 @@ public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
                 })
                 .onFailure(ex -> LOGGER.log(Level.SEVERE, "Could not load verse", ex));
     }
+
+
+    private String formatVerseReference(String verseReference) {
+        return verseReference.toLowerCase()
+                .replace(" ", "%20")
+                .replace(":", "%3A");
+    }
+
 }
