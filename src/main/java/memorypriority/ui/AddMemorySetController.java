@@ -15,10 +15,12 @@ import memorypriority.service.MemorySetService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AddMemorySetController {
 
-
+    public static final Logger LOGGER = Logger.getLogger(AddMemorySetController.class.getName());
     private MemorySetService memorySetService;
     private DashboardController dashboardController;
 
@@ -88,6 +90,7 @@ public class AddMemorySetController {
         TextField keyField = new TextField();
         TextField valueField = new TextField();
         Button searchButton = new Button("Search");
+        searchButton.setOnAction(this::handleSearchButtonAction);
         Button removeButton = new Button("X");
         removeButton.setOnAction(this::handleRemoveButtonAction);
 
@@ -135,6 +138,29 @@ public class AddMemorySetController {
         dashboardController.refreshUI();
     }
 
+    @FXML
+    private void handleSearchButtonAction(ActionEvent actionEvent) {
+        // Retrieve the clicked button from the event source
+        Button clickedSearchButton = (Button) actionEvent.getSource();
+
+        // Assuming each row is an HBox, find the parent HBox for the clicked button
+        HBox rowContainer = (HBox) clickedSearchButton.getParent();
+
+        // Find the TextField for the key within this HBox (assuming it's the second child)
+        TextField keyField = (TextField) rowContainer.getChildren().get(1);
+        // Find the TextField for the value within this HBox (assuming it's the third child)
+        TextField valueField = (TextField) rowContainer.getChildren().get(2);
+
+        String verseReference = keyField.getText();
+
+        // Use MemorySetService to get the verse asynchronously
+        memorySetService.getVerse(verseReference).onSuccess(verseText -> {
+            valueField.setText(verseText); // set the verse text in the value field
+        }).onFailure(ex -> {
+            // Handle error (for now, we'll just print it, but you could display an error message to the user)
+            LOGGER.log(Level.SEVERE,"Error fetching verse: " + ex.getMessage() );
+        });
+    }
 
 
 }
