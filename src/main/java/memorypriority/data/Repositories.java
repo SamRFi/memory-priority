@@ -13,25 +13,27 @@ public class Repositories {
     private static final WebClient WEB_CLIENT =  WebClient.create(Vertx.vertx());
     private static final boolean ENABLE_SSL = true;
 
-    private static JdbcAuthorizationRepository jdbcAuthorizationRepository = new JdbcAuthorizationRepository();
-    private static MemorySetRepository memorySetRepository;
-
-    private static AsyncVerseRepository asyncVerseRepository = new AsyncVerseRepositoryImpl(PORT, HOST, WEB_CLIENT, ENABLE_SSL);
+    private static final JdbcAuthorizationRepository jdbcAuthorizationRepository = new JdbcAuthorizationRepository();
+    private static final MemorySetRepository jdbcMemorySetRepository;
 
     static {
         try {
-            memorySetRepository = new JdbcMemorySetRepository();
+            jdbcMemorySetRepository = new JdbcMemorySetRepository();
         } catch (SQLException e) {
             throw new MemoryPriorityException("Failed to get connection to the database", e);
         }
     }
+
+    private static MemorySetRepository fileMemorySetRepository = new FileMemorySetRepository();
+
+    private static final AsyncVerseRepository asyncVerseRepository = new AsyncVerseRepositoryImpl(PORT, HOST, WEB_CLIENT, ENABLE_SSL);
 
     public static JdbcAuthorizationRepository getAuthorizationRepository() {
         return jdbcAuthorizationRepository;
     }
 
     public static MemorySetRepository getMemorySetRepository() {
-        return memorySetRepository;
+        return fileMemorySetRepository;
     }
 
     public static AsyncVerseRepository getAsyncVerseRepository() {

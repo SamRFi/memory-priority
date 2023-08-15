@@ -1,0 +1,36 @@
+===
+root
+ID: 1
+Name: First Memory Set
+Priority: MEDIUM
+Last Rehearsed: 2023-08-15
+Key1: Value1
+Key2: Value2
+Key3: Value3
+---
+===
+root
+ID: 2
+Name: Second Memory Set
+Priority: LOW
+Last Rehearsed: 2023-08-10
+KeyA: ValueA
+KeyB: ValueB
+---
+===
+root
+ID: 3
+Name: Bob's Memory
+Priority: HIGH
+Last Rehearsed: 2023-07-20
+KeyX: ValueX
+---
+===
+root
+ID: 0
+Name: testingFileADDING
+Priority: HIGH
+Last Rehearsed: 2023-08-15
+hello: helloanswer
+hey: heyanswer
+---
