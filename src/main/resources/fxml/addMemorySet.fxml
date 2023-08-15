@@ -10,10 +10,10 @@
             prefHeight="500.0" prefWidth="600.0">
     <VBox spacing="10">
         <!-- MemorySet Name -->
-        <TextField fx:id="memorySetName" promptText="Memory Set Name"/>
+        <TextField fx:id="memorySetName" promptText="%memorySetNameTextField"/>
 
         <!-- MemorySet Priority Level -->
-        <ComboBox fx:id="priorityLevel" promptText="Priority Level">
+        <ComboBox fx:id="priorityLevel" promptText="%priorityLevelComboBox">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="HIGH"/>
@@ -35,6 +35,6 @@
         <Button text="+" onAction="#handleAddMoreRowsButtonAction"/>
 
         <!-- Save Button -->
-        <Button text="Save" onAction="#handleSaveButtonAction" fx:id="saveButton"/>
+        <Button text="%saveButton" onAction="#handleSaveButtonAction" fx:id="saveButton"/>
     </VBox>
 </AnchorPane>

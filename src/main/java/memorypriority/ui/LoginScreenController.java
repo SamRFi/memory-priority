@@ -15,7 +15,9 @@ import memorypriority.domain.User;
 import memorypriority.util.MemoryPriorityException;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class LoginScreenController {
 
@@ -56,7 +58,9 @@ public class LoginScreenController {
             alert.showAndWait();
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/dashboard.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
+            loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("nl")));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
 

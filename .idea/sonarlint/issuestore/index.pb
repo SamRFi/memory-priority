@@ -3,8 +3,6 @@ S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 j
 :src/test/java/memorypriority/domain/AutoRehearsalTest.java,8\d\8d02db86d0edde1a01cfb84b4e5dae8f8a7a4fe4
-n
->src/main/java/memorypriority/util/MemoryPriorityException.java,1\5\1556f7d799b54219901fe57ec2293ba7858fdd9b
 o
 ?src/main/java/memorypriority/service/AuthenticationService.java,f\e\fe301ef8cef356cd38fb383f046da7323f3ab3c9
 ]
@@ -15,7 +13,5 @@ j
 :src/main/java/memorypriority/service/MemorySetService.java,2\f\2f9f9c35b38301c7559a5e92093f0359c2af1f6a
 k
 ;src/main/java/memorypriority/data/AsyncVerseRepository.java,6\8\6858ca71139d20d8f83073e647f9494fa59c3c3d
-k
-;src/main/java/memorypriority/ui/AddMemorySetController.java,4\b\4be6a96b2395b54373828f3c63ead2d2e4ebced6
 ]
 -src/main/java/memorypriority/util/Crypto.java,4\9\49332121954a0fea3a5b267cd7b153058ffae428

@@ -14,13 +14,17 @@ import memorypriority.domain.PriorityLevel;
 import memorypriority.service.MemorySetService;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddMemorySetController {
 
     public static final Logger LOGGER = Logger.getLogger(AddMemorySetController.class.getName());
+
+    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en"));
     private MemorySetService memorySetService;
     private DashboardController dashboardController;
 
@@ -89,7 +93,7 @@ public class AddMemorySetController {
     private void handleAddMoreRowsButtonAction() {
         TextField keyField = new TextField();
         TextField valueField = new TextField();
-        Button searchButton = new Button("Search");
+        Button searchButton = new Button(rb.getString("searchButton"));
         searchButton.setOnAction(this::handleSearchButtonAction);
         Button removeButton = new Button("X");
         removeButton.setOnAction(this::handleRemoveButtonAction);

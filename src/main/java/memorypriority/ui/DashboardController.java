@@ -7,26 +7,22 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
-import memorypriority.domain.PriorityLevel;
 import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class DashboardController {
 
     public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
+
+    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("nl"));
 
     @FXML
     private VBox highPriorityColumn;
@@ -79,7 +75,7 @@ public class DashboardController {
         Tooltip tooltip = new Tooltip(memorySet.getName());
         Tooltip.install(nameLabel, tooltip);
 
-        Button rehearseButton = new Button("Rehearse");
+        Button rehearseButton = new Button(rb.getString("rehearseButton"));
         rehearseButton.setMinWidth(80); // Set minimum width for the button
         rehearseButton.setOnAction(event -> rehearseMemorySet(memorySet));
         Button increasePriorityButton = new Button("<");
@@ -122,9 +118,9 @@ public class DashboardController {
         mediumPriorityColumn.getChildren().clear();
         lowPriorityColumn.getChildren().clear();
 
-        highPriorityColumn.getChildren().add(createPriorityLabel("High Priority"));
-        mediumPriorityColumn.getChildren().add(createPriorityLabel("Medium Priority"));
-        lowPriorityColumn.getChildren().add(createPriorityLabel("Low Priority"));
+        highPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("highPriority")));
+        mediumPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("mediumPriority")));
+        lowPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("lowPriority")));
 
         populateMemorySets();
     }
@@ -142,6 +138,7 @@ public class DashboardController {
     public void showAddMemorySetDialog() {
         // Load the FXML for the dialog
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addMemorySet.fxml"));
+        loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
         Parent dialogContent;
         try {
             dialogContent = loader.load();

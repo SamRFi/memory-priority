@@ -2,7 +2,7 @@
 root
 ID: 1
 Name: First Memory Set
-Priority: MEDIUM
+Priority: LOW
 Last Rehearsed: 2023-08-15
 Key1: Value1
 Key2: Value2
@@ -29,7 +29,7 @@ KeyX: ValueX
 root
 ID: 0
 Name: testingFileADDING
-Priority: HIGH
+Priority: MEDIUM
 Last Rehearsed: 2023-08-15
 hello: helloanswer
 hey: heyanswer
