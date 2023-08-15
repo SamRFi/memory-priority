@@ -1,7 +1,6 @@
 package memorypriority.domain;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -75,5 +74,7 @@ public class MemorySet {
     public int hashCode() {
         return Objects.hash(name, memorySet, priorityLevel, lastTimeRehearsed);
     }
+
+
 }
 

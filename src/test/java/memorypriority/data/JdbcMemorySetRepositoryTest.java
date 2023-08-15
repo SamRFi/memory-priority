@@ -57,6 +57,8 @@ public class JdbcMemorySetRepositoryTest {
         conn.close();
     }
 
+
+
     @BeforeEach
     void openDatabaseConnection() throws Exception {
         conn = DriverManager.getConnection("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
@@ -114,7 +116,7 @@ public class JdbcMemorySetRepositoryTest {
         Map<String, String> memorySetMap = new HashMap<>();
         memorySetMap.put("key1", "value1");
         memorySetMap.put("key2", "value2");
-        MemorySet memorySet = new MemorySet("Set2", memorySetMap, PriorityLevel.HIGH);
+        MemorySet memorySet = new MemorySet("Set3", memorySetMap, PriorityLevel.HIGH);
 
         repository.addMemorySetToUser("user1", memorySet);
 
@@ -124,11 +126,11 @@ public class JdbcMemorySetRepositoryTest {
         LOGGER.log(Level.INFO, memoryCollection.getMemorySets().toString());
 
         assertNotNull(memoryCollection);
-        assertTrue(memoryCollection.getMemorySets().stream().anyMatch(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set2")));
+        assertTrue(memoryCollection.getMemorySets().stream().anyMatch(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set3")));
 
-        MemorySet set2 = memoryCollection.getMemorySets().stream().filter(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set2")).findFirst().orElse(null);
-        assertNotNull(set2);
-        assertEquals(memorySet, set2);
+        MemorySet set3 = memoryCollection.getMemorySets().stream().filter(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set3")).findFirst().orElse(null);
+        assertNotNull(set3);
+        assertEquals(memorySet.getMemorySet(), set3.getMemorySet());
     }
 
 

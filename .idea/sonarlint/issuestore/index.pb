@@ -1,8 +1,4 @@
 
-]
--src/main/java/memorypriority/util/Config.java,a\d\adb5186114032ff6ce602a0cb27333f7dfaed441
-]
--src/main/java/memorypriority/util/Crypto.java,4\9\49332121954a0fea3a5b267cd7b153058ffae428
 S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 j
@@ -11,23 +7,15 @@ n
 >src/main/java/memorypriority/util/MemoryPriorityException.java,1\5\1556f7d799b54219901fe57ec2293ba7858fdd9b
 r
 Bsrc/main/java/memorypriority/data/JdbcAuthorizationRepository.java,0\c\0c77ee69bb8f07cc2a5f27d365974b080afc5b15
-r
-Bsrc/test/java/memorypriority/data/JdbcMemorySetRepositoryTest.java,7\0\70b13f34c3b0941f11d0dcc3a872ec2aa200b6ef
 o
 ?src/main/java/memorypriority/service/AuthenticationService.java,f\e\fe301ef8cef356cd38fb383f046da7323f3ab3c9
 ]
 -src/main/java/memorypriority/domain/User.java,e\f\ef05d33cd1337ca582806031f5584a1cdbdf6c27
-i
-9src/main/java/memorypriority/domain/MemoryCollection.java,2\4\24d6a48c53e4700edd5ee0922c1db3e948237411
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 j
 :src/main/java/memorypriority/data/MemorySetRepository.java,d\f\df3f1b3410a5e4750797eacb10930022f0cdd731
 n
 >src/main/java/memorypriority/data/JdbcMemorySetRepository.java,e\e\eef0297a1bc47907d7b6026a4c2c9dad24ec36e2
-h
-8src/main/java/memorypriority/ui/DashboardController.java,a\a\aafc058b7c787ca80ef199734d511ed5bee471e4
-f
-6src/main/java/memorypriority/domain/PriorityLevel.java,3\2\3214eb6d76d25dbd8ae49b2cbfdc239257b3c056
-b
-2src/main/java/memorypriority/ui/FxApplication.java,f\2\f2af0f52a8061aa052d8a97f9871cdcd76bb5a03
+n
+>src/main/java/memorypriority/data/AuthorizationRepository.java,f\5\f54f98f3a13b5903174c32bc82f812b5dc24d026

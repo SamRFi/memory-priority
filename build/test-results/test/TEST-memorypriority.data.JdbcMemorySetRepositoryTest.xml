@@ -1,47 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="memorypriority.data.JdbcMemorySetRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-07-24T23:02:35" hostname="LAPTOP-SAM" time="0.066">
+<testsuite name="memorypriority.data.JdbcMemorySetRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-08-15T12:52:06" hostname="LAPTOP-SAM" time="0.054">
   <properties/>
-  <testcase name="testGetMemoryCollectionOfUserWithMemorySetNoEntries()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.044"/>
-  <testcase name="testAddMemorySetToUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.009"/>
-  <testcase name="testGetMemoryCollectionOfUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.004"/>
-  <testcase name="testGetMemoryCollectionOfUserWithNoMemorySets()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.003"/>
+  <testcase name="testGetMemoryCollectionOfUserWithMemorySetNoEntries()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.038"/>
+  <testcase name="testAddMemorySetToUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.007"/>
+  <testcase name="testGetMemoryCollectionOfUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.003"/>
+  <testcase name="testGetMemoryCollectionOfUserWithNoMemorySets()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.002"/>
   <testcase name="testGetMemoryCollectionOfNonExistentUser()" classname="memorypriority.data.JdbcMemorySetRepositoryTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {key1=value1}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithMemorySetNoEntries
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {key1=value1}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {key1=value1, key2=value2}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testAddMemorySetToUser
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {key1=value1}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetEntries
-INFO: {key1=value1, key2=value2}
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUser
-INFO: [memorypriority.domain.MemorySet@26e14700, memorypriority.domain.MemorySet@9e926377, memorypriority.domain.MemorySet@af31169b]
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
+  <system-err><![CDATA[Aug 15, 2023 2:52:06 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithMemorySetNoEntries
+INFO: [memorypriority.domain.MemorySet@95fe44bb, memorypriority.domain.MemorySet@1e4e1451]
+Aug 15, 2023 2:52:06 PM memorypriority.data.JdbcMemorySetRepositoryTest testAddMemorySetToUser
+INFO: [memorypriority.domain.MemorySet@95fe44bb, memorypriority.domain.MemorySet@dafd279, memorypriority.domain.MemorySet@1e4e1451]
+Aug 15, 2023 2:52:06 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUser
+INFO: [memorypriority.domain.MemorySet@95fe44bb, memorypriority.domain.MemorySet@dafd279, memorypriority.domain.MemorySet@1e4e1451]
+Aug 15, 2023 2:52:06 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithNoMemorySets
 INFO: []
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfUserWithNoMemorySets
-INFO: []
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepository getMemorySetsForUser
-INFO: []
-Jul 25, 2023 1:02:35 AM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfNonExistentUser
+Aug 15, 2023 2:52:06 PM memorypriority.data.JdbcMemorySetRepositoryTest testGetMemoryCollectionOfNonExistentUser
 INFO: []
 ]]></system-err>
 </testsuite>
