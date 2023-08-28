@@ -106,32 +106,42 @@ public class FileMemorySetRepository implements MemorySetRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 fileContent.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new MemoryPriorityException("Error reading from file", e);
+        }
 
-                if (line.equals("===")) {
-                    String usernameLine = reader.readLine();
-                    fileContent.add(usernameLine);
+        int start = -1;
+        int end = -1;
 
-                    String[] idParts = reader.readLine().split(":");
-                    if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
-                        for (int i = 0; i < 3; i++) {
-                            fileContent.remove(fileContent.size() - 1);
-                        }
-                    } else {
-                        fileContent.add("ID: " + idParts[1].trim());
+        for (int i = 0; i < fileContent.size(); i++) {
+            String line = fileContent.get(i);
+            if (line.equals("===")) {
+                String[] idParts = fileContent.get(i + 2).split(":");
+                if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
+                    start = i;
+                    while (!fileContent.get(i).equals("---")) {
+                        i++;
                     }
+                    end = i;
+                    break;
                 }
             }
+        }
 
+        if (start != -1 && end != -1) {
+            fileContent.subList(start, end + 1).clear();
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
                 for (String contentLine : fileContent) {
                     writer.write(contentLine + "\n");
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new MemoryPriorityException("Error writing to file", e);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new MemoryPriorityException("Error modifying file", e);
+        } else {
+            throw new MemoryPriorityException("Memory set not found");
         }
     }
-
-
 }

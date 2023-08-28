@@ -147,6 +147,11 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         }
     }
 
+    @Override
+    public void removeMemorySet(int id) {
+        throw new MemoryPriorityException("database memory set removal not yet implemented");
+    }
+
     protected Connection getConnection() throws SQLException {
         return JdbcConnection.getConnection();
     }

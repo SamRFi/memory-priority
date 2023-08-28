@@ -9,4 +9,5 @@ public interface MemorySetRepository {
     void addMemorySetToUser(String username, MemorySet memorySet);
 
     void changePriority(MemorySet memorySet, PriorityLevel newPriority);
+    void removeMemorySet(int id);
 }
