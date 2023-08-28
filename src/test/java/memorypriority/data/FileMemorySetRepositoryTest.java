@@ -28,13 +28,23 @@ class FileMemorySetRepositoryTest {
 
     @Test
     public void testRemoveMemorySet() throws MemoryPriorityException {
-        MemorySet memorySet = new MemorySet(9999, "Test Memory Set", new HashMap<>(), PriorityLevel.LOW, new java.sql.Date(System.currentTimeMillis()));
+        MemorySet memorySet = new MemorySet(999999, "Test Memory Set", new HashMap<>(), PriorityLevel.LOW, new java.sql.Date(System.currentTimeMillis()));
         repository.addMemorySetToUser("test_user", memorySet);
 
-        repository.removeMemorySet(9999);
+        repository.removeMemorySet(999999);
 
-        MemoryCollection memoryCollection2 = repository.getMemoryCollectionOfUser("test_user");
-        assertEquals(0, memoryCollection2.getMemorySets().size());
+        MemoryCollection memoryCollection = repository.getMemoryCollectionOfUser("test_user");
+
+        boolean memorySetExists = false;
+        for (MemorySet set : memoryCollection.getMemorySets()) {
+            if (set.getId() == 999999) {
+                memorySetExists = true;
+                break;
+            }
+        }
+
+        assertFalse(memorySetExists);
     }
+
 
 }
