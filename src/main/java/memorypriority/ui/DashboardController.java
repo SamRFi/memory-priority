@@ -100,7 +100,8 @@ public class DashboardController {
     }
 
     private void rehearseMemorySet(MemorySet memorySet) {
-        // Implement rehearse logic
+        //todo: pop up screen for rehearsal
+        memorySetService.rehearseMemorySet(memorySet);
     }
 
     private void increasePriority(MemorySet memorySet) {
