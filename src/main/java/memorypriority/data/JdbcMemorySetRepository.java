@@ -147,9 +147,6 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         }
     }
 
-
-
-
     protected Connection getConnection() throws SQLException {
         return JdbcConnection.getConnection();
     }

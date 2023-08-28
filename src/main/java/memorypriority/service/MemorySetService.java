@@ -71,8 +71,25 @@ public class MemorySetService {
         memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
     }
 
+    public void rehearseMemorySet(MemorySet memorySet) {
+        MemorySet memorySetToBeSaved = findMemorySetById(memorySet.getId());
+        memorySet.rehearsedNow();
+        memorySetRepository.rel
+        addMemorySetToUser(memorySetToBeSaved);
+    }
+
     public Future<String> getVerse(String verseReference) {
         return asyncVerseRepository.getVerse(verseReference);
+    }
+
+    private MemorySet findMemorySetById(int id) {
+        MemoryCollection memoryCollection = getMemoryCollectionOfUser();
+        for (MemorySet memorySet : memoryCollection.getMemorySets()) {
+            if (memorySet.getId() == id) {
+                return memorySet;
+            }
+        }
+        return null;
     }
 
 }

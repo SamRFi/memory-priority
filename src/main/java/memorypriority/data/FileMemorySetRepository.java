@@ -99,5 +99,39 @@ public class FileMemorySetRepository implements MemorySetRepository {
         }
     }
 
+    public void removeMemorySet(int id) {
+        List<String> fileContent = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                fileContent.add(line);
+
+                if (line.equals("===")) {
+                    String usernameLine = reader.readLine();
+                    fileContent.add(usernameLine);
+
+                    String[] idParts = reader.readLine().split(":");
+                    if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
+                        for (int i = 0; i < 3; i++) {
+                            fileContent.remove(fileContent.size() - 1);
+                        }
+                    } else {
+                        fileContent.add("ID: " + idParts[1].trim());
+                    }
+                }
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                for (String contentLine : fileContent) {
+                    writer.write(contentLine + "\n");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MemoryPriorityException("Error modifying file", e);
+        }
+    }
+
 
 }
