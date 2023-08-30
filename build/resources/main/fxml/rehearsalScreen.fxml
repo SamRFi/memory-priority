@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="memorypriority.ui.RehearsalController">
     <Button text="Order: In Order" fx:id="orderButton" onAction="#toggleOrder"/>
     <Button text="Mode: Key to Value" fx:id="modeButton" onAction="#toggleMode"/>
-    <Button text="Show Value" fx:id="showValueButton" onAction="#showValue" disable="true"/>
-    <Button text="Next" fx:id="nextButton" onAction="#nextPair" disable="true"/>
     <Button text="Start" fx:id="startButton" onAction="#startRehearsal"/>
     <Label fx:id="keyLabel"/>
+    <Button text="Show Value" fx:id="showValueButton" onAction="#showValue" disable="true"/>
+    <Button text="Next" fx:id="nextButton" onAction="#nextPair" disable="true"/>
     <Label fx:id="valueLabel" visible="false"/>
+
+    <!-- ScrollPane to contain the VBox for the overview -->
+    <ScrollPane visible="false" fx:id="overviewScrollPane">
+        <VBox fx:id="overviewVBox" spacing="10">
+            <Label text="Rehearsed Pairs" style="-fx-font-weight: bold;"/>
+            <Label fx:id="overviewLabel"/>
+        </VBox>
+    </ScrollPane>
+
+    <HBox spacing="10">
+        <Button text="Rehearse Again" fx:id="rehearseAgainButton" onAction="#rehearseAgain" visible="false"/>
+        <Button text="Return to Dashboard" fx:id="returnToDashboardButton" onAction="#returnToDashboard" visible="false"/>
+    </HBox>
 </VBox>
