@@ -73,8 +73,8 @@ public class MemorySetService {
 
     public void rehearseMemorySet(MemorySet memorySet) {
         MemorySet memorySetToBeSaved = findMemorySetById(memorySet.getId());
-        memorySet.rehearsedNow();
         memorySetRepository.removeMemorySet(memorySet.getId());
+        memorySetToBeSaved.rehearsedNow();
         addMemorySetToUser(memorySetToBeSaved);
     }
 

@@ -2,10 +2,12 @@ package memorypriority.domain;
 
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MemorySet {
 
-    private int Id;
+    private static final AtomicInteger sequencer = new AtomicInteger(0);
+    private int id;
     private String name;
     private PriorityLevel priorityLevel;
     private Timestamp lastTimeRehearsed;
@@ -13,6 +15,7 @@ public class MemorySet {
     private int currentIndex;
 
     public MemorySet(String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel) {
+        this.id = sequencer.incrementAndGet();
         this.name = name;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = new Timestamp(System.currentTimeMillis());
@@ -27,7 +30,7 @@ public class MemorySet {
 
     public MemorySet(int id, String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Timestamp lastTimeRehearsed) {
         this(name, pairList, priorityLevel, lastTimeRehearsed);
-        this.Id = id;
+        this.id = id;
     }
 
     public void rehearsedNow() {
@@ -39,7 +42,7 @@ public class MemorySet {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {

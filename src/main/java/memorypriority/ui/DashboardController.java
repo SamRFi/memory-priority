@@ -118,6 +118,8 @@ public class DashboardController {
 
         // Create the dialog
         Dialog<Void> dialog = new Dialog<>();
+        rehearsalController.setDialog(dialog);
+
         dialog.setTitle("Rehearse Memory Set");
         dialog.getDialogPane().setContent(dialogContent);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);

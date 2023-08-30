@@ -27,6 +27,6 @@
 
     <HBox spacing="10">
         <Button text="Rehearse Again" fx:id="rehearseAgainButton" onAction="#rehearseAgain" visible="false"/>
-        <Button text="Return to Dashboard" fx:id="returnToDashboardButton" onAction="#returnToDashboard" visible="false"/>
+        <Button text="Complete Rehearsal" fx:id="returnToDashboardButton" onAction="#returnToDashboard" visible="false"/>
     </HBox>
 </VBox>

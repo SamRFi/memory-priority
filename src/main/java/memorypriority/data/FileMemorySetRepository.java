@@ -138,14 +138,19 @@ public class FileMemorySetRepository implements MemorySetRepository {
         for (int i = 0; i < fileContent.size(); i++) {
             String line = fileContent.get(i);
             if (line.equals("===")) {
-                String[] idParts = fileContent.get(i + 2).split(":");
-                if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
-                    start = i;
-                    while (!fileContent.get(i).equals("---")) {
-                        i++;
+                try {
+                    String idLine = fileContent.get(i + 2);
+                    String[] idParts = idLine.split(":");
+                    if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
+                        start = i;
+                        while (i < fileContent.size() && !fileContent.get(i).equals("---")) {
+                            i++;
+                        }
+                        end = i;
+                        break;
                     }
-                    end = i;
-                    break;
+                } catch (NumberFormatException e) {
+                    continue;
                 }
             }
         }
@@ -164,4 +169,5 @@ public class FileMemorySetRepository implements MemorySetRepository {
             throw new MemoryPriorityException("Memory set not found");
         }
     }
+
 }

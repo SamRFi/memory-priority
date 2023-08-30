@@ -1,18 +1,18 @@
 ===
 root
-ID: 0
-Name: heyfirst
-Priority: LOW
-Last Rehearsed: 2023-08-30 18:41:11
-John 1:1 =:::= In the beginning was the Word, and the Word was with God, and the Word was God.
+ID: 3
+Name: test2
+Priority: MEDIUM
+Last Rehearsed: 2023-08-30 23:16:27
+testtt2 =:::= testtt222
+testtt2211 =:::= kfqdfqsfsf
 ---
 ===
 root
-ID: 0
-Name: second
+ID: 1
+Name: test1
 Priority: HIGH
-Last Rehearsed: 2023-08-30 22:18:48
-John 1:2 =:::= The same was in the beginning with God.
-Psalms 119:4 =:::= Thou hast commandedus to keep thy precepts diligently.
-Psalms 119:23 =:::= Princes also did sitand speak against me:but thy servant did meditate in thy statutes.
+Last Rehearsed: 2023-08-30 23:16:56
+key1 =:::= value1
+key2 =:::= value2
 ---

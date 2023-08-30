@@ -2,6 +2,7 @@ package memorypriority.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -54,6 +55,12 @@ public class RehearsalController {
     private boolean keyToValue = true;
     private MemorySet memorySet;
     private MemorySetService memorySetService;
+
+    private Dialog<Void> dialog;
+
+    public void setDialog(Dialog<Void> dialog) {
+        this.dialog = dialog;
+    }
 
     private Map.Entry<String, String> currentPair;
 
@@ -155,7 +162,10 @@ public class RehearsalController {
 
     @FXML
     private void returnToDashboard() {
-        // Implement logic to return to dashboard
+        memorySetService.rehearseMemorySet(memorySet);
+        if (dialog != null) {
+            dialog.close();
+        }
     }
 
     private void resetRehearsalState() {
