@@ -1,0 +1,10 @@
+===
+root
+ID: 0
+Name: beginnings
+Priority: HIGH
+Last Rehearsed: 2023-08-30
+Mark 3:28: Verily I say unto you, All sins shall be forgiven unto the sons of men, and blasphemies wherewith soever they shall blaspheme:
+John 3:16:           For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.
+Romans 1:1: Paul, a servant of Jesus Christ, calledto be an apostle, separated unto the gospel of God,
+---

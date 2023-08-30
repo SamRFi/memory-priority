@@ -1,8 +1,7 @@
 package memorypriority.domain;
 
 import java.sql.Date;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class MemorySet {
 
@@ -12,11 +11,20 @@ public class MemorySet {
     private PriorityLevel priorityLevel;
     private Date lastTimeRehearsed;
 
+    // Add a field to store the list of key-value pairs
+    private List<Map.Entry<String, String>> pairList;
+
+    // Add a field to store the current index of the pair list
+    private int currentIndex;
+
     public MemorySet(String name, Map<String, String> memorySet, PriorityLevel priorityLevel) {
         this.name = name;
         this.memorySet = memorySet;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = new Date(System.currentTimeMillis());
+        // Initialize the pair list and the current index
+        this.pairList = new ArrayList<>(memorySet.entrySet());
+        this.currentIndex = 0;
     }
 
     public MemorySet(String name, Map<String, String> memorySet, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
@@ -24,6 +32,9 @@ public class MemorySet {
         this.memorySet = memorySet;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = lastTimeRehearsed;
+        // Initialize the pair list and the current index
+        this.pairList = new ArrayList<>(memorySet.entrySet());
+        this.currentIndex = 0;
     }
 
     public MemorySet(int id, String name, Map<String, String> memorySet, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
@@ -32,6 +43,9 @@ public class MemorySet {
         this.memorySet = memorySet;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = lastTimeRehearsed;
+        // Initialize the pair list and the current index
+        this.pairList = new ArrayList<>(memorySet.entrySet());
+        this.currentIndex = 0;
     }
 
     public void rehearsedNow() {
@@ -75,6 +89,33 @@ public class MemorySet {
         return Objects.hash(name, memorySet, priorityLevel, lastTimeRehearsed);
     }
 
+    // Add a method to shuffle the pair list
+    public void shuffle() {
+        Collections.shuffle(pairList); // Use the Collections utility class to randomize the order of pairs
+        currentIndex = 0; // Reset the current index to zero
+    }
+
+    // Add a method to get a random pair from the pair list
+    public Map.Entry<String, String> getRandomPair() {
+        int randomIndex = (int) (Math.random() * pairList.size()); // Generate a random index between 0 and the size of the pair list
+        return pairList.get(randomIndex); // Return the pair at that index
+    }
+
+    // Add a method to get the next pair in sequence from the pair list
+    public Map.Entry<String, String> getNextPair() {
+        if (currentIndex >= pairList.size()) { // If the current index is out of bounds
+            currentIndex = 0; // Wrap around to zero
+        }
+        Map.Entry<String, String> nextPair = pairList.get(currentIndex); // Get the pair at the current index
+        currentIndex++; // Increment the current index by one
+        return nextPair; // Return the next pair
+    }
+
+    // Add a method to get the first pair from the pair list
+    public Map.Entry<String, String> getFirstPair() {
+        currentIndex = 0; // Reset the current index to zero
+        return pairList.get(0); // Return the first pair in the list
+    }
 
 }
 
