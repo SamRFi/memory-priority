@@ -29,3 +29,13 @@ n
 >src/main/java/memorypriority/util/MemoryPriorityException.java,1\5\1556f7d799b54219901fe57ec2293ba7858fdd9b
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+j
+:src/main/java/memorypriority/ui/LoginScreenController.java,8\3\83878e4f020c41b845dbe9f14a32d9fa88abfc99
+]
+-src/main/java/memorypriority/util/Config.java,a\d\adb5186114032ff6ce602a0cb27333f7dfaed441
+i
+9src/main/java/memorypriority/domain/MemoryCollection.java,2\4\24d6a48c53e4700edd5ee0922c1db3e948237411
+k
+;src/main/java/memorypriority/ui/AddMemorySetController.java,4\b\4be6a96b2395b54373828f3c63ead2d2e4ebced6
+b
+2src/main/java/memorypriority/domain/MemorySet.java,e\b\eb705f0c51de25865b0350d4b59b72f78a162063

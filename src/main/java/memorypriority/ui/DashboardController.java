@@ -100,9 +100,32 @@ public class DashboardController {
     }
 
     private void rehearseMemorySet(MemorySet memorySet) {
-        //todo: pop up screen for rehearsal
-        memorySetService.rehearseMemorySet(memorySet);
+        // Load the FXML for the rehearsal screen
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/rehearsalScreen.fxml"));
+        loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
+        Parent dialogContent;
+        try {
+            dialogContent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Get the controller and set the MemorySet and MemorySetService
+        RehearsalController rehearsalController = loader.getController();
+        rehearsalController.setMemorySet(memorySet);
+        rehearsalController.setMemorySetService(memorySetService);
+
+        // Create the dialog
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Rehearse Memory Set");
+        dialog.getDialogPane().setContent(dialogContent);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+
+        // Show the dialog
+        dialog.showAndWait();
     }
+
 
     private void increasePriority(MemorySet memorySet) {
         memorySetService.increasePriority(memorySet);
