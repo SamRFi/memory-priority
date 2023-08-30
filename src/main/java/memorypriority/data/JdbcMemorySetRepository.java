@@ -67,7 +67,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
                     int id = rs.getInt("id");
                     String name = rs.getString("name");
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(rs.getString("priority_level"));
-                    Date lastTimeRehearsed = new Date(rs.getTimestamp("last_time_rehearsed").getTime());
+                    Timestamp lastTimeRehearsed = new Timestamp(rs.getTimestamp("last_time_rehearsed").getTime());
 
                     List<Map.Entry<String, String>> entries = getMemorySetEntries(conn, id);
 

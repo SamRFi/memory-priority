@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 public class FileMemorySetRepository implements MemorySetRepository {
 
     private final String filePath = "./data/memory_data.txt";
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override public MemoryCollection getMemoryCollectionOfUser(String username) { Set<MemorySet> memorySets = new HashSet<>();
 
@@ -23,8 +23,20 @@ public class FileMemorySetRepository implements MemorySetRepository {
                     int id = Integer.parseInt(reader.readLine().split(":")[1].trim());
                     String name = reader.readLine().split(":")[1].trim();
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(reader.readLine().split(":")[1].trim());
-                    java.util.Date utilDate = format.parse(reader.readLine().split(":")[1].trim());
-                    java.sql.Date lastTimeRehearsed = new java.sql.Date(utilDate.getTime());
+
+                    // Parse the date and time string using the format object
+                    // Read the line and extract the date and time string
+                    line = reader.readLine();
+                    String[] dateTimeParts = line.split(": ")[1].split(" ");
+                    String dateString = dateTimeParts[0];
+                    String timeString = dateTimeParts[1];
+
+                    // Combine date and time for parsing
+                    String dateTimeString = dateString + " " + timeString;
+
+                    java.util.Date utilDate = format.parse(dateTimeString);
+                    java.sql.Timestamp lastTimeRehearsed = new java.sql.Timestamp(utilDate.getTime());
+
 
                     // Change the map to a list of entries
                     List<Map.Entry<String, String>> entries = new ArrayList<>();

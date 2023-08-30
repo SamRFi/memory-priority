@@ -31,5 +31,3 @@ j
 :src/main/java/memorypriority/ui/LoginScreenController.java,8\3\83878e4f020c41b845dbe9f14a32d9fa88abfc99
 ]
 -src/main/java/memorypriority/util/Config.java,a\d\adb5186114032ff6ce602a0cb27333f7dfaed441
-i
-9src/main/java/memorypriority/domain/MemoryCollection.java,2\4\24d6a48c53e4700edd5ee0922c1db3e948237411
