@@ -3,6 +3,7 @@ package memorypriority.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import memorypriority.domain.MemorySet;
 import memorypriority.service.MemorySetService;
@@ -24,6 +25,9 @@ public class RehearsalController {
 
     @FXML
     private Button nextButton;
+
+    @FXML
+    private ScrollPane overviewScrollPane;
 
     @FXML
     private Button startButton;
@@ -74,10 +78,13 @@ public class RehearsalController {
 
     @FXML
     private void toggleMode() {
-        keyToValue = !keyToValue;
-        modeButton.setText(keyToValue ? "Key to Value" : "Value to Key");
-        valueLabel.setVisible(false);
+        // Toggle the keyToValue flag
+        keyToValue = !keyToValue; // Flip the boolean value
+        modeButton.setText(keyToValue ? "Key to Value" : "Value to Key"); // Update the button text accordingly
+        valueLabel.setVisible(false); // Hide the value label when switching modes
     }
+
+
 
     @FXML
     private void showValue() {
@@ -123,11 +130,11 @@ public class RehearsalController {
         rehearsedPairs.clear();
         nextPair();
         orderButton.setDisable(true);
-        modeButton.setDisable(true);
+        modeButton.setDisable(false);
     }
 
     private void showOverview() {
-        overviewVBox.setVisible(true);
+        overviewScrollPane.setVisible(true);
         nextButton.setDisable(true);
         showValueButton.setDisable(true);
 
@@ -143,7 +150,6 @@ public class RehearsalController {
 
     @FXML
     private void rehearseAgain() {
-
         resetRehearsalState();
     }
 
@@ -153,14 +159,6 @@ public class RehearsalController {
     }
 
     private void resetRehearsalState() {
-        // Reset order and mode preferences
-        inRandomOrder = false;
-        keyToValue = true;
-
-        // Update button texts
-        orderButton.setText("Order: In Order");
-        modeButton.setText("Mode: Key to Value");
-
         // Reset visibility and enablement of buttons
         orderButton.setDisable(false);
         modeButton.setDisable(false);

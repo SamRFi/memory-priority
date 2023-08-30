@@ -10,7 +10,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="memorypriority.ui.RehearsalController">
     <Button text="Order: In Order" fx:id="orderButton" onAction="#toggleOrder"/>
-    <Button text="Mode: Key to Value" fx:id="modeButton" onAction="#toggleMode"/>
+    <Button text=" Mode: Key to Value" fx:id="modeButton" onAction="#toggleMode"/>
     <Button text="Start" fx:id="startButton" onAction="#startRehearsal"/>
     <Label fx:id="keyLabel"/>
     <Button text="Show Value" fx:id="showValueButton" onAction="#showValue" disable="true"/>
