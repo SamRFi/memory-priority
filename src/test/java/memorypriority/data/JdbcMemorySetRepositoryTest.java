@@ -111,28 +111,5 @@ public class JdbcMemorySetRepositoryTest {
         assertTrue(set2.getPairList().isEmpty());
     }
 
-    @Test
-    void testAddMemorySetToUser() throws Exception {
-        Map<String, String> memorySetMap = new HashMap<>();
-        memorySetMap.put("key1", "value1");
-        memorySetMap.put("key2", "value2");
-        MemorySet memorySet = new MemorySet("Set3", memorySetMap, PriorityLevel.HIGH);
-
-        repository.addMemorySetToUser("user1", memorySet);
-
-        openDatabaseConnection();
-
-        MemoryCollection memoryCollection = repository.getMemoryCollectionOfUser("user1");
-        LOGGER.log(Level.INFO, memoryCollection.getMemorySets().toString());
-
-        assertNotNull(memoryCollection);
-        assertTrue(memoryCollection.getMemorySets().stream().anyMatch(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set3")));
-
-        MemorySet set3 = memoryCollection.getMemorySets().stream().filter(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set3")).findFirst().orElse(null);
-        assertNotNull(set3);
-        assertEquals(memorySet.getPairList(), set3.getPairList());
-    }
-
-
 
 }

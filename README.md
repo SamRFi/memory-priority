@@ -1,5 +1,7 @@
 # memory-priority
 
+## Known Bugs
+- If you add duplicate key-value pairs, identical keys, or identical values to a memory set, the program will crash when you attempt to rehearse that set.
 ## Database Schemas:
 
 ```

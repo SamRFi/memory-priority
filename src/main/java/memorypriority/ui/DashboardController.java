@@ -115,6 +115,7 @@ public class DashboardController {
         RehearsalController rehearsalController = loader.getController();
         rehearsalController.setMemorySet(memorySet);
         rehearsalController.setMemorySetService(memorySetService);
+        rehearsalController.setDashboardController(this);
 
         // Create the dialog
         Dialog<Void> dialog = new Dialog<>();

@@ -56,6 +56,12 @@ public class RehearsalController {
     private MemorySet memorySet;
     private MemorySetService memorySetService;
 
+    private DashboardController dashboardController;
+
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
+    }
+
     private Dialog<Void> dialog;
 
     public void setDialog(Dialog<Void> dialog) {
@@ -163,6 +169,7 @@ public class RehearsalController {
     @FXML
     private void returnToDashboard() {
         memorySetService.rehearseMemorySet(memorySet);
+        dashboardController.refreshUI();
         if (dialog != null) {
             dialog.close();
         }

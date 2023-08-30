@@ -13,8 +13,6 @@ k
 -src/main/java/memorypriority/util/Crypto.java,4\9\49332121954a0fea3a5b267cd7b153058ffae428
 f
 6src/main/java/memorypriority/domain/PriorityLevel.java,3\2\3214eb6d76d25dbd8ae49b2cbfdc239257b3c056
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 e
 5src/main/java/memorypriority/data/JdbcConnection.java,0\f\0ff8bcd99fcab47f5f7074daf959e52a8c4a4fab
 c
