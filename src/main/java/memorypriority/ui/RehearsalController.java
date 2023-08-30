@@ -105,6 +105,7 @@ public class RehearsalController {
 
     @FXML
     private void startRehearsal() {
+        resetRehearsalState();
         if (inRandomOrder) {
             memorySet.shuffle();
         }
@@ -121,6 +122,8 @@ public class RehearsalController {
 
         rehearsedPairs.clear();
         nextPair();
+        orderButton.setDisable(true);
+        modeButton.setDisable(true);
     }
 
     private void showOverview() {
@@ -140,16 +143,41 @@ public class RehearsalController {
 
     @FXML
     private void rehearseAgain() {
-        overviewVBox.setVisible(false);
-        nextButton.setDisable(false);
-        showValueButton.setDisable(false);
-        rehearseAgainButton.setVisible(false);
-        returnToDashboardButton.setVisible(false);
-        startRehearsal();
+
+        resetRehearsalState();
     }
 
     @FXML
     private void returnToDashboard() {
         // Implement logic to return to dashboard
     }
+
+    private void resetRehearsalState() {
+        // Reset order and mode preferences
+        inRandomOrder = false;
+        keyToValue = true;
+
+        // Update button texts
+        orderButton.setText("Order: In Order");
+        modeButton.setText("Mode: Key to Value");
+
+        // Reset visibility and enablement of buttons
+        orderButton.setDisable(false);
+        modeButton.setDisable(false);
+        startButton.setVisible(true);
+        showValueButton.setDisable(true);
+        nextButton.setDisable(true);
+
+        // Reset labels
+        keyLabel.setText("");
+        valueLabel.setText("");
+        valueLabel.setVisible(false);
+
+        // Reset the current memory set index (assuming the MemorySet class has such a method)
+        if(memorySet != null) {
+            memorySet.resetCurrentIndex();
+        }
+    }
+
+
 }

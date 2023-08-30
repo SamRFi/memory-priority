@@ -79,6 +79,10 @@ public class MemorySet {
         return pairList.get(0);
     }
 
+    public void resetCurrentIndex() {
+        this.currentIndex = 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
