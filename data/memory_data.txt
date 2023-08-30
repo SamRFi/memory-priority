@@ -4,5 +4,5 @@ ID: 0
 Name: heyfirst
 Priority: LOW
 Last Rehearsed: 2023-08-30 18:41:11
-John 1:1: In the beginning was the Word, and the Word was with God, and the Word was God.
+John 1:1 =:::= In the beginning was the Word, and the Word was with God, and the Word was God.
 ---

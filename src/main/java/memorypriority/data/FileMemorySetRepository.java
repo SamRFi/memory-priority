@@ -41,7 +41,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
                     // Change the map to a list of entries
                     List<Map.Entry<String, String>> entries = new ArrayList<>();
                     while (!(line = reader.readLine()).equals("---")) {
-                        String[] parts = line.split(":");
+                        String[] parts = line.split("=:::=");
                         // Create a new entry with the key and value from the parts
                         Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(parts[0].trim(), parts[1].trim());
                         // Add the entry to the list
@@ -71,7 +71,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
             // Change the loop to iterate over the list of entries instead of the map
             for (Map.Entry<String, String> entry : memorySet.getPairList()) {
                 // Write the key and value of each entry as before
-                writer.write(entry.getKey() + ": " + entry.getValue() + "\n");
+                writer.write(entry.getKey() + " =:::= " + entry.getValue() + "\n");
             }
 
             writer.write("---\n");
