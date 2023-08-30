@@ -13,8 +13,6 @@ k
 -src/main/java/memorypriority/util/Crypto.java,4\9\49332121954a0fea3a5b267cd7b153058ffae428
 f
 6src/main/java/memorypriority/domain/PriorityLevel.java,3\2\3214eb6d76d25dbd8ae49b2cbfdc239257b3c056
-r
-Bsrc/main/java/memorypriority/data/JdbcAuthorizationRepository.java,0\c\0c77ee69bb8f07cc2a5f27d365974b080afc5b15
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 e
@@ -35,5 +33,3 @@ j
 -src/main/java/memorypriority/util/Config.java,a\d\adb5186114032ff6ce602a0cb27333f7dfaed441
 i
 9src/main/java/memorypriority/domain/MemoryCollection.java,2\4\24d6a48c53e4700edd5ee0922c1db3e948237411
-k
-;src/main/java/memorypriority/ui/AddMemorySetController.java,4\b\4be6a96b2395b54373828f3c63ead2d2e4ebced6

@@ -13,10 +13,7 @@ import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
 import memorypriority.service.MemorySetService;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +25,7 @@ public class AddMemorySetController {
     private MemorySetService memorySetService;
     private DashboardController dashboardController;
 
-    private Map<String, String> keyValueCache = new HashMap<>();
+    private List<Map.Entry<String, String>> keyValueCache = new ArrayList<>();
 
 
     public void setMemorySetService(MemorySetService memorySetService) {
@@ -100,11 +97,21 @@ public class AddMemorySetController {
 
         // Listeners to update the cache
         keyField.textProperty().addListener((obs, oldText, newText) -> {
-            keyValueCache.put(newText, valueField.getText());
+            // Create a new entry with the key and value from the text fields
+            Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(newText, valueField.getText());
+            // Remove the old entry from the cache if it exists
+            keyValueCache.removeIf(e -> e.getKey().equals(oldText));
+            // Add the new entry to the cache
+            keyValueCache.add(entry);
         });
 
         valueField.textProperty().addListener((obs, oldText, newText) -> {
-            keyValueCache.put(keyField.getText(), newText);
+            // Create a new entry with the key and value from the text fields
+            Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(keyField.getText(), newText);
+            // Remove the old entry from the cache if it exists
+            keyValueCache.removeIf(e -> e.getValue().equals(oldText));
+            // Add the new entry to the cache
+            keyValueCache.add(entry);
         });
 
         HBox container = new HBox(5); // 5 is spacing between elements
@@ -114,6 +121,7 @@ public class AddMemorySetController {
         int rowIndex = keyValuePairsContainer.getRowCount(); // Assuming you don't have this method, you can replace with a counter.
         keyValuePairsContainer.addRow(rowIndex, container);
     }
+
 
 
 
@@ -128,19 +136,26 @@ public class AddMemorySetController {
                 HBox row = (HBox) node;
                 TextField keyField = (TextField) row.getChildren().get(1);
                 TextField valueField = (TextField) row.getChildren().get(2);
-                keyValueCache.put(keyField.getText(), valueField.getText());
+
+                // Create a new entry with the key and value from the text fields
+                Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(keyField.getText(), valueField.getText());
+
+                // Add the entry to the cache
+                keyValueCache.add(entry);
             }
         }
 
         String setName = memorySetName.getText();
         PriorityLevel setPriority = PriorityLevel.valueOf(priorityLevel.getSelectionModel().getSelectedItem());
 
+        // Use the list instead of the map to create a new MemorySet object
         MemorySet memorySet = new MemorySet(setName, keyValueCache, setPriority);
 
         memorySetService.addMemorySetToUser(memorySet);
         ((Node) (saveButton)).getScene().getWindow().hide();
         dashboardController.refreshUI();
     }
+
 
     @FXML
     private void handleSearchButtonAction(ActionEvent actionEvent) {

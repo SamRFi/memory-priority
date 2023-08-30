@@ -108,7 +108,7 @@ public class JdbcMemorySetRepositoryTest {
         assertTrue(memoryCollection.getMemorySets().stream().anyMatch(memorySet -> memorySet.getName().equals("Set2")));
         MemorySet set2 = memoryCollection.getMemorySets().stream().filter(memorySet -> memorySet.getName().equals("Set2")).findFirst().orElse(null);
         assertNotNull(set2);
-        assertTrue(set2.getMemorySet().isEmpty());
+        assertTrue(set2.getPairList().isEmpty());
     }
 
     @Test
@@ -130,7 +130,7 @@ public class JdbcMemorySetRepositoryTest {
 
         MemorySet set3 = memoryCollection.getMemorySets().stream().filter(memorySetRetrieved -> memorySetRetrieved.getName().equals("Set3")).findFirst().orElse(null);
         assertNotNull(set3);
-        assertEquals(memorySet.getMemorySet(), set3.getMemorySet());
+        assertEquals(memorySet.getPairList(), set3.getPairList());
     }
 
 

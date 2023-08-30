@@ -14,9 +14,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
     private final String filePath = "./data/memory_data.txt";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-    @Override
-    public MemoryCollection getMemoryCollectionOfUser(String username) {
-        Set<MemorySet> memorySets = new HashSet<>();
+    @Override public MemoryCollection getMemoryCollectionOfUser(String username) { Set<MemorySet> memorySets = new HashSet<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -28,11 +26,16 @@ public class FileMemorySetRepository implements MemorySetRepository {
                     java.util.Date utilDate = format.parse(reader.readLine().split(":")[1].trim());
                     java.sql.Date lastTimeRehearsed = new java.sql.Date(utilDate.getTime());
 
-                    Map<String, String> entries = new HashMap<>();
+                    // Change the map to a list of entries
+                    List<Map.Entry<String, String>> entries = new ArrayList<>();
                     while (!(line = reader.readLine()).equals("---")) {
                         String[] parts = line.split(":");
-                        entries.put(parts[0].trim(), parts[1].trim());
+                        // Create a new entry with the key and value from the parts
+                        Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(parts[0].trim(), parts[1].trim());
+                        // Add the entry to the list
+                        entries.add(entry);
                     }
+                    // Use the list instead of the map to create a new MemorySet object
                     memorySets.add(new MemorySet(id, name, entries, priorityLevel, lastTimeRehearsed));
                 }
             }
@@ -52,15 +55,20 @@ public class FileMemorySetRepository implements MemorySetRepository {
             writer.write("Name: " + memorySet.getName() + "\n");
             writer.write("Priority: " + memorySet.getPriorityLevel() + "\n");
             writer.write("Last Rehearsed: " + format.format(memorySet.getLastTimeRehearsed()) + "\n");
-            for (Map.Entry<String, String> entry : memorySet.getMemorySet().entrySet()) {
+
+            // Change the loop to iterate over the list of entries instead of the map
+            for (Map.Entry<String, String> entry : memorySet.getPairList()) {
+                // Write the key and value of each entry as before
                 writer.write(entry.getKey() + ": " + entry.getValue() + "\n");
             }
+
             writer.write("---\n");
         } catch (IOException e) {
             e.printStackTrace();
             throw new MemoryPriorityException("Error writing to file", e);
         }
     }
+
 
     @Override
     public void changePriority(MemorySet memorySet, PriorityLevel newPriority) {

@@ -32,7 +32,7 @@ public class MemorySetService {
     public void addMemorySetToUser(MemorySet memorySet) {
 
         memorySetRepository.addMemorySetToUser(loggedInUser.getUsername(), memorySet);
-        LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getMemorySet().toString(), memorySet);
+        LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getPairList().toString(), memorySet);
     }
 
     public void increasePriority(MemorySet memorySet) {

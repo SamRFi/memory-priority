@@ -30,16 +30,20 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         };
     }
 
-    private Map<String, String> getMemorySetEntries(Connection conn, int memorySetId) {
+    private List<Map.Entry<String, String>> getMemorySetEntries(Connection conn, int memorySetId) {
         String sql = "SELECT key_name, value_name FROM memory_set_entries WHERE memory_set_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, memorySetId);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                Map<String, String> entries = new HashMap<>();
+                // Create a new list to store the entries
+                List<Map.Entry<String, String>> entries = new ArrayList<>();
                 while (rs.next()) {
-                    entries.put(rs.getString("key_name"), rs.getString("value_name"));
+                    // Create a new entry with the key and value from the result set
+                    Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(rs.getString("key_name"), rs.getString("value_name"));
+                    // Add the entry to the list
+                    entries.add(entry);
                 }
                 return entries;
             }
@@ -48,6 +52,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
             throw new MemoryPriorityException("Database error", ex);
         }
     }
+
 
 
     private Set<MemorySet> getMemorySetsForUser(Connection conn, String username) {
@@ -64,7 +69,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(rs.getString("priority_level"));
                     Date lastTimeRehearsed = new Date(rs.getTimestamp("last_time_rehearsed").getTime());
 
-                    Map<String, String> entries = getMemorySetEntries(conn, id);
+                    List<Map.Entry<String, String>> entries = getMemorySetEntries(conn, id);
 
                     memorySets.add(new MemorySet(id, name, entries, priorityLevel, lastTimeRehearsed));
                 }
@@ -107,7 +112,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
                     int memorySetId = generatedKeys.getInt(1);
 
                     String insertEntrySql = "INSERT INTO memory_set_entries (memory_set_id, key_name, value_name) VALUES (?, ?, ?)";
-                    for (Map.Entry<String, String> entry : memorySet.getMemorySet().entrySet()) {
+                    for (Map.Entry<String, String> entry : memorySet.getPairList()) {
                         try (PreparedStatement insertEntryStmt = conn.prepareStatement(insertEntrySql)) {
                             insertEntryStmt.setInt(1, memorySetId);
                             insertEntryStmt.setString(2, entry.getKey());
