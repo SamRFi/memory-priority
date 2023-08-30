@@ -1,6 +1,7 @@
 package memorypriority.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class MemorySet {
@@ -8,7 +9,7 @@ public class MemorySet {
     private int Id;
     private String name;
     private PriorityLevel priorityLevel;
-    private Date lastTimeRehearsed;
+    private Timestamp lastTimeRehearsed;
 
     // Add a field to store the list of key-value pairs
     private List<Map.Entry<String, String>> pairList;
@@ -19,13 +20,13 @@ public class MemorySet {
     public MemorySet(String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel) {
         this.name = name;
         this.priorityLevel = priorityLevel;
-        this.lastTimeRehearsed = new Date(System.currentTimeMillis());
+        this.lastTimeRehearsed = new Timestamp(System.currentTimeMillis());
         // Initialize the pair list and the current index
         this.pairList = pairList;
         this.currentIndex = 0;
     }
 
-    public MemorySet(String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
+    public MemorySet(String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Timestamp lastTimeRehearsed) {
         this.name = name;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = lastTimeRehearsed;
@@ -33,7 +34,7 @@ public class MemorySet {
         this.currentIndex = 0;
     }
 
-    public MemorySet(int id, String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Date lastTimeRehearsed) {
+    public MemorySet(int id, String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Timestamp lastTimeRehearsed) {
         this.Id = id;
         this.name = name;
         this.priorityLevel = priorityLevel;
@@ -44,7 +45,7 @@ public class MemorySet {
     }
 
     public void rehearsedNow() {
-        lastTimeRehearsed = new Date(System.currentTimeMillis());
+        lastTimeRehearsed = new Timestamp(System.currentTimeMillis());
     }
 
     public void setPriorityLevel(PriorityLevel priorityLevel) {
@@ -67,7 +68,7 @@ public class MemorySet {
         return priorityLevel;
     }
 
-    public Date getLastTimeRehearsed() {
+    public Timestamp getLastTimeRehearsed() {
         return lastTimeRehearsed;
     }
 
