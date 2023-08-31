@@ -11,7 +11,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
-import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 
 import java.io.IOException;
@@ -34,7 +33,7 @@ public class DashboardController {
     private MemorySetService memorySetService;
 
     public DashboardController() {
-        this.memorySetService = new MemorySetService(new User("root", "root"));
+        this.memorySetService = new MemorySetService("root");
     }
 
     @FXML

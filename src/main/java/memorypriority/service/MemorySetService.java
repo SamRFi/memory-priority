@@ -7,7 +7,6 @@ import memorypriority.data.Repositories;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
-import memorypriority.domain.User;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,23 +14,23 @@ import java.util.logging.Logger;
 public class MemorySetService {
 
     public static final Logger LOGGER = Logger.getLogger(MemorySetService.class.getName());
-    private final User loggedInUser;
+    private final String loggedInUser;
     private final MemorySetRepository memorySetRepository;
     private final AsyncVerseRepository asyncVerseRepository;
 
-    public MemorySetService(User loggedInUser) {
+    public MemorySetService(String loggedInUser) {
         this.memorySetRepository = Repositories.getMemorySetRepository();
         this.asyncVerseRepository = Repositories.getAsyncVerseRepository();
         this.loggedInUser = loggedInUser;
     }
 
     public MemoryCollection getMemoryCollectionOfUser() {
-        return memorySetRepository.getMemoryCollectionOfUser(loggedInUser.getUsername());
+        return memorySetRepository.getMemoryCollectionOfUser(loggedInUser);
     }
 
     public void addMemorySetToUser(MemorySet memorySet) {
 
-        memorySetRepository.addMemorySetToUser(loggedInUser.getUsername(), memorySet);
+        memorySetRepository.addMemorySetToUser(loggedInUser, memorySet);
         LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getPairList().toString(), memorySet);
     }
 

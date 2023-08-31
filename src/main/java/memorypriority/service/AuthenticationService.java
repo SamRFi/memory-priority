@@ -1,26 +1,27 @@
 package memorypriority.service;
 
-import memorypriority.data.AuthorizationRepository;
-import memorypriority.data.JdbcAuthorizationRepository;
+
+import memorypriority.data.ProfileRepository;
 import memorypriority.data.Repositories;
-import memorypriority.domain.User;
 import memorypriority.util.MemoryPriorityException;
+
+import java.util.List;
 
 
 public class AuthenticationService {
 
-    private final AuthorizationRepository authRepo;
+    private final ProfileRepository profileRepository;
 
     public AuthenticationService() {
-        this.authRepo = Repositories.getAuthorizationRepository();
+        this.profileRepository = Repositories.getProfileRepository();
     }
 
-    public User login(String username, String password) {
-        User user = authRepo.authenticateUser(username, password);
-        if (user == null) {
-            throw new MemoryPriorityException("Invalid username or password");
+    public String login(String username) {
+        List<String> usernames = profileRepository.getAllUsernames();
+        if (!usernames.contains(username)) {
+            throw new MemoryPriorityException("Trying to log in to invalid username");
         }
-        return user;
+        return username;
     }
 
 }

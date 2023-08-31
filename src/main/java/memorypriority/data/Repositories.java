@@ -13,7 +13,7 @@ public class Repositories {
     private static final WebClient WEB_CLIENT =  WebClient.create(Vertx.vertx());
     private static final boolean ENABLE_SSL = true;
 
-    private static final JdbcAuthorizationRepository jdbcAuthorizationRepository = new JdbcAuthorizationRepository();
+    private static final ProfileRepository profileRepository = new FileProfileRepository();
     private static final MemorySetRepository jdbcMemorySetRepository;
 
     static {
@@ -28,8 +28,8 @@ public class Repositories {
 
     private static final AsyncVerseRepository asyncVerseRepository = new AsyncVerseRepositoryImpl(PORT, HOST, WEB_CLIENT, ENABLE_SSL);
 
-    public static JdbcAuthorizationRepository getAuthorizationRepository() {
-        return jdbcAuthorizationRepository;
+    public static ProfileRepository getProfileRepository() {
+        return profileRepository;
     }
 
     public static MemorySetRepository getMemorySetRepository() {

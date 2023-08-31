@@ -16,7 +16,6 @@ import memorypriority.util.MemoryPriorityException;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginScreenController {
@@ -48,13 +47,12 @@ public class LoginScreenController {
     private void login() {
         try {
             String username = usernameField.getText().trim();
-            String password = passwordField.getText().trim();
-            User user = authService.login(username, password);
+            authService.login(username);
 
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Login successful");
             alert.setHeaderText(null);
-            alert.setContentText(user.getUsername() + "has logged in successfully!");
+            alert.setContentText(username + " has logged in successfully!");
             alert.showAndWait();
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
