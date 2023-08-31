@@ -24,5 +24,16 @@ public class AuthenticationService {
         return username;
     }
 
+    public void addProfile(String usernameToAdd) {
+        profileRepository.addProfile(usernameToAdd);
+    }
+
+    public void removeProfile(String usernameToRemove) {
+        profileRepository.removeUsername(usernameToRemove);
+    }
+
+    public List<String> getAllUsernames() {
+        return profileRepository.getAllUsernames();
+    }
 
 }

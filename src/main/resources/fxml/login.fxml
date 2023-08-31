@@ -9,8 +9,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="memorypriority.ui.LoginScreenController">
     <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
         <Label text="%label.login" style="-fx-font-size: 24"/>
-        <TextField fx:id="usernameField" promptText="%textField.username"/>
-        <PasswordField fx:id="passwordField" promptText="%passwordField.password"/>
+        <ComboBox fx:id="profileComboBox" promptText="%username"/>
         <HBox spacing="10" alignment="CENTER_RIGHT">
             <Button fx:id="cancelButton" text="Cancel"/>
             <Button fx:id="loginButton" text="Login"/>

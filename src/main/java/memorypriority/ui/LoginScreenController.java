@@ -1,13 +1,11 @@
 package memorypriority.ui;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import memorypriority.data.Repositories;
@@ -34,6 +32,9 @@ public class LoginScreenController {
     @FXML
     private Button loginButton;
 
+    @FXML
+    private ComboBox<String> profileComboBox;
+
     private AuthenticationService authService;
 
     public LoginScreenController() {
@@ -44,18 +45,14 @@ public class LoginScreenController {
     public void initialize() {
         cancelButton.setOnAction(event -> System.exit(0));
         loginButton.setOnAction(event -> login());
+        profileComboBox.setItems(FXCollections.observableArrayList(authService.getAllUsernames()));
+
     }
 
     private void login() {
         try {
-            String username = usernameField.getText().trim();
+            String username = profileComboBox.getValue().trim();
             authService.login(username);
-
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Login successful");
-            alert.setHeaderText(null);
-            alert.setContentText(username + " has logged in successfully!");
-            alert.showAndWait();
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
