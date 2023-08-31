@@ -32,13 +32,8 @@ public class DashboardController {
 
     private MemorySetService memorySetService;
 
-    public DashboardController() {
-        this.memorySetService = new MemorySetService("root");
-    }
-
-    @FXML
-    public void initialize() {
-        populateMemorySets();
+    public void setMemorySetService(MemorySetService memorySetService) {
+        this.memorySetService = memorySetService;
     }
 
     public void populateMemorySets() {

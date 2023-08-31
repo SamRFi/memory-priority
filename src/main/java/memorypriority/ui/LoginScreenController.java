@@ -10,8 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import memorypriority.data.Repositories;
 import memorypriority.service.AuthenticationService;
 import memorypriority.domain.User;
+import memorypriority.service.MemorySetService;
 import memorypriority.util.MemoryPriorityException;
 
 import java.io.IOException;
@@ -57,8 +59,14 @@ public class LoginScreenController {
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
-            loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("nl")));
+
+            loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
             Parent root = loader.load();
+
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setMemorySetService(new MemorySetService(username));
+            dashboardController.populateMemorySets();
+
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
