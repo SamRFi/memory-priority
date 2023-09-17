@@ -14,6 +14,7 @@ import memorypriority.util.MemoryPriorityException;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginScreenController {
@@ -25,10 +26,13 @@ public class LoginScreenController {
     private PasswordField passwordField;
 
     @FXML
-    private Button cancelButton;
+    private Button loginButton;
 
     @FXML
-    private Button loginButton;
+    private Button addProfileButton;
+
+    @FXML
+    private Button removeProfileButton;
 
     @FXML
     private ComboBox<String> profileComboBox;
@@ -41,10 +45,10 @@ public class LoginScreenController {
 
     @FXML
     public void initialize() {
-        cancelButton.setOnAction(event -> System.exit(0));
         loginButton.setOnAction(event -> login());
+        addProfileButton.setOnAction(event -> addProfile());
+        removeProfileButton.setOnAction(event -> removeProfile());
         profileComboBox.setItems(FXCollections.observableArrayList(authService.getAllUsernames()));
-
     }
 
     private void login() {
@@ -77,4 +81,26 @@ public class LoginScreenController {
             throw new MemoryPriorityException("Failed to open new fxml window", e);
         }
     }
+
+    private void addProfile() {
+        String usernameToAdd = usernameField.getText().trim();
+        authService.addProfile(usernameToAdd);
+        profileComboBox.setItems(FXCollections.observableArrayList(authService.getAllUsernames()));
+    }
+
+    private void removeProfile() {
+        String usernameToRemove = profileComboBox.getValue();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Remove Profile");
+        alert.setHeaderText("Are you sure you want to remove this profile?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            authService.removeProfile(usernameToRemove);
+            profileComboBox.setItems(FXCollections.observableArrayList(authService.getAllUsernames()));
+        }
+    }
+
 }

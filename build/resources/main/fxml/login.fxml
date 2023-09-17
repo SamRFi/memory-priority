@@ -11,8 +11,16 @@
         <Label text="%label.login" style="-fx-font-size: 24"/>
         <ComboBox fx:id="profileComboBox" promptText="%username"/>
         <HBox spacing="10" alignment="CENTER_RIGHT">
-            <Button fx:id="cancelButton" text="Cancel"/>
+
+
+            <Button fx:id="removeProfileButton" text="Remove Profile"/>
             <Button fx:id="loginButton" text="Login"/>
+        </HBox>
+        <Separator />
+        <TextField fx:id="usernameField" promptText="%username"/>
+        <Button fx:id="addProfileButton" text="Add Profile"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+
         </HBox>
     </VBox>
 </AnchorPane>

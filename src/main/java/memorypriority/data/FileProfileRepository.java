@@ -58,6 +58,5 @@ public class FileProfileRepository implements ProfileRepository {
         }
     }
 
-    // You can add more methods to manage profiles here
 }
 
