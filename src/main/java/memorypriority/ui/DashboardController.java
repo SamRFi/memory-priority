@@ -61,31 +61,34 @@ public class DashboardController {
 
     private GridPane createMemorySetBox(MemorySet memorySet) {
         Label nameLabel = new Label(memorySet.getName());
-        nameLabel.setMaxWidth(Double.MAX_VALUE); // Allow the label to grow as much as possible
+        nameLabel.setMaxWidth(Double.MAX_VALUE);
         nameLabel.setAlignment(Pos.CENTER);
-        GridPane.setHgrow(nameLabel, Priority.ALWAYS); // Allow the label to grow as much as possible
+        GridPane.setHgrow(nameLabel, Priority.ALWAYS);
 
-        // Add a tooltip to show the full name when hovering over the label
         Tooltip tooltip = new Tooltip(memorySet.getName());
         Tooltip.install(nameLabel, tooltip);
 
         Button rehearseButton = new Button(rb.getString("rehearseButton"));
-        rehearseButton.setMinWidth(80); // Set minimum width for the button
+        rehearseButton.setMinWidth(80);
         rehearseButton.setOnAction(event -> rehearseMemorySet(memorySet));
         Button increasePriorityButton = new Button("<");
-        increasePriorityButton.setMinWidth(25); // Set minimum width for the button
+        increasePriorityButton.setMinWidth(25);
         increasePriorityButton.setOnAction(event -> increasePriority(memorySet));
         Button decreasePriorityButton = new Button(">");
-        decreasePriorityButton.setMinWidth(25); // Set minimum width for the button
+        decreasePriorityButton.setMinWidth(25);
         decreasePriorityButton.setOnAction(event -> decreasePriority(memorySet));
 
-        // Use GridPane instead of HBox
+        Button deleteButton = new Button("X");
+        deleteButton.setMinWidth(25);
+        deleteButton.setOnAction(event -> deleteMemorySet(memorySet));
+
         GridPane memorySetBox = new GridPane();
         memorySetBox.setHgap(10);
-        memorySetBox.setPrefWidth(600); // Set the preferred width of the box
+        memorySetBox.setPrefWidth(600);
         memorySetBox.add(increasePriorityButton, 0, 0);
         memorySetBox.add(nameLabel, 1, 0);
         memorySetBox.add(rehearseButton, 2, 0);
+        memorySetBox.add(deleteButton, 4, 0);
         memorySetBox.add(decreasePriorityButton, 3, 0);
 
         memorySetBox.setStyle("-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 10; -fx-padding: 5");
@@ -93,8 +96,20 @@ public class DashboardController {
         return memorySetBox;
     }
 
+    private void deleteMemorySet(MemorySet memorySet) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Memory Set");
+        alert.setHeaderText("Are you sure you want to delete this memory set?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            memorySetService.removeMemorySet(memorySet);
+            refreshUI();
+        }
+    }
+
     private void rehearseMemorySet(MemorySet memorySet) {
-        // Load the FXML for the rehearsal screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/rehearsalScreen.fxml"));
         loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
         Parent dialogContent;
@@ -105,13 +120,11 @@ public class DashboardController {
             return;
         }
 
-        // Get the controller and set the MemorySet and MemorySetService
         RehearsalController rehearsalController = loader.getController();
         rehearsalController.setMemorySet(memorySet);
         rehearsalController.setMemorySetService(memorySetService);
         rehearsalController.setDashboardController(this);
 
-        // Create the dialog
         Dialog<Void> dialog = new Dialog<>();
         rehearsalController.setDialog(dialog);
 
@@ -119,10 +132,8 @@ public class DashboardController {
         dialog.getDialogPane().setContent(dialogContent);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
 
-        // Show the dialog
         dialog.showAndWait();
     }
-
 
     private void increasePriority(MemorySet memorySet) {
         memorySetService.increasePriority(memorySet);
@@ -146,7 +157,6 @@ public class DashboardController {
         populateMemorySets();
     }
 
-
     private Label createPriorityLabel(String text) {
         Label label = new Label(text);
         label.setStyle("-fx-font-size: 20");
@@ -155,9 +165,7 @@ public class DashboardController {
         return label;
     }
 
-
     public void showAddMemorySetDialog() {
-        // Load the FXML for the dialog
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addMemorySet.fxml"));
         loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
         Parent dialogContent;
@@ -168,21 +176,17 @@ public class DashboardController {
             return;
         }
 
-        // Get the controller and set the MemorySetService
         AddMemorySetController addMemorySetController = loader.getController();
         addMemorySetController.setMemorySetService(memorySetService);
         addMemorySetController.setDashboardController(this);
 
-        // Create the dialog
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Add Memory Set");
         dialog.getDialogPane().setContent(dialogContent);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
 
-        // Show the dialog
         dialog.showAndWait();
     }
-
 
     public void handleAddSet(ActionEvent actionEvent) {
         showAddMemorySetDialog();

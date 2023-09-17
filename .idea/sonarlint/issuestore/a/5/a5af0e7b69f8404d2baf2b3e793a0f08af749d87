@@ -1,0 +1,11 @@
+
+{	java:S135Š"YReduce the total number of break and continue statements in this loop to use at most one.(£·¾üÿÿÿÿ8¿ñ—Â¤1
+u	java:S127“"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ8¿ñ—Â¤1
+7
+java:S1170"!Make this final field static too.(›´èß
+g
+java:S2677g"LUse or store the value returned from "readLine" instead of throwing it away.(íÅÇäıÿÿÿÿ
+h
+java:S3776z"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(º­ã
+9
+java:S3626™"Remove this redundant jump.(ÉŠ©ƒ8°ö—Â¤1

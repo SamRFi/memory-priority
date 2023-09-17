@@ -1,0 +1,13 @@
+
+@
+java:S2175P"*A "List<Entry>" cannot contain a "String".(ƒã²ï
+C
+java:S1602°",Remove useless curly braces around statement(§ÂÇ¾
+W
+java:S1612°"@Replace this lambda with method reference 'valueField::setText'.(§ÂÇ¾
+C
+java:S1602²",Remove useless curly braces around statement(œãª¹
+Z
+java:S1128"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8ÕÞ¾Â¤1
+Q
+java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8ÕÞ¾Â¤1

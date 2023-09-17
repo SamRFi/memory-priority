@@ -7,6 +7,7 @@ import memorypriority.data.Repositories;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
+import memorypriority.util.MemoryPriorityException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,15 @@ public class MemorySetService {
 
         memorySetRepository.addMemorySetToUser(loggedInUser, memorySet);
         LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getPairList().toString(), memorySet);
+    }
+
+    public void removeMemorySet(MemorySet memorySet) {
+        try {
+            memorySetRepository.removeMemorySet(memorySet.getId());
+            LOGGER.log(Level.INFO, "removed memory set from user collection" + memorySet.getPairList().toString(), memorySet);
+        } catch (Exception e) {
+            throw new MemoryPriorityException("Error removing memory set", e);
+        }
     }
 
     public void increasePriority(MemorySet memorySet) {

@@ -8,9 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import memorypriority.data.Repositories;
 import memorypriority.service.AuthenticationService;
-import memorypriority.domain.User;
 import memorypriority.service.MemorySetService;
 import memorypriority.util.MemoryPriorityException;
 
