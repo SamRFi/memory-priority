@@ -20,6 +20,7 @@ public class FxApplication extends Application {
         loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

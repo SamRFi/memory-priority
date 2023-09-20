@@ -1,19 +1,18 @@
 package memorypriority.service;
 
-
 import memorypriority.data.ProfileRepository;
 import memorypriority.data.Repositories;
 import memorypriority.util.MemoryPriorityException;
-
 import java.util.List;
-
 
 public class AuthenticationService {
 
     private final ProfileRepository profileRepository;
+    private final MemorySetService memorySetService;
 
     public AuthenticationService() {
         this.profileRepository = Repositories.getProfileRepository();
+        this.memorySetService = new MemorySetService();
     }
 
     public String login(String username) {
@@ -29,6 +28,7 @@ public class AuthenticationService {
     }
 
     public void removeProfile(String usernameToRemove) {
+        memorySetService.removeMemorySetsOfUser(usernameToRemove);
         profileRepository.removeUsername(usernameToRemove);
     }
 

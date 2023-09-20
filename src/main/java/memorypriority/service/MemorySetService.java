@@ -25,12 +25,17 @@ public class MemorySetService {
         this.loggedInUser = loggedInUser;
     }
 
+    public MemorySetService() {
+        this.memorySetRepository = Repositories.getMemorySetRepository();
+        this.asyncVerseRepository = Repositories.getAsyncVerseRepository();
+        this.loggedInUser = null;
+    }
+
     public MemoryCollection getMemoryCollectionOfUser() {
         return memorySetRepository.getMemoryCollectionOfUser(loggedInUser);
     }
 
     public void addMemorySetToUser(MemorySet memorySet) {
-
         memorySetRepository.addMemorySetToUser(loggedInUser, memorySet);
         LOGGER.log(Level.INFO, "added memory set to user collection" + memorySet.getPairList().toString(), memorySet);
     }
@@ -41,6 +46,13 @@ public class MemorySetService {
             LOGGER.log(Level.INFO, "removed memory set from user collection" + memorySet.getPairList().toString(), memorySet);
         } catch (Exception e) {
             throw new MemoryPriorityException("Error removing memory set", e);
+        }
+    }
+
+    public void removeMemorySetsOfUser(String username) {
+        MemoryCollection memoryCollection = memorySetRepository.getMemoryCollectionOfUser(username);
+        for (MemorySet memorySet : memoryCollection.getMemorySets()) {
+            memorySetRepository.removeMemorySet(memorySet.getId());
         }
     }
 

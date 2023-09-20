@@ -8,7 +8,9 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="memorypriority.ui.RehearsalController">
+      fx:controller="memorypriority.ui.RehearsalController"
+      stylesheets="@../css/styles.css"
+        spacing="10">
     <Button text="Order: In Order" fx:id="orderButton" onAction="#toggleOrder"/>
     <Button text=" Mode: Key to Value" fx:id="modeButton" onAction="#toggleMode"/>
     <Button text="Start" fx:id="startButton" onAction="#startRehearsal"/>

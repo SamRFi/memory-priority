@@ -1,5 +1,9 @@
 
 o
 java:S1192"ZDefine a constant instead of duplicating this literal "internationalization/text" 3 times.(ö¾Ì-
-I
-java:S1172»"2Remove this unused method parameter "actionEvent".(†é”Ü
+i
+java:S3655k"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûŞ8ğ×âª1
+T
+java:S1135d"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8ºÆ“¦ª1
+P
+java:S1172À"2Remove this unused method parameter "actionEvent".(†é”Ü8ÇÆ“¦ª1

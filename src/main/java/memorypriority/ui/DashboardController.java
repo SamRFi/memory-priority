@@ -21,7 +21,7 @@ public class DashboardController {
 
     public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
-    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("nl"));
+    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en"));
 
     @FXML
     private VBox highPriorityColumn;
@@ -97,6 +97,7 @@ public class DashboardController {
     }
 
     private void deleteMemorySet(MemorySet memorySet) {
+        //todo: localization
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Memory Set");
         alert.setHeaderText("Are you sure you want to delete this memory set?");

@@ -56,9 +56,7 @@ public class LoginScreenController {
             String username = profileComboBox.getValue().trim();
             authService.login(username);
 
-            Stage stage = (Stage) loginButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
-
             loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
             Parent root = loader.load();
 
@@ -67,10 +65,16 @@ public class LoginScreenController {
             dashboardController.populateMemorySets();
 
             Scene scene = new Scene(root);
-            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setMaximized(true);
+            newStage.show();
 
-            // If login is successful, you can transition to another screen here.
-            // You will also have access to the `user` object for use in your application.
+            // Get current stage (i.e., the login window)
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
+            currentStage.close();
+
         } catch (MemoryPriorityException ex) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Login Failed");
@@ -82,15 +86,18 @@ public class LoginScreenController {
         }
     }
 
+
     private void addProfile() {
         String usernameToAdd = usernameField.getText().trim();
+        usernameField.clear();
         authService.addProfile(usernameToAdd);
         profileComboBox.setItems(FXCollections.observableArrayList(authService.getAllUsernames()));
+        profileComboBox.setValue(usernameToAdd);
     }
 
     private void removeProfile() {
         String usernameToRemove = profileComboBox.getValue();
-
+        //todo: localization
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Remove Profile");
         alert.setHeaderText("Are you sure you want to remove this profile?");

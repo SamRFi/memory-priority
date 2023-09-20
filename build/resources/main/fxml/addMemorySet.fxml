@@ -7,9 +7,10 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="memorypriority.ui.AddMemorySetController"
-            prefHeight="500.0" prefWidth="600.0">
-    <VBox spacing="10">
-        <!-- MemorySet Name -->
+            prefHeight="500.0" prefWidth="600.0"
+            stylesheets="@../css/styles.css">
+    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
+    <!-- MemorySet Name -->
         <TextField fx:id="memorySetName" promptText="%memorySetNameTextField"/>
 
         <!-- MemorySet Priority Level -->
