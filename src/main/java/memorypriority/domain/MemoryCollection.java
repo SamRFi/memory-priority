@@ -1,6 +1,5 @@
 package memorypriority.domain;
 
-import memorypriority.util.Config;
 import memorypriority.util.MemoryPriorityException;
 
 import java.util.Comparator;
@@ -32,7 +31,7 @@ public class MemoryCollection {
                 throw new IllegalStateException("Unexpected value: " + memorySet.getPriorityLevel());
         }
         long timeSinceLastRehearsed = System.currentTimeMillis() - memorySet.getLastTimeRehearsed().getTime();
-        return priorityScore - timeSinceLastRehearsed;
+        return priorityScore + timeSinceLastRehearsed;
     }
 
 
@@ -42,10 +41,9 @@ public class MemoryCollection {
                 .orElse(null);
     }
 
-    public MemorySet autoRehearse() {
+    public MemorySet getAutoRehearsalSet() {
         MemorySet nextSet = getNextSetToRehearse();
         if (nextSet != null) {
-            nextSet.rehearsedNow();
             return nextSet;
         } else {
             throw new MemoryPriorityException("No memory sets to be rehearsed");

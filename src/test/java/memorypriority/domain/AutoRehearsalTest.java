@@ -24,7 +24,7 @@ class AutoRehearsalTest {
 
     @Test
     public void testAutoRehearse() {
-        MemorySet memorySet = memoryCollection.autoRehearse();
+        MemorySet memorySet = memoryCollection.getAutoRehearsalSet();
 
         assertNotNull(memorySet, "Expected non-null memory set");
         assertEquals(new Date().getTime(), memorySet.getLastTimeRehearsed().getTime(), 1000, "Expected the last time rehearsed to be updated to the current time");
@@ -34,7 +34,7 @@ class AutoRehearsalTest {
     public void testAutoRehearseWithEmptyMemoryCollection() {
         memoryCollection.setMemorySets(new HashSet<>()); // set empty memory set
 
-        assertThrows(MemoryPriorityException.class, () -> memoryCollection.autoRehearse(), "Expected MemoryPriorityException when no memory sets to be rehearsed");
+        assertThrows(MemoryPriorityException.class, () -> memoryCollection.getAutoRehearsalSet(), "Expected MemoryPriorityException when no memory sets to be rehearsed");
     }
 
 }

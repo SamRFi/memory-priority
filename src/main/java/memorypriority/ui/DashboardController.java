@@ -50,6 +50,7 @@ public class DashboardController {
 
         List<MemorySet> memorySets = new ArrayList<>(memorySetSet);
         memorySets.sort(Comparator.comparing(MemorySet::getLastTimeRehearsed));
+        Collections.reverse(memorySets);
 
         for (MemorySet memorySet : memorySets) {
             switch (memorySet.getPriorityLevel()) {
@@ -65,6 +66,7 @@ public class DashboardController {
             }
         }
     }
+
 
 
     private GridPane createMemorySetBox(MemorySet memorySet) {

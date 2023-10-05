@@ -100,7 +100,7 @@ public class MemorySetService {
     }
 
     public MemorySet autoRehearse() {
-        return getMemoryCollectionOfUser().autoRehearse();
+        return getMemoryCollectionOfUser().getAutoRehearsalSet();
     }
 
     public Future<String> getVerse(String verseReference) {
