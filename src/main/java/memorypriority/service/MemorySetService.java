@@ -99,9 +99,14 @@ public class MemorySetService {
         addMemorySetToUser(memorySetToBeSaved);
     }
 
+    public MemorySet autoRehearse() {
+        return getMemoryCollectionOfUser().autoRehearse();
+    }
+
     public Future<String> getVerse(String verseReference) {
         return asyncVerseRepository.getVerse(verseReference);
     }
+
 
     private MemorySet findMemorySetById(int id) {
         MemoryCollection memoryCollection = getMemoryCollectionOfUser();

@@ -21,14 +21,22 @@ public class DashboardController {
 
     public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
-    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en"));
 
+    ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en"));
+    @FXML
+    public Button reviewSetsButton;
     @FXML
     private VBox highPriorityColumn;
     @FXML
     private VBox mediumPriorityColumn;
     @FXML
     private VBox lowPriorityColumn;
+
+    @FXML
+    public void handleReviewSetsButtonClick(ActionEvent event) {
+        rehearseMemorySet(memorySetService.autoRehearse());
+    }
+
 
     private MemorySetService memorySetService;
 
