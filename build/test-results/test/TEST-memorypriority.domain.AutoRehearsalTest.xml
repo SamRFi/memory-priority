@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="memorypriority.domain.AutoRehearsalTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-02T16:18:50" hostname="LAPTOP-SAM" time="0.053">
+  <properties/>
+  <testcase name="testSelectionWithinRehearsalInterval()" classname="memorypriority.domain.AutoRehearsalTest" time="0.053"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:18:50.048
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Within2 for Phase 1, Last Rehearsed: 2024-02-02 16:38:50.048, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:38:50.048
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Within1 for Phase 1, Last Rehearsed: 2024-02-02 16:48:50.048, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:48:50.048
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: No set found in Phase 1, moving to Phase 2
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
+INFO: Checking set: Within2 for Phase 2, Last Rehearsed: 2024-02-02 16:38:50.048, Eligible: true
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
+INFO: Checking set: Within1 for Phase 2, Last Rehearsed: 2024-02-02 16:48:50.048, Eligible: true
+Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Found a set in Phase 2: Within2, Last Rehearsed: 2024-02-02 16:38:50.048
+]]></system-err>
+</testsuite>

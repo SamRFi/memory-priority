@@ -7,10 +7,8 @@ import memorypriority.util.MemoryPriorityException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.ArrayList;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +26,7 @@ class FileMemorySetRepositoryTest {
 
     @Test
     public void testRemoveMemorySet() throws MemoryPriorityException {
-        MemorySet memorySet = new MemorySet(999999, "Test Memory Set", new HashMap<>(), PriorityLevel.LOW, new java.sql.Date(System.currentTimeMillis()));
+        MemorySet memorySet = new MemorySet(999999, "Test Memory Set", new ArrayList<>(), PriorityLevel.LOW, new java.sql.Timestamp(System.currentTimeMillis()));
         repository.addMemorySetToUser("test_user", memorySet);
 
         repository.removeMemorySet(999999);
