@@ -35,7 +35,7 @@ class AutoRehearsalTest {
 
 
     @Test
-    public void testAutoRehearseWithEligibleSets() {
+    void testAutoRehearseWithEligibleSets() {
         MemorySet memorySet = memoryCollection.getAutoRehearsalSet();
 
         assertNotNull(memorySet, "Expected non-null memory set");
@@ -44,7 +44,7 @@ class AutoRehearsalTest {
     }
 
     @Test
-    public void testAutoRehearseWithEmptyMemoryCollection() {
+    void testAutoRehearseWithEmptyMemoryCollection() {
         memoryCollection.setMemorySets(new HashSet<>()); // set empty memory set
 
         assertThrows(MemoryPriorityException.class, () -> memoryCollection.getAutoRehearsalSet(),
@@ -52,12 +52,12 @@ class AutoRehearsalTest {
     }
 
     @Test
-    public void testRehearsalInterval() {
+    void testRehearsalInterval() {
         Set<MemorySet> memorySets = new HashSet<>();
-        Timestamp lastRehearsedTimeForSet1 = new Timestamp(System.currentTimeMillis() - 3600 * 1000); // 1 hour ago, corrected to milliseconds
+        Timestamp lastRehearsedTimeForSet1 = new Timestamp(System.currentTimeMillis() - 3600 * 1000); // 1 hour ago
         MemorySet set1 = new MemorySet("Set1", new ArrayList<>(), PriorityLevel.HIGH, lastRehearsedTimeForSet1);
 
-        Timestamp lastRehearsedTimeForSet2 = new Timestamp(System.currentTimeMillis() - 7201 * 1000); // More than 2 hours ago, corrected to milliseconds
+        Timestamp lastRehearsedTimeForSet2 = new Timestamp(System.currentTimeMillis() - 7201 * 1000); // More than 2 hours ago
         MemorySet set2 = new MemorySet("Set2", new ArrayList<>(), PriorityLevel.HIGH, lastRehearsedTimeForSet2);
 
         memorySets.add(set1);
@@ -71,9 +71,8 @@ class AutoRehearsalTest {
         assertEquals(set2, memorySet, "Expected the set with the longest time since last rehearsed to be returned");
     }
 
-
     @Test
-    public void testSelectionWithinRehearsalInterval() {
+    void testSelectionWithinRehearsalInterval() {
         memoryCollection.setMemorySets(new HashSet<>());
         Timestamp lastRehearsedWithin1 = new Timestamp(System.currentTimeMillis() - 30 * 60 * 1000); // 30 minutes ago
         MemorySet setWithin1 = new MemorySet("Within1", new ArrayList<>(), PriorityLevel.HIGH, lastRehearsedWithin1);

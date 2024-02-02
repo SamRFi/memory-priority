@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">4</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.053s</div>
+<div class="counter">0.085s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,23 @@
 </tr>
 </thead>
 <tr>
+<td class="success">testAutoRehearseWithEligibleSets()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testAutoRehearseWithEmptyMemoryCollection()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testRehearsalInterval()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testSelectionWithinRehearsalInterval()</td>
-<td class="success">0.053s</td>
+<td class="success">0.077s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,20 +102,44 @@
 <div id="tab1" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
-INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:18:50.048
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
-INFO: Checking set: Within2 for Phase 1, Last Rehearsed: 2024-02-02 16:38:50.048, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:38:50.048
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
-INFO: Checking set: Within1 for Phase 1, Last Rehearsed: 2024-02-02 16:48:50.048, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:48:50.048
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+<pre>Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:21:47.674
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Within2 for Phase 1, Last Rehearsed: 2024-02-02 16:41:47.674, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:41:47.674
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Within1 for Phase 1, Last Rehearsed: 2024-02-02 16:51:47.674, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:51:47.674
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
 INFO: No set found in Phase 1, moving to Phase 2
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
-INFO: Checking set: Within2 for Phase 2, Last Rehearsed: 2024-02-02 16:38:50.048, Eligible: true
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
-INFO: Checking set: Within1 for Phase 2, Last Rehearsed: 2024-02-02 16:48:50.048, Eligible: true
-Feb 02, 2024 5:18:50 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
-INFO: Found a set in Phase 2: Within2, Last Rehearsed: 2024-02-02 16:38:50.048
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
+INFO: Checking set: Within2 for Phase 2, Last Rehearsed: 2024-02-02 16:41:47.674, Eligible: true
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$1
+INFO: Checking set: Within1 for Phase 2, Last Rehearsed: 2024-02-02 16:51:47.674, Eligible: true
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Found a set in Phase 2: Within2, Last Rehearsed: 2024-02-02 16:41:47.674
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:21:47.742
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Set1 for Phase 1, Last Rehearsed: 2024-02-02 14:21:47.742, Eligible: true, Rehearsal Interval Ends At: 2024-02-02 16:21:47.742
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Set3 for Phase 1, Last Rehearsed: 2024-02-02 15:21:47.742, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 17:21:47.742
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Set2 for Phase 1, Last Rehearsed: 2024-02-02 16:21:47.742, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:21:47.742
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Found a set in Phase 1: Set1, Last Rehearsed: 2024-02-02 14:21:47.742
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:21:47.746
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Set1 for Phase 1, Last Rehearsed: 2024-02-02 16:21:47.746, Eligible: false, Rehearsal Interval Ends At: 2024-02-02 18:21:47.746
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection lambda$getNextSetToRehearse$0
+INFO: Checking set: Set2 for Phase 1, Last Rehearsed: 2024-02-02 15:21:46.746, Eligible: true, Rehearsal Interval Ends At: 2024-02-02 17:21:46.746
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Found a set in Phase 1: Set2, Last Rehearsed: 2024-02-02 15:21:46.746
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: Starting getNextSetToRehearse - Current Time: 2024-02-02 17:21:47.75
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: No set found in Phase 1, moving to Phase 2
+Feb 02, 2024 5:21:47 PM memorypriority.domain.MemoryCollection getNextSetToRehearse
+INFO: No set found in Phase 2
 </pre>
 </span>
 </div>
@@ -112,7 +151,7 @@ INFO: Found a set in Phase 2: Within2, Last Rehearsed: 2024-02-02 16:38:50.048
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4</a> at 2 Feb 2024, 17:18:50</p>
+<a href="http://www.gradle.org">Gradle 7.4</a> at 2 Feb 2024, 17:21:47</p>
 </div>
 </div>
 </body>
