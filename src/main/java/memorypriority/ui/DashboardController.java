@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
 import memorypriority.service.MemorySetService;
@@ -21,7 +23,6 @@ public class DashboardController {
 
     public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
-
     ResourceBundle rb = ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en"));
     @FXML
     public Button reviewSetsButton;
@@ -33,15 +34,35 @@ public class DashboardController {
     private VBox lowPriorityColumn;
 
     @FXML
+    private VBox noPriorityColumn;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
     public void handleReviewSetsButtonClick(ActionEvent event) {
         rehearseMemorySet(memorySetService.autoRehearse());
     }
-
 
     private MemorySetService memorySetService;
 
     public void setMemorySetService(MemorySetService memorySetService) {
         this.memorySetService = memorySetService;
+    }
+
+    @FXML
+    public void handleBackButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populateMemorySets() {
@@ -55,17 +76,21 @@ public class DashboardController {
         for (MemorySet memorySet : memorySets) {
             switch (memorySet.getPriorityLevel()) {
                 case HIGH:
-                    highPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
+                    highPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
                     break;
                 case MEDIUM:
-                    mediumPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
+                    mediumPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
                     break;
                 case LOW:
-                    lowPriorityColumn.getChildren().add(1, createMemorySetBox(memorySet));
+                    lowPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
+                    break;
+                case NONE:
+                    noPriorityColumn.getChildren().add(createMemorySetBox(memorySet));
                     break;
             }
         }
     }
+
 
 
 
@@ -160,13 +185,17 @@ public class DashboardController {
         highPriorityColumn.getChildren().clear();
         mediumPriorityColumn.getChildren().clear();
         lowPriorityColumn.getChildren().clear();
+        noPriorityColumn.getChildren().clear();
 
+        // Add headers or initial content to each column again, if needed
         highPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("highPriority")));
         mediumPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("mediumPriority")));
         lowPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("lowPriority")));
+        noPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("noPriority"))); // Assume you have a label for "No Priority"
 
         populateMemorySets();
     }
+
 
     private Label createPriorityLabel(String text) {
         Label label = new Label(text);

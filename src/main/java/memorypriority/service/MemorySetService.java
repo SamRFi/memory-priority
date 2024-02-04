@@ -60,6 +60,9 @@ public class MemorySetService {
         PriorityLevel currentPriority = memorySet.getPriorityLevel();
 
         switch(currentPriority) {
+            case NONE:
+                memorySet.setPriorityLevel(PriorityLevel.LOW);
+                break;
             case LOW:
                 memorySet.setPriorityLevel(PriorityLevel.MEDIUM);
                 break;
@@ -72,6 +75,7 @@ public class MemorySetService {
         }
 
         memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
+        LOGGER.log(Level.INFO, "Increased priority of memory set: " + memorySet.getName());
     }
 
     public void decreasePriority(MemorySet memorySet) {
@@ -85,12 +89,17 @@ public class MemorySetService {
                 memorySet.setPriorityLevel(PriorityLevel.LOW);
                 break;
             case LOW:
-                // Already at lowest priority, so no change
+                memorySet.setPriorityLevel(PriorityLevel.NONE);
+                break;
+            case NONE:
+                // Already at no priority, so no change
                 return;
         }
 
         memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
+        LOGGER.log(Level.INFO, "Decreased priority of memory set: " + memorySet.getName());
     }
+
 
     public void rehearseMemorySet(MemorySet memorySet) {
         MemorySet memorySetToBeSaved = findMemorySetById(memorySet.getId());

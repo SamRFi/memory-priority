@@ -61,3 +61,6 @@ h
 8src/main/java/memorypriority/ui/DashboardController.java,a\a\aafc058b7c787ca80ef199734d511ed5bee471e4
 j
 :src/main/java/memorypriority/ui/LoginScreenController.java,8\3\83878e4f020c41b845dbe9f14a32d9fa88abfc99
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

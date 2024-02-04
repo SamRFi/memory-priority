@@ -10,6 +10,7 @@
             prefHeight="600.0" prefWidth="800.0">
 
     <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <Button fx:id="backButton" text="Change Profile" minWidth="100" onAction="#handleBackButtonClick" />
         <Text fx:id="welcomeText" style="-fx-font-size: 24"/>
         <Button fx:id="addSetButton" text="%addSetButton" minWidth="200" onAction="#handleAddSet"/>
         <Button fx:id="reviewSetsButton" onAction="#handleReviewSetsButtonClick" text="%reviewSetsButton" minWidth="200"/>
@@ -26,6 +27,11 @@
             <VBox fx:id="lowPriorityColumn" spacing="10">
                 <Label text="%lowPriority" style="-fx-font-size: 20"/>
             </VBox>
+
+            <VBox fx:id="noPriorityColumn" spacing="10">
+                <Label text="%noPriority" style="-fx-font-size: 20"/>
+            </VBox>
+
         </HBox>
     </VBox>
 

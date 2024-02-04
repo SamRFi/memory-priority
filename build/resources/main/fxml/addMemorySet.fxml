@@ -20,6 +20,7 @@
                     <String fx:value="HIGH"/>
                     <String fx:value="MEDIUM"/>
                     <String fx:value="LOW"/>
+                    <String fx:value="NONE"/>
                 </FXCollections>
             </items>
         </ComboBox>
