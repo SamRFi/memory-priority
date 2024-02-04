@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import memorypriority.domain.MemoryCollection;
 import memorypriority.domain.MemorySet;
+import memorypriority.domain.PriorityLevel;
 import memorypriority.service.MemorySetService;
 
 import java.io.IOException;
@@ -90,9 +91,6 @@ public class DashboardController {
             }
         }
     }
-
-
-
 
     private GridPane createMemorySetBox(MemorySet memorySet) {
         Label nameLabel = new Label(memorySet.getName());
@@ -182,19 +180,26 @@ public class DashboardController {
     }
 
     public void refreshUI() {
-        highPriorityColumn.getChildren().clear();
-        mediumPriorityColumn.getChildren().clear();
-        lowPriorityColumn.getChildren().clear();
-        noPriorityColumn.getChildren().clear();
-
-        // Add headers or initial content to each column again, if needed
-        highPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("highPriority")));
-        mediumPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("mediumPriority")));
-        lowPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("lowPriority")));
-        noPriorityColumn.getChildren().add(createPriorityLabel(rb.getString("noPriority"))); // Assume you have a label for "No Priority"
-
-        populateMemorySets();
+        // Instead of clearing all children, update necessary nodes only
+        updatePriorityColumn(highPriorityColumn, PriorityLevel.HIGH);
+        updatePriorityColumn(mediumPriorityColumn, PriorityLevel.MEDIUM);
+        updatePriorityColumn(lowPriorityColumn, PriorityLevel.LOW);
+        updatePriorityColumn(noPriorityColumn, PriorityLevel.NONE);
     }
+
+    private void updatePriorityColumn(VBox column, PriorityLevel priorityLevel) {
+        // Remove all but the first child (the label)
+        if (column.getChildren().size() > 1) {
+            column.getChildren().subList(1, column.getChildren().size()).clear();
+        }
+
+        // Add new memory sets
+        memorySetService.getMemoryCollectionOfUser().getMemorySets().stream()
+                .filter(memorySet -> memorySet.getPriorityLevel() == priorityLevel)
+                .sorted(Comparator.comparing(MemorySet::getLastTimeRehearsed).reversed())
+                .forEach(memorySet -> column.getChildren().add(createMemorySetBox(memorySet)));
+    }
+
 
 
     private Label createPriorityLabel(String text) {

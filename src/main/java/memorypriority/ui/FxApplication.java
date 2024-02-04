@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FxApplication extends Application {
@@ -20,7 +21,7 @@ public class FxApplication extends Application {
         loader.setResources(ResourceBundle.getBundle("internationalization/text", Locale.forLanguageTag("en")));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

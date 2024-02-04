@@ -1,24 +1,8 @@
 ===
 user2
-ID: 49
-Name: bando
-Priority: HIGH
-Last Rehearsed: 2024-02-02 17:24:56
-b =:::= vvvvvvv
----
-===
-user2
-ID: 6
-Name: fqvxwvvfqf
-Priority: LOW
-Last Rehearsed: 2024-02-02 17:25:00
-f =:::= sss
----
-===
-user2
 ID: 3
 Name: newone
-Priority: MEDIUM
+Priority: LOW
 Last Rehearsed: 2024-02-02 17:25:09
 t =:::= ffff
 ---
@@ -46,4 +30,20 @@ Name: none set
 Priority: LOW
 Last Rehearsed: 2024-02-04 19:20:54
 nothing =:::= something
+---
+===
+user2
+ID: 6
+Name: fqvxwvvfqf
+Priority: HIGH
+Last Rehearsed: 2024-02-04 19:33:28
+f =:::= sss
+---
+===
+user2
+ID: 49
+Name: bando
+Priority: HIGH
+Last Rehearsed: 2024-02-04 19:34:10
+b =:::= vvvvvvv
 ---
