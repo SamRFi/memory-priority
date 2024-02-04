@@ -31,6 +31,8 @@ public class MemoryCollection {
             case LOW:
                 priorityScore = 100_000_000L;
                 break;
+            case NONE:
+                return 0L;
             default:
                 throw new IllegalStateException("Unexpected value: " + memorySet.getPriorityLevel());
         }
@@ -38,21 +40,15 @@ public class MemoryCollection {
         return priorityScore + timeSinceLastRehearsed;
     }
 
+
     private MemorySet getNextSetToRehearse() {
         long currentTime = System.currentTimeMillis();
-
         LOGGER.info("Starting getNextSetToRehearse - Current Time: " + new Timestamp(currentTime));
 
-        // Phase 1: Select sets rehearsed beyond the interval, prioritized by score.
+        // Phase 1: Exclude sets with PriorityLevel.NONE and select sets rehearsed beyond the interval, prioritized by score.
         MemorySet nextSet = memorySets.stream()
-                .filter(set -> {
-                    boolean isEligible = set.getLastTimeRehearsed().getTime() + rehearsalInterval < currentTime;
-                    // Log detailed information for each set when checking for Phase 1 eligibility
-                    LOGGER.info("Checking set: " + set.getName() + " for Phase 1, Last Rehearsed: " + set.getLastTimeRehearsed()
-                            + ", Eligible: " + isEligible + ", Rehearsal Interval Ends At: "
-                            + new Timestamp(set.getLastTimeRehearsed().getTime() + rehearsalInterval));
-                    return isEligible;
-                })
+                .filter(set -> set.getPriorityLevel() != PriorityLevel.NONE) // Exclude sets with no priority
+                .filter(set -> set.getLastTimeRehearsed().getTime() + rehearsalInterval < currentTime)
                 .max(Comparator.comparingLong(this::calculateScore))
                 .orElse(null);
 
@@ -63,18 +59,13 @@ public class MemoryCollection {
             LOGGER.info("No set found in Phase 1, moving to Phase 2");
         }
 
-        // Phase 2: If no set is found in Phase 1, select from within the interval based on time since last rehearsal.
+        // Phase 2
         nextSet = memorySets.stream()
-                .filter(set -> {
-                    boolean isEligible = set.getLastTimeRehearsed().getTime() + rehearsalInterval >= currentTime;
-                    LOGGER.info("Checking set: " + set.getName() + " for Phase 2, Last Rehearsed: " + set.getLastTimeRehearsed()
-                            + ", Eligible: " + isEligible);
-                    return isEligible;
-                })
+                .filter(set -> set.getPriorityLevel() != PriorityLevel.NONE)
+                .filter(set -> set.getLastTimeRehearsed().getTime() + rehearsalInterval >= currentTime)
                 .max(Comparator.comparingLong(set -> currentTime - set.getLastTimeRehearsed().getTime()))
                 .orElse(null);
 
-        // Log the outcome of Phase 2
         if (nextSet != null) {
             LOGGER.info("Found a set in Phase 2: " + nextSet.getName() + ", Last Rehearsed: " + nextSet.getLastTimeRehearsed());
         } else {
@@ -83,6 +74,7 @@ public class MemoryCollection {
 
         return nextSet;
     }
+
 
 
     public MemorySet getAutoRehearsalSet() {
