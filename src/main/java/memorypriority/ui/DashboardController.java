@@ -72,7 +72,6 @@ public class DashboardController {
 
         List<MemorySet> memorySets = new ArrayList<>(memorySetSet);
         memorySets.sort(Comparator.comparing(MemorySet::getLastTimeRehearsed));
-        Collections.reverse(memorySets);
 
         for (MemorySet memorySet : memorySets) {
             switch (memorySet.getPriorityLevel()) {
@@ -196,7 +195,7 @@ public class DashboardController {
         // Add new memory sets
         memorySetService.getMemoryCollectionOfUser().getMemorySets().stream()
                 .filter(memorySet -> memorySet.getPriorityLevel() == priorityLevel)
-                .sorted(Comparator.comparing(MemorySet::getLastTimeRehearsed).reversed())
+                .sorted(Comparator.comparing(MemorySet::getLastTimeRehearsed))
                 .forEach(memorySet -> column.getChildren().add(createMemorySetBox(memorySet)));
     }
 
