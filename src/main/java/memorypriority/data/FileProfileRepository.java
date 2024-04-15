@@ -46,7 +46,7 @@ public class FileProfileRepository implements ProfileRepository {
         List<String> usernames = getAllUsernames();
         usernames.remove(usernameToRemove);
 
-        // Now, re-write the file without the removed username
+        // Now, re-write the file without the removed usrname
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (String username : usernames) {
                 writer.write("===\n");

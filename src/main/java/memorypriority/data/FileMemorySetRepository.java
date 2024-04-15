@@ -170,4 +170,9 @@ public class FileMemorySetRepository implements MemorySetRepository {
         }
     }
 
+    private String getFilePath(String username) {
+        return "./data/" + username + ".txt";
+    }
+
+
 }

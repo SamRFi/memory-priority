@@ -31,8 +31,7 @@
             <Label text="Explanation on top of key-value pairs..." wrapText="true"/>
 
             <!-- Dynamic Key-Value Pairs Container -->
-            <GridPane fx:id="keyValuePairsContainer" vgap="10" alignment="CENTER">
-
+            <GridPane fx:id="keyValuePairsContainer" vgap="10">
             </GridPane>
 
             <!-- Add More Rows Button -->

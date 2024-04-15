@@ -1,10 +1,7 @@
 package memorypriority.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import memorypriority.domain.MemorySet;
 import memorypriority.service.MemorySetService;
@@ -37,7 +34,7 @@ public class RehearsalController {
     private Label keyLabel;
 
     @FXML
-    private Label valueLabel;
+    private TextArea valueTextArea;
 
     @FXML
     private VBox overviewVBox;
@@ -70,7 +67,7 @@ public class RehearsalController {
 
     private Map.Entry<String, String> currentPair;
 
-    private List<Map.Entry<String, String>> rehearsedPairs = new ArrayList<>();
+    private final List<Map.Entry<String, String>> rehearsedPairs = new ArrayList<>();
 
     public void setMemorySet(MemorySet memorySet) {
         this.memorySet = memorySet;
@@ -94,15 +91,21 @@ public class RehearsalController {
         // Toggle the keyToValue flag
         keyToValue = !keyToValue; // Flip the boolean value
         modeButton.setText(keyToValue ? "Key to Value" : "Value to Key"); // Update the button text accordingly
-        valueLabel.setVisible(false); // Hide the value label when switching modes
+        showValueButton.setText(keyToValue ? "Show Value" : "Show Key"); // Update the show button text
+
+        // Update the revealed content if the value/key is currently visible
+        if (valueTextArea.isVisible()) {
+            valueTextArea.setText(keyToValue ? currentPair.getValue() : currentPair.getKey());
+        }
+
+        // Update the key label to show the appropriate key or value based on the new mode
+        keyLabel.setText(keyToValue ? currentPair.getKey() : currentPair.getValue());
     }
-
-
 
     @FXML
     private void showValue() {
-        valueLabel.setVisible(true);
-        valueLabel.setText(keyToValue ? currentPair.getValue() : currentPair.getKey());
+        valueTextArea.setVisible(true);
+        valueTextArea.setText(keyToValue ? currentPair.getValue() : currentPair.getKey());
     }
 
     @FXML
@@ -120,7 +123,7 @@ public class RehearsalController {
 
         rehearsedPairs.add(currentPair);
         keyLabel.setText(keyToValue ? currentPair.getKey() : currentPair.getValue());
-        valueLabel.setVisible(false);
+        valueTextArea.setVisible(false);
     }
 
     @FXML
@@ -138,7 +141,7 @@ public class RehearsalController {
         nextButton.setDisable(false);
 
         startButton.setVisible(false);
-        valueLabel.setVisible(false);
+        valueTextArea.setVisible(false);
 
         rehearsedPairs.clear();
         nextPair();
@@ -163,6 +166,7 @@ public class RehearsalController {
 
     @FXML
     private void rehearseAgain() {
+        overviewScrollPane.setVisible(false);
         resetRehearsalState();
     }
 
@@ -185,8 +189,8 @@ public class RehearsalController {
 
         // Reset labels
         keyLabel.setText("");
-        valueLabel.setText("");
-        valueLabel.setVisible(false);
+        valueTextArea.setText("");
+        valueTextArea.setVisible(false);
 
         // Reset the current memory set index (assuming the MemorySet class has such a method)
         if(memorySet != null) {

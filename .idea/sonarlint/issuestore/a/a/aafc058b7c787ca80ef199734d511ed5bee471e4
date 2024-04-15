@@ -1,9 +1,11 @@
 
 |
-java:S1192"ZDefine a constant instead of duplicating this literal "internationalization/text" 3 times.(ÎÅÈĞøÿÿÿÿ8š•Ğ›«1
-i
-java:S3655u"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûŞ8ğ×âª1
-T
-java:S1135n"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8Ş•Ğ›«1
+java:S1192"ZDefine a constant instead of duplicating this literal "internationalization/text" 4 times.(ÎÅÈĞøÿÿÿÿ8Œşâ«×1
+j
+java:S3655‹"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûŞ8Äşâ«×1
+U
+java:S1135„"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8Şşâ«×1
 P
-java:S1172Ê"2Remove this unused method parameter "actionEvent".(†é”Ü8ÇÆ“¦ª1
+java:S1172ë"2Remove this unused method parameter "actionEvent".(†é”Ü8æşâ«×1
+[
+java:S1144Ì"8Remove this unused private "createPriorityLabel" method.(£†Â¾úÿÿÿÿ8çşâ«×1
