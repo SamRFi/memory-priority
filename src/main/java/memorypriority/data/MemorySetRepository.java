@@ -8,6 +8,6 @@ public interface MemorySetRepository {
     MemoryCollection getMemoryCollectionOfUser(String username);
     void addMemorySetToUser(String username, MemorySet memorySet);
 
-    void changePriority(MemorySet memorySet, PriorityLevel newPriority);
-    void removeMemorySet(int id);
+    void changePriority(String username, MemorySet memorySet, PriorityLevel newPriority);
+    void removeMemorySet(String username, int id);
 }

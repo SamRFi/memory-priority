@@ -29,7 +29,7 @@ class FileMemorySetRepositoryTest {
         MemorySet memorySet = new MemorySet(999999, "Test Memory Set", new ArrayList<>(), PriorityLevel.LOW, new java.sql.Timestamp(System.currentTimeMillis()));
         repository.addMemorySetToUser("test_user", memorySet);
 
-        repository.removeMemorySet(999999);
+        repository.removeMemorySet("test_user", 999999);
 
         MemoryCollection memoryCollection = repository.getMemoryCollectionOfUser("test_user");
 

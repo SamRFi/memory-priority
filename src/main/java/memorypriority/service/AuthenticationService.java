@@ -28,7 +28,6 @@ public class AuthenticationService {
     }
 
     public void removeProfile(String usernameToRemove) {
-        memorySetService.removeMemorySetsOfUser(usernameToRemove);
         profileRepository.removeUsername(usernameToRemove);
     }
 

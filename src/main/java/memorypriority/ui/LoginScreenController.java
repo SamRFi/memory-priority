@@ -16,8 +16,11 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginScreenController {
+    public static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
     @FXML
     private TextField usernameField;
@@ -97,7 +100,8 @@ public class LoginScreenController {
 
     private void removeProfile() {
         String usernameToRemove = profileComboBox.getValue();
-        //todo: localization
+        LOGGER.log(Level.INFO, "username to remove:" + usernameToRemove);
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Remove Profile");
         alert.setHeaderText("Are you sure you want to remove this profile?");

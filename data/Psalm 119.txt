@@ -1,0 +1,13 @@
+ID: 39
+Name: Aleph
+Priority: MEDIUM
+Last Rehearsed: 2024-04-15 21:03:49
+Psalm 119:1 =:::= Blessed are the undefiled in the way, who walk in the law of the LORD.
+Psalm 119:2 =:::= Blessed are they that keep his testimonies,and that seek him with the whole heart.
+Psalm 119:3 =:::= They also do no iniquity: they walk in his ways.
+Psalm 119:4 =:::= Thou hast commandedus to keep thy precepts diligently.
+Psalm 119:5 =:::= O that my ways were directed to keep thy statutes!
+Psalm 119:6 =:::= Then shall I not be ashamed, when I have respect unto all thy commandments.
+Psalm 119:7 =:::= I will praise thee with uprightness of heart, when I shall have learned thy righteous judgments.
+Psalm 119:8 =:::= I will keep thy statutes: O forsake me not utterly.
+---

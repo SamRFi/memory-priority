@@ -42,7 +42,7 @@ public class MemorySetService {
 
     public void removeMemorySet(MemorySet memorySet) {
         try {
-            memorySetRepository.removeMemorySet(memorySet.getId());
+            memorySetRepository.removeMemorySet(loggedInUser, memorySet.getId());
             LOGGER.log(Level.INFO, "removed memory set from user collection" + memorySet.getPairList().toString(), memorySet);
         } catch (Exception e) {
             throw new MemoryPriorityException("Error removing memory set", e);
@@ -52,7 +52,7 @@ public class MemorySetService {
     public void removeMemorySetsOfUser(String username) {
         MemoryCollection memoryCollection = memorySetRepository.getMemoryCollectionOfUser(username);
         for (MemorySet memorySet : memoryCollection.getMemorySets()) {
-            memorySetRepository.removeMemorySet(memorySet.getId());
+            memorySetRepository.removeMemorySet(loggedInUser ,memorySet.getId());
         }
     }
 
@@ -74,7 +74,7 @@ public class MemorySetService {
                 return;
         }
 
-        memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
+        memorySetRepository.changePriority(loggedInUser, memorySet, memorySet.getPriorityLevel());
         LOGGER.log(Level.INFO, "Increased priority of memory set: " + memorySet.getName());
     }
 
@@ -96,14 +96,14 @@ public class MemorySetService {
                 return;
         }
 
-        memorySetRepository.changePriority(memorySet, memorySet.getPriorityLevel());
+        memorySetRepository.changePriority(loggedInUser, memorySet, memorySet.getPriorityLevel());
         LOGGER.log(Level.INFO, "Decreased priority of memory set: " + memorySet.getName());
     }
 
 
     public void rehearseMemorySet(MemorySet memorySet) {
         MemorySet memorySetToBeSaved = findMemorySetById(memorySet.getId());
-        memorySetRepository.removeMemorySet(memorySet.getId());
+        memorySetRepository.removeMemorySet(loggedInUser, memorySet.getId());
         memorySetToBeSaved.rehearsedNow();
         addMemorySetToUser(memorySetToBeSaved);
     }

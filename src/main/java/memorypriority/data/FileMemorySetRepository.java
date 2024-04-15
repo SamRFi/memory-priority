@@ -11,16 +11,18 @@ import java.text.SimpleDateFormat;
 
 public class FileMemorySetRepository implements MemorySetRepository {
 
-    private final String filePath = "./data/memory_data.txt";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    @Override public MemoryCollection getMemoryCollectionOfUser(String username) { Set<MemorySet> memorySets = new HashSet<>();
+    @Override
+    public MemoryCollection getMemoryCollectionOfUser(String username) {
+        Set<MemorySet> memorySets = new HashSet<>();
+        String filePath = getFilePath(username);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.equals("===") && username.equals(reader.readLine())) {
-                    int id = Integer.parseInt(reader.readLine().split(":")[1].trim());
+                if (line.startsWith("ID: ")) {
+                    int id = Integer.parseInt(line.split(":")[1].trim());
                     String name = reader.readLine().split(":")[1].trim();
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(reader.readLine().split(":")[1].trim());
 
@@ -37,10 +39,9 @@ public class FileMemorySetRepository implements MemorySetRepository {
                     java.util.Date utilDate = format.parse(dateTimeString);
                     java.sql.Timestamp lastTimeRehearsed = new java.sql.Timestamp(utilDate.getTime());
 
-
                     // Change the map to a list of entries
                     List<Map.Entry<String, String>> entries = new ArrayList<>();
-                    while (!(line = reader.readLine()).equals("---")) {
+                    while ((line = reader.readLine()) != null && !line.equals("---")) {
                         String[] parts = line.split("=:::=");
                         // Create a new entry with the key and value from the parts
                         Map.Entry<String, String> entry = new AbstractMap.SimpleEntry<>(parts[0].trim(), parts[1].trim());
@@ -58,11 +59,12 @@ public class FileMemorySetRepository implements MemorySetRepository {
         return new MemoryCollection(memorySets);
     }
 
+
     @Override
     public void addMemorySetToUser(String username, MemorySet memorySet) {
+        String filePath = getFilePath(username);
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write("===\n");
-            writer.write(username + "\n");
             writer.write("ID: " + memorySet.getId() + "\n");
             writer.write("Name: " + memorySet.getName() + "\n");
             writer.write("Priority: " + memorySet.getPriorityLevel() + "\n");
@@ -83,7 +85,8 @@ public class FileMemorySetRepository implements MemorySetRepository {
 
 
     @Override
-    public void changePriority(MemorySet memorySet, PriorityLevel newPriority) {
+    public void changePriority(String username, MemorySet memorySet, PriorityLevel newPriority) {
+        String filePath = getFilePath(username);
         List<String> fileContent = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -91,19 +94,17 @@ public class FileMemorySetRepository implements MemorySetRepository {
             while ((line = reader.readLine()) != null) {
                 fileContent.add(line);
 
-                if (line.equals("===")) {
-                    String usernameLine = reader.readLine();
-                    fileContent.add(usernameLine);
-
-                    String[] idParts = reader.readLine().split(":");
-                    if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == memorySet.getId()) {
-                        fileContent.add("ID: " + memorySet.getId());
+                if (line.startsWith("ID: ")) {
+                    int id = Integer.parseInt(line.split(":")[1].trim());
+                    if (id == memorySet.getId()) {
                         fileContent.add(reader.readLine()); // Name
                         fileContent.add("Priority: " + newPriority);
                         reader.readLine(); // skipping the old priority level
                         fileContent.add(reader.readLine()); // Last Rehearsed
                     } else {
-                        fileContent.add("ID: " + idParts[1].trim());
+                        fileContent.add(reader.readLine()); // Name
+                        fileContent.add(reader.readLine()); // Priority
+                        fileContent.add(reader.readLine()); // Last Rehearsed
                     }
                 }
             }
@@ -119,7 +120,10 @@ public class FileMemorySetRepository implements MemorySetRepository {
         }
     }
 
-    public void removeMemorySet(int id) {
+
+    @Override
+    public void removeMemorySet(String username, int id) {
+        String filePath = getFilePath(username);
         List<String> fileContent = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -137,21 +141,19 @@ public class FileMemorySetRepository implements MemorySetRepository {
 
         for (int i = 0; i < fileContent.size(); i++) {
             String line = fileContent.get(i);
-            if (line.equals("===")) {
-                try {
-                    String idLine = fileContent.get(i + 2);
-                    String[] idParts = idLine.split(":");
-                    if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
-                        start = i;
-                        while (i < fileContent.size() && !fileContent.get(i).equals("---")) {
-                            i++;
-                        }
-                        end = i;
-                        break;
+            try {
+                String idLine = fileContent.get(i);
+                String[] idParts = idLine.split(":");
+                if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
+                    start = i;
+                    while (i < fileContent.size() && !fileContent.get(i).equals("---")) {
+                        i++;
                     }
-                } catch (NumberFormatException e) {
-                    continue;
+                    end = i;
+                    break;
                 }
+            } catch (NumberFormatException e) {
+                continue;
             }
         }
 
@@ -173,6 +175,4 @@ public class FileMemorySetRepository implements MemorySetRepository {
     private String getFilePath(String username) {
         return "./data/" + username + ".txt";
     }
-
-
 }

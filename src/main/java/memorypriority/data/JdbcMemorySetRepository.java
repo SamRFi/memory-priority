@@ -132,6 +132,16 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         }
     }
 
+    @Override
+    public void changePriority(String username, MemorySet memorySet, PriorityLevel newPriority) {
+
+    }
+
+    @Override
+    public void removeMemorySet(String username, int id) {
+
+    }
+
     public void changePriority(MemorySet memorySet, PriorityLevel newPriority) {
         String sql = "UPDATE memory_sets SET priority_level = ? WHERE id = ?";
         try (Connection conn = connectionSupplier.get();
@@ -152,10 +162,7 @@ public class JdbcMemorySetRepository implements MemorySetRepository {
         }
     }
 
-    @Override
-    public void removeMemorySet(int id) {
-        throw new MemoryPriorityException("database memory set removal not yet implemented");
-    }
+
 
     protected Connection getConnection() throws SQLException {
         return JdbcConnection.getConnection();

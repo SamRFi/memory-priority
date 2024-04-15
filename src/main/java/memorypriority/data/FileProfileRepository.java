@@ -1,22 +1,18 @@
 package memorypriority.data;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileProfileRepository implements ProfileRepository {
 
-    private final String filePath = "./data/users.txt";
+    private final String directoryPath = "./data/";
 
     public void addProfile(String username) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write("===\n");
-            writer.write("Username: " + username + "\n");
-            writer.write("---\n");
+        File file = new File(directoryPath + username + ".txt");
+        try {
+            file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,39 +20,23 @@ public class FileProfileRepository implements ProfileRepository {
 
     public List<String> getAllUsernames() {
         List<String> usernames = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.equals("===")) {
-                    String usernameLine = reader.readLine();
-                    if (usernameLine != null && usernameLine.startsWith("Username: ")) {
-                        String username = usernameLine.split(":")[1].trim();
-                        usernames.add(username);
-                    }
-                    reader.readLine(); // Skip past the separator "---"
-                }
+        File directory = new File(directoryPath);
+        File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
+
+        if (files != null) {
+            for (File file : files) {
+                String username = file.getName().replace(".txt", "");
+                usernames.add(username);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
         return usernames;
     }
 
     public void removeUsername(String usernameToRemove) {
-        List<String> usernames = getAllUsernames();
-        usernames.remove(usernameToRemove);
-
-        // Now, re-write the file without the removed usrname
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (String username : usernames) {
-                writer.write("===\n");
-                writer.write("Username: " + username + "\n");
-                writer.write("---\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        File file = new File(directoryPath + usernameToRemove + ".txt");
+        if (file.exists()) {
+            file.delete();
         }
     }
-
 }
-
