@@ -5,8 +5,6 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MemorySet {
-
-    private static final AtomicInteger sequencer = new AtomicInteger(0);
     private UUID id;
     private String name;
     private PriorityLevel priorityLevel;
