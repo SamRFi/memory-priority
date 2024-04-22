@@ -1,7 +1,8 @@
 
-m
-java:S1192"KDefine a constant instead of duplicating this literal "Username: " 3 times.(‘·ù‡ÿÿÿÿÿ8£„ç¤1
-C
-java:S1170"!Make this final field static too.(·À“•ûÿÿÿÿ8—¡ıæ¤1
-i
-java:S2677$"LUse or store the value returned from "readLine" instead of throwing it away.(ÿ‰ôÇ8¦£„ç¤1
+>
+java:S1170
+"!Make this final field static too.(‰ı‚8È£˜î1
+c	java:S899"BDo something with the "boolean" value returned by "createNewFile".(Ğ’Íùÿÿÿÿ8„È£˜î1
+\	java:S899'";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8‰Å›˜î1
+p
+java:S4042'"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8‰Å›˜î1

@@ -21,8 +21,6 @@ b
 2src/main/java/memorypriority/domain/MemorySet.java,e\b\eb705f0c51de25865b0350d4b59b72f78a162063
 i
 9src/main/java/memorypriority/domain/MemoryCollection.java,2\4\24d6a48c53e4700edd5ee0922c1db3e948237411
-D
-data/memory_data.txt,3\b\3b4396524e4b4482ffd19c1db7c026a85061d849
 r
 Bsrc/test/java/memorypriority/data/JdbcMemorySetRepositoryTest.java,7\0\70b13f34c3b0941f11d0dcc3a872ec2aa200b6ef
 9
@@ -55,8 +53,6 @@ o
 ?src/main/java/memorypriority/service/AuthenticationService.java,f\e\fe301ef8cef356cd38fb383f046da7323f3ab3c9
 b
 2src/main/java/memorypriority/ui/FxApplication.java,f\2\f2af0f52a8061aa052d8a97f9871cdcd76bb5a03
->
-data/users.txt,5\8\58f410f0a5a497fd6ed616c92c81e0e4a4c5978a
 h
 8src/main/java/memorypriority/ui/DashboardController.java,a\a\aafc058b7c787ca80ef199734d511ed5bee471e4
 j
@@ -64,3 +60,7 @@ j
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+D
+META-INF/MANIFEST.MF,2\e\2e8cf92205ec303e7304888d382cb6a8cf5f56ba
+B
+data/Psalm 119.txt,5\e\5ea82a8cfcf7ef1f01e50ce49a85e609cdcf47b9

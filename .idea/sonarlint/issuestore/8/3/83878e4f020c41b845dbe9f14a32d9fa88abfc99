@@ -1,5 +1,9 @@
 
+Y
+java:S2629g"7Use the built-in formatting to construct this argument.(ÀÚ‰‹şÿÿÿÿ8Ôâˆ™î1
 i
-java:S3655k"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûŞ8€“œ«1
-T
-java:S1135d"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8Ã‚öš«1
+java:S3655o"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûŞ8ïã„™î1
+U
+java:S3416"8Update this logger to use "LoginScreenController.class".(¶ù™€8ë¿„™î1
+m
+java:S3457g"KFormat specifiers or lambda should be used instead of string concatenation.(ÀÚ‰‹şÿÿÿÿ8ãˆ™î1

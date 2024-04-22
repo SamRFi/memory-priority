@@ -3,6 +3,10 @@ q
 java:S11923"ODefine a constant instead of duplicating this literal "Database Error" 3 times.(æ¶«Èùÿÿÿÿ8Ì„¹¤1
 q
 java:S11924"ODefine a constant instead of duplicating this literal "Database error" 5 times.(÷Œàîıÿÿÿÿ8Ì„¹¤1
+Ÿ
+java:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ì„¹ı8çë¹˜î1
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·ò½`8§‚Ê˜î1
 n
 java:S21392"XEither log this exception and handle it, or rethrow it with some contextual information.(À‹ø„
 n
@@ -12,6 +16,4 @@ java:S2139W"XEither log this exception and handle it, or rethrow it with some c
 o
 java:S2139"XEither log this exception and handle it, or rethrow it with some contextual information.(À‹ø„
 v
-java:S2139•"XEither log this exception and handle it, or rethrow it with some contextual information.(À‹ø„8ËÌ„¹¤1
-G
-java:S1128	"*Remove this unused import 'java.sql.Date'.(ÙÀ½Ê8ô¸ÓĞÖ1
+java:S2139Ÿ"XEither log this exception and handle it, or rethrow it with some contextual information.(À‹ø„8ËÌ„¹¤1

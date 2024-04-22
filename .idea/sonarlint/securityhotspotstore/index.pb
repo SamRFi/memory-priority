@@ -5,8 +5,6 @@ o
 ?src/main/java/memorypriority/service/AuthenticationService.java,f\e\fe301ef8cef356cd38fb383f046da7323f3ab3c9
 l
 <src/main/java/memorypriority/data/FileProfileRepository.java,f\1\f11009852f0f57dcfb6d9d414c4fb13961f14873
->
-data/users.txt,5\8\58f410f0a5a497fd6ed616c92c81e0e4a4c5978a
 j
 :src/main/java/memorypriority/ui/LoginScreenController.java,8\3\83878e4f020c41b845dbe9f14a32d9fa88abfc99
 h
@@ -25,8 +23,6 @@ h
 8src/main/java/memorypriority/data/ProfileRepository.java,7\f\7f413fd804a696421522b1318ea63dfc41796d15
 n
 >src/main/java/memorypriority/data/FileMemorySetRepository.java,a\5\a5af0e7b69f8404d2baf2b3e793a0f08af749d87
-D
-data/memory_data.txt,3\b\3b4396524e4b4482ffd19c1db7c026a85061d849
 S
 #src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 j
@@ -52,3 +48,11 @@ j
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+o
+?src/main/java/memorypriority/data/AsyncVerseRepositoryImpl.java,b\8\b8c40a471a26a7ed236b3e30472f3db2575bbd86
+D
+META-INF/MANIFEST.MF,2\e\2e8cf92205ec303e7304888d382cb6a8cf5f56ba
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+B
+data/Psalm 119.txt,5\e\5ea82a8cfcf7ef1f01e50ce49a85e609cdcf47b9
