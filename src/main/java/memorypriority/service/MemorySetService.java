@@ -9,6 +9,7 @@ import memorypriority.domain.MemorySet;
 import memorypriority.domain.PriorityLevel;
 import memorypriority.util.MemoryPriorityException;
 
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -117,14 +118,15 @@ public class MemorySetService {
     }
 
 
-    private MemorySet findMemorySetById(int id) {
+    private MemorySet findMemorySetById(UUID id) {
         MemoryCollection memoryCollection = getMemoryCollectionOfUser();
         for (MemorySet memorySet : memoryCollection.getMemorySets()) {
-            if (memorySet.getId() == id) {
+            if (memorySet.getId().equals(id)) {
                 return memorySet;
             }
         }
         return null;
     }
+
 
 }

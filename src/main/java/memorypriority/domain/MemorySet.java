@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MemorySet {
 
     private static final AtomicInteger sequencer = new AtomicInteger(0);
-    private int id;
+    private UUID id;
     private String name;
     private PriorityLevel priorityLevel;
     private Timestamp lastTimeRehearsed;
@@ -15,7 +15,7 @@ public class MemorySet {
     private int currentIndex;
 
     public MemorySet(String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel) {
-        this.id = sequencer.incrementAndGet();
+        this.id = UUID.randomUUID();
         this.name = name;
         this.priorityLevel = priorityLevel;
         this.lastTimeRehearsed = new Timestamp(System.currentTimeMillis());
@@ -28,7 +28,7 @@ public class MemorySet {
         this.lastTimeRehearsed = lastTimeRehearsed;
     }
 
-    public MemorySet(int id, String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Timestamp lastTimeRehearsed) {
+    public MemorySet(UUID id, String name, List<Map.Entry<String, String>> pairList, PriorityLevel priorityLevel, Timestamp lastTimeRehearsed) {
         this(name, pairList, priorityLevel, lastTimeRehearsed);
         this.id = id;
     }
@@ -41,7 +41,7 @@ public class MemorySet {
         this.priorityLevel = priorityLevel;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

@@ -14,15 +14,6 @@ public class Repositories {
     private static final boolean ENABLE_SSL = true;
 
     private static final ProfileRepository profileRepository = new FileProfileRepository();
-    private static final MemorySetRepository jdbcMemorySetRepository;
-
-    static {
-        try {
-            jdbcMemorySetRepository = new JdbcMemorySetRepository();
-        } catch (SQLException e) {
-            throw new MemoryPriorityException("Failed to get connection to the database", e);
-        }
-    }
 
     private static MemorySetRepository fileMemorySetRepository = new FileMemorySetRepository();
 

@@ -22,7 +22,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("ID: ")) {
-                    int id = Integer.parseInt(line.split(":")[1].trim());
+                    UUID id = UUID.fromString(line.split(":")[1].trim());
                     String name = reader.readLine().split(":")[1].trim();
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(reader.readLine().split(":")[1].trim());
 
@@ -88,6 +88,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
     public void changePriority(String username, MemorySet memorySet, PriorityLevel newPriority) {
         String filePath = getFilePath(username);
         List<String> fileContent = new ArrayList<>();
+        boolean found = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -95,34 +96,42 @@ public class FileMemorySetRepository implements MemorySetRepository {
                 fileContent.add(line);
 
                 if (line.startsWith("ID: ")) {
-                    int id = Integer.parseInt(line.split(":")[1].trim());
-                    if (id == memorySet.getId()) {
-                        fileContent.add(reader.readLine()); // Name
+                    UUID id = UUID.fromString(line.split(": ")[1].trim());
+                    if (id.equals(memorySet.getId())) {
+                        // Read and store the name
+                        fileContent.add(reader.readLine());
+                        // Skip the old priority line and add the new priority
+                        reader.readLine();
                         fileContent.add("Priority: " + newPriority);
-                        reader.readLine(); // skipping the old priority level
-                        fileContent.add(reader.readLine()); // Last Rehearsed
-                    } else {
-                        fileContent.add(reader.readLine()); // Name
-                        fileContent.add(reader.readLine()); // Priority
-                        fileContent.add(reader.readLine()); // Last Rehearsed
+                        // Read and store the last rehearsed time
+                        fileContent.add(reader.readLine());
+                        found = true;
                     }
                 }
             }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-                for (String contentLine : fileContent) {
-                    writer.write(contentLine + "\n");
-                }
-            }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            throw new MemoryPriorityException("Error modifying file", e);
+            throw new MemoryPriorityException("Error reading from file", e);
+        }
+
+        if (!found) {
+            throw new MemoryPriorityException("Memory set not found");
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String contentLine : fileContent) {
+                writer.write(contentLine + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new MemoryPriorityException("Error writing to file", e);
         }
     }
 
 
+
     @Override
-    public void removeMemorySet(String username, int id) {
+    public void removeMemorySet(String username, UUID id) {
         String filePath = getFilePath(username);
         List<String> fileContent = new ArrayList<>();
 
@@ -141,10 +150,9 @@ public class FileMemorySetRepository implements MemorySetRepository {
 
         for (int i = 0; i < fileContent.size(); i++) {
             String line = fileContent.get(i);
-            try {
-                String idLine = fileContent.get(i);
-                String[] idParts = idLine.split(":");
-                if (idParts.length > 1 && Integer.parseInt(idParts[1].trim()) == id) {
+            if (line.startsWith("ID: ")) {
+                UUID currentId = UUID.fromString(line.split(":")[1].trim());
+                if (currentId.equals(id)) {
                     start = i;
                     while (i < fileContent.size() && !fileContent.get(i).equals("---")) {
                         i++;
@@ -152,8 +160,6 @@ public class FileMemorySetRepository implements MemorySetRepository {
                     end = i;
                     break;
                 }
-            } catch (NumberFormatException e) {
-                continue;
             }
         }
 
@@ -171,6 +177,7 @@ public class FileMemorySetRepository implements MemorySetRepository {
             throw new MemoryPriorityException("Memory set not found");
         }
     }
+
 
     private String getFilePath(String username) {
         return "./data/" + username + ".txt";

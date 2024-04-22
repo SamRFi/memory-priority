@@ -1,4 +1,4 @@
-ID: 39
+ID: 2cb5b23e-bc63-4551-b908-cafcd55b0b9f
 Name: Aleph
 Priority: HIGH
 Last Rehearsed: 2024-04-20 15:52:14
@@ -11,7 +11,7 @@ Psalm 119:6 =:::= Then shall I not be ashamed, when I have respect unto all thy 
 Psalm 119:7 =:::= I will praise thee with uprightness of heart, when I shall have learned thy righteous judgments.
 Psalm 119:8 =:::= I will keep thy statutes: O forsake me not utterly.
 ---
-ID: 3
+ID: 8db21c05-7f46-4ab8-84ab-357686bd6f4f
 Name: Gimel
 Priority: HIGH
 Last Rehearsed: 2024-04-21 14:42:54
@@ -24,7 +24,7 @@ Psalm 119:22 =:::= Remove from me reproach and contempt; for I have kept thy tes
 Psalm 119:23 =:::= Princes also did sit and speak against me:but thy servant did meditate in thy statutes.
 Psalm 119:24 =:::= Thy testimonies also are my delight and my counsellors.
 ---
-ID: 82
+ID: 29b77364-a227-43e7-8213-61072cc389a0
 Name: Lamed
 Priority: HIGH
 Last Rehearsed: 2024-04-21 14:45:37
@@ -37,7 +37,7 @@ Psalm 119:94 =:::= I am thine, save me; for I have sought thy precepts.
 Psalm 119:95 =:::= The wicked have waited for me to destroy me: but I will consider thy testimonies.
 Psalm 119:96 =:::= I have seen an end of all perfection:but thy commandment is exceeding broad.
 ---
-ID: 2
+ID: 0c1af904-6a2d-4bac-ae48-a2f70d985d67
 Name: Beth
 Priority: HIGH
 Last Rehearsed: 2024-04-22 22:39:26
@@ -50,7 +50,7 @@ Psalm 119:14 =:::= I have rejoiced in the way of thy testimonies, as much as in 
 Psalm 119:15 =:::= I will meditate in thy precepts, and have respect unto thy ways.
 Psalm 119:16 =:::= I will delight myself in thy statutes: I will not forget thy word.
 ---
-ID: 45
+ID: 8c897862-f3e7-456e-ac97-8db5c3e751d3
 Name: Daleth
 Priority: HIGH
 Last Rehearsed: 2024-04-22 22:42:51
