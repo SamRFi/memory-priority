@@ -1,11 +1,10 @@
 
-{	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(£·¾üÿÿÿÿ8¨Ÿ˜î1
-u	java:S127–"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ8¨Ÿ˜î1
+r
+java:S1192R"VDefine a constant instead of duplicating this literal "Error writing to file" 3 times.(ø…¨08¿„½ğ1
+z
+java:S11929"XDefine a constant instead of duplicating this literal "Error reading from file" 3 times.(ƒ–Ğ¤üÿÿÿÿ8¿„½ğ1
+u	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ8·çí¼ğ1
 n
-java:S2677f"LUse or store the value returned from "readLine" instead of throwing it away.(íÅÇäıÿÿÿÿ8›‰Ø˜î1
-n
-java:S3776}"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(·ò½`8Ó¡˜î1
-9
-java:S3626œ"Remove this redundant jump.(ÉŠ©ƒ8Ó¡˜î1
-L
-java:S1481")Remove this unused "line" local variable.(äÿˆ’ùÿÿÿÿ8º¢È˜î1
+java:S2677h"LUse or store the value returned from "readLine" instead of throwing it away.(£­—âÿÿÿÿÿ8°‘„½ğ1
+u
+java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(Ç‰Ò¨ÿÿÿÿÿ8Ôèí¼ğ1
