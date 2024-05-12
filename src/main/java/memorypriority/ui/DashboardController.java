@@ -93,6 +93,7 @@ public class DashboardController {
 
     private GridPane createMemorySetBox(MemorySet memorySet) {
         Label nameLabel = new Label(memorySet.getName());
+        nameLabel.setMinWidth(Control.USE_PREF_SIZE);
         nameLabel.setMaxWidth(Double.MAX_VALUE);
         nameLabel.setAlignment(Pos.CENTER);
         GridPane.setHgrow(nameLabel, Priority.ALWAYS);

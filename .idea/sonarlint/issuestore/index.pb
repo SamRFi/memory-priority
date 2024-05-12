@@ -64,5 +64,3 @@ B
 data/Psalm 119.txt,5\e\5ea82a8cfcf7ef1f01e50ce49a85e609cdcf47b9
 C
 Memory Priority.bat,e\c\ec43bbfbf8ced34298a996af7c4701a9d20c2a4d
-@
-data/testing.txt,d\3\d305a387cdc084b5818a44953fd12655318aab2f
