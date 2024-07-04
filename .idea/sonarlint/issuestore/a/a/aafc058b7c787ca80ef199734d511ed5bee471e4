@@ -2,10 +2,12 @@
 |
 java:S1192"ZDefine a constant instead of duplicating this literal "internationalization/text" 4 times.(ÎÅÈÐøÿÿÿÿ8Œþâ«×1
 j
-java:S3655‹"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûÞ8Äþâ«×1
+java:S3655Œ"LCall "result.isPresent()" or "!result.isEmpty()" before accessing the value.(ÃÇûÞ8Äþâ«×1
+e
+java:S3252`"HUse static access with "javafx.scene.layout.Region" for "USE_PREF_SIZE".(‰Ó£Ý8õÍêöö1
 U
-java:S1135„"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8Þþâ«×1
+java:S1135…"2Complete the task associated to this TODO comment.(üˆ¿åøÿÿÿÿ8Þþâ«×1
 P
-java:S1172ë"2Remove this unused method parameter "actionEvent".(†é”Ü8æþâ«×1
+java:S1172ì"2Remove this unused method parameter "actionEvent".(†é”Ü8æþâ«×1
 [
-java:S1144Ì"8Remove this unused private "createPriorityLabel" method.(£†Â¾úÿÿÿÿ8çþâ«×1
+java:S1144Í"8Remove this unused private "createPriorityLabel" method.(£†Â¾úÿÿÿÿ8çþâ«×1

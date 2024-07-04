@@ -1,4 +1,15 @@
 # memory-priority
+Simple JavaFX program for memorizing memory sets. Memory sets are a sequence of key value pairs. The memory sets can be ordered by Priority, and each can be rehearsed. Upon rehearsal, the reheared timestamp will update and the other memory sets within the priority level will take priority.
+
+The "Review All Memory Sets" button will choose the most imminent memory set for rehearsal, based on priority level and rehearsal date. You may keep clicking this button to go through all your memory sets in the right order, based on the priority levels you have defined. 
+
+## Data
+This application can run fully offline. The memorys sets are simply saved in txt files, where a certain expected pattern is expected for the parsing. As long as the format is being respected, the content of these txt files may be adjusted to your liking. 
+
+Each txt file represents a profile (which you can add or delete in the app), and in each profile txt file, you can find all the memory sets, with all their relevant data. 
+
+This provides great flexibility and control over your memorization data.
+
 ## How to run?
 ```
 ./gradlew run
@@ -6,33 +17,3 @@
 
 ## Known Bugs
 - If you add duplicate key-value pairs, identical keys, or identical values to a memory set, the program will crash when you attempt to rehearse that set.
-## Database Schemas:
-
-```
-CREATE TABLE users (
-    username VARCHAR(255) PRIMARY KEY,
-    hashed_password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-insert into users(username, hashed_password)
-value ('root', 'root');
-
-CREATE TABLE memory_sets (
-    id INT AUTO_INCREMENT,
-    name VARCHAR(255),
-    priority_level ENUM('HIGH', 'MEDIUM', 'LOW'),
-    last_time_rehearsed TIMESTAMP,
-    username VARCHAR(255),
-    FOREIGN KEY(username) REFERENCES users(username),
-    PRIMARY KEY(id)
-);
-
-CREATE TABLE memory_set_entries (
-    memory_set_id INT,
-    key_name VARCHAR(255),
-    value_name VARCHAR(255),
-    FOREIGN KEY(memory_set_id) REFERENCES memory_sets(id),
-    PRIMARY KEY(memory_set_id, key_name)
-);

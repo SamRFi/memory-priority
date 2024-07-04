@@ -28,7 +28,7 @@
             </ComboBox>
 
             <!-- Explanation Label -->
-            <Label text="Explanation on top of key-value pairs..." wrapText="true"/>
+            <Label text="Left Input is the Key (indicator of the content you want to memorize), right Input is the Value (the actual content you want to memorize). Optionally enter a Bible verse in the Key Input (e.g. John 3:16), then click Search to find the verse in the KJV." wrapText="true"/>
 
             <!-- Dynamic Key-Value Pairs Container -->
             <GridPane fx:id="keyValuePairsContainer" vgap="10" alignment="CENTER">

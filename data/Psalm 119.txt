@@ -102,10 +102,36 @@ Psalm 119:54 =:::= Thy statutes have been my songs in the house of my pilgrimage
 Psalm 119:55 =:::= I have remembered thy name, O LORD, in the night, and have kept thy law.
 Psalm 119:56 =:::= This I had, because I kept thy precepts.
 ---
+ID: 7d7f7a1e-f425-4f47-9f0a-2d3b30c5e9d3
+Name: Teth
+Priority: MEDIUM
+Last Rehearsed: 2024-05-18 11:23:17
+Psalm 119:65 =:::= Thou hast dealt well with thy servant, O LORD, according unto thy word.
+Psalm 119:66 =:::= Teach me good judgment and knowledge: for I have believed thy commandments.
+Psalm 119:67 =:::= Before I was afflicted I went astray: but now have I kept thy word.
+Psalm 119:68 =:::= Thou art good, and doest good; teach me thy statutes.
+Psalm 119:69 =:::= The proud have forged a lie against me: but I will keep thy precepts with my whole heart.
+Psalm 119:70 =:::= Their heart is as fat as grease; but I delight in thy law.
+Psalm 119:71 =:::= It is good for me that I have been afflicted; that I might learn thy statutes.
+Psalm 119:72 =:::= The law of thy mouth is better unto me than thousands of gold and silver.
+---
+ID: 8f16bd7a-b2d3-4789-9e33-776129d54608
+Name: Jod
+Priority: MEDIUM
+Last Rehearsed: 2024-05-17 09:41:32
+Psalm 119:73 =:::= Thy hands have made me and fashioned me: give me understanding, that I may learn thy commandments.
+Psalm 119:74 =:::= They that fear thee will be glad when they see me; because I have hoped in thy word.
+Psalm 119:75 =:::= I know, O LORD, that thy judgments are right, and that thou in faithfulness hast afflicted me.
+Psalm 119:76 =:::= Let, I pray thee, thy merciful kindness be for my comfort, according to thy word unto thy servant.
+Psalm 119:77 =:::= Let thy tender mercies come unto me, that I may live: for thy law is my delight.
+Psalm 119:78 =:::= Let the proud be ashamed; for they dealt perversely with me without a cause: but I will meditate in thy precepts.
+Psalm 119:79 =:::= Let those that fear thee turn unto me, and those that have known thy testimonies.
+Psalm 119:80 =:::= Let my heart be sound in thy statutes; that I be not ashamed.
+---
 ID: a1a8a014-ed71-45ec-978c-108971e8fa15
 Name: Cheth
-Priority: HIGH
-Last Rehearsed: 2024-05-01 13:53:19
+Priority: MEDIUM
+Last Rehearsed: 2024-05-24 23:29:57
 Psalm 119:57 =:::= Thou art my portion, O LORD: I have said that I would keep thy words.
 Psalm 119:58 =:::= I intreated thy favour with my whole heart: be merciful unto me according to thy word.
 Psalm 119:59 =:::= I thought on my ways, and turned my feet unto thy testimonies.
@@ -114,4 +140,17 @@ Psalm 119:61 =:::= The bands of the wicked have robbed me: but I have not forgot
 Psalm 119:62 =:::= At midnight I will rise to give thanks unto thee because of thy righteous judgments.
 Psalm 119:63 =:::= Iam a companion of all them that fear thee, and of them that keep thy precepts.
 Psalm 119:64 =:::= The earth, O LORD, is full of thy mercy: teach me thy statutes.
+---
+ID: 6e85e7e0-f2c1-4ff7-9ce9-79ac30d1f0a4
+Name: Caph
+Priority: HIGH
+Last Rehearsed: 2024-05-24 23:35:45
+Psalm 119:81 =:::= My soul fainteth for thy salvation: but I hope in thy word.
+Psalm 119:82 =:::= Mine eyes fail for thy word, saying, When wilt thou comfort me?
+Psalm 119:83 =:::= For I am become like a bottle in the smoke; yet do I not forget thy statutes.
+Psalm 119:84 =:::= How many are the days of thy servant? when wilt thou execute judgment on them that persecute me?
+Psalm 119:85 =:::= The proud have digged pits for me, which are not after thy law.
+Psalm 119:86 =:::= All thy commandments are faithful: they persecute me wrongfully; help thou me.
+Psalm 119:87 =:::= They had almost consumed me upon earth; but I forsook not thy precepts.
+Psalm 119:88 =:::= Quicken me after thy lovingkindness; so shall I keep the testimony of thy mouth.
 ---
