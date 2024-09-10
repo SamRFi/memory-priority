@@ -32,7 +32,7 @@ public class RehearsalController {
     private Button startButton;
 
     @FXML
-    private Label keyLabel;
+    private TextArea keyTextArea;
 
     @FXML
     private TextArea valueTextArea;
@@ -97,7 +97,7 @@ public class RehearsalController {
         resetButton.setVisible(false);
         valueTextArea.setEditable(true);
 
-        keyLabel.textProperty().addListener((observable, oldValue, newValue) -> {
+        keyTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!isChangingOrder && originalKey != null && !newValue.equals(originalKey)) {
                 showEditButtons();
             }
@@ -127,14 +127,14 @@ public class RehearsalController {
         if (!rehearsedPairs.isEmpty()) {
             currentPairIndex = Math.min(currentPairIndex, currentRehearsalOrder.size() - 1);
             currentPair = currentRehearsalOrder.get(currentPairIndex);
-            updateKeyLabelSilently();
+            updateKeyTextAreaSilently();
             updateValueAreaSilently();
         }
     }
 
-    private void updateKeyLabelSilently() {
+    private void updateKeyTextAreaSilently() {
         isChangingOrder = true;
-        updateKeyLabel();
+        updateKeyTextArea();
         isChangingOrder = false;
     }
 
@@ -160,20 +160,18 @@ public class RehearsalController {
             originalValue = null;
         }
 
-        updateKeyLabel();
+        updateKeyTextArea();
 
-        // Reset edit state
         hideEditButtons();
 
-        // Update button labels
         saveChangesButton.setText(keyToValue ? "Save Changes" : "Save Key Change");
         resetButton.setText(keyToValue ? "Reset" : "Reset Key");
     }
 
-    private void updateKeyLabel() {
+    private void updateKeyTextArea() {
         if (currentPair != null) {
-            keyLabel.setText(keyToValue ? currentPair.getKey() : currentPair.getValue());
-            originalKey = keyLabel.getText();
+            keyTextArea.setText(keyToValue ? currentPair.getKey() : currentPair.getValue());
+            originalKey = keyTextArea.getText();
         }
     }
 
@@ -194,7 +192,7 @@ public class RehearsalController {
         currentPairIndex = rehearsedPairs.size();
         currentPair = currentRehearsalOrder.get(currentPairIndex);
         rehearsedPairs.add(currentPair);
-        updateKeyLabel();
+        updateKeyTextArea();
         valueTextArea.clear();
         valueTextArea.setVisible(false);
         originalValue = null;
@@ -206,9 +204,9 @@ public class RehearsalController {
         resetRehearsalState();
         resetRehearsalOrder();
         currentPair = currentRehearsalOrder.get(currentPairIndex);
-        updateKeyLabel();
+        updateKeyTextArea();
 
-        orderButton.setDisable(false);  // Allow changing order during rehearsal
+        orderButton.setDisable(false);
         modeButton.setDisable(true);
         showValueButton.setDisable(false);
         nextButton.setDisable(false);
@@ -233,20 +231,18 @@ public class RehearsalController {
 
     @FXML
     private void saveChanges() {
-        String newKey = keyToValue ? keyLabel.getText() : valueTextArea.getText();
-        String newValue = keyToValue ? valueTextArea.getText() : keyLabel.getText();
+        String newKey = keyToValue ? keyTextArea.getText() : valueTextArea.getText();
+        String newValue = keyToValue ? valueTextArea.getText() : keyTextArea.getText();
 
         memorySetService.updateKeyValuePair(memorySet, currentPair.getKey(), currentPair.getValue(), newKey, newValue);
 
-        // Update both currentPair and the pair in currentRehearsalOrder
         currentPair = Map.entry(newKey, newValue);
         currentRehearsalOrder.set(currentPairIndex, currentPair);
 
         originalKey = newKey;
         originalValue = newValue;
 
-        // Update the visible text
-        keyLabel.setText(keyToValue ? newKey : newValue);
+        keyTextArea.setText(keyToValue ? newKey : newValue);
         if (valueTextArea.isVisible()) {
             valueTextArea.setText(keyToValue ? newValue : newKey);
         }
@@ -256,7 +252,7 @@ public class RehearsalController {
 
     @FXML
     private void resetChanges() {
-        keyLabel.setText(originalKey);
+        keyTextArea.setText(originalKey);
         valueTextArea.setText(originalValue);
         hideEditButtons();
     }
@@ -282,6 +278,7 @@ public class RehearsalController {
         resetRehearsalState();
         startRehearsal();
     }
+
     @FXML
     private void returnToDashboard() {
         memorySetService.rehearseMemorySet(memorySet);
@@ -298,7 +295,7 @@ public class RehearsalController {
         showValueButton.setDisable(true);
         nextButton.setDisable(true);
 
-        keyLabel.setText("");
+        keyTextArea.setText("");
         valueTextArea.setText("");
         valueTextArea.setVisible(false);
 

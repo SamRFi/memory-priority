@@ -1,14 +1,7 @@
-ID: a2fdb02f-9c99-4774-9446-3780ee47d63d
-Name: Ezekiel 14:9-10
-Priority: MEDIUM
-Last Rehearsed: 2024-09-05 14:28:37
-Ezekiel 14:9 =:::= And if the prophet be deceived when he hath spoken a thing, I the LORD have deceived that prophet, and I will stretch out my hand upon him, and will destroy him from the midst of my people Israel.
-Ezekiel 14:10 =:::= And they shall bear the punishment of their iniquity: the punishment of the prophet shall be even as the punishment of him that seeketh unto him;
----
 ID: d8342a64-4036-432c-96a6-0921a1c205f9
 Name: Ezekiel 14:6
 Priority: MEDIUM
-Last Rehearsed: 2024-09-05 14:30:45
+Last Rehearsed: 2024-09-10 13:18:30
 Ezekiel 14:6.1 =:::= Therefore say unto the house of Israel, Thus saith the Lord GOD;
 Ezekiel 14:6.2 =:::= Repent, and turn yourselves from your idols;
 Ezekiel 14:6.3 =:::= and turn away your faces from all your abominations.
@@ -16,7 +9,7 @@ Ezekiel 14:6.3 =:::= and turn away your faces from all your abominations.
 ID: 4a55973b-a2df-4065-9602-530efb64d703
 Name: Ezekiel 14:7
 Priority: MEDIUM
-Last Rehearsed: 2024-09-05 14:31:40
+Last Rehearsed: 2024-09-10 13:22:09
 Ezekiel 14:7.1 =:::= For every one of the house of Israel, or of the stranger that sojourneth in Israel,
 Ezekiel 14:7.2 =:::= which separateth himself from me,
 Ezekiel 14:7.3 =:::= and setteth up his idols in his heart,
@@ -26,17 +19,30 @@ Ezekiel 14:7.6 =:::= I the LORD will answer him by myself:
 ---
 ID: 507959c1-a815-49e9-8079-d747df482c6c
 Name: Ezekiel 14:8
-Priority: HIGH
-Last Rehearsed: 2024-09-05 14:32:51
+Priority: MEDIUM
+Last Rehearsed: 2024-09-10 13:23:16
 Ezekiel 14:8.1 =:::= And I will set my face against that man
 Ezekiel 14:8.2 =:::= and will make him a sign and a proverb
 Ezekiel 14:8.3 =:::= and I will cut him off from the midst of my people
 Ezekiel 14:8.4 =:::= and ye shall know that I am the LORD
 ---
+ID: a2fdb02f-9c99-4774-9446-3780ee47d63d
+Name: Ezekiel 14:9-10
+Priority: HIGH
+Last Rehearsed: 2024-09-10 13:30:52
+Ezekiel 14:9 =:::= And if the prophet be deceived when he hath spoken a thing, I the LORD have deceived that prophet, and I will stretch out my hand upon him, and will destroy him from the midst of my people Israel.
+Ezekiel 14:10 =:::= And they shall bear the punishment of their iniquity: the punishment of the prophet shall be even as the punishment of him that seeketh unto him;
+---
 ID: a7d31974-6a06-4ff2-9b34-c6f7e6e840f6
 Name: Ezekiel 14:11
 Priority: HIGH
-Last Rehearsed: 2024-09-05 14:36:30
+Last Rehearsed: 2024-09-10 13:31:43
 Ezekiel 14:11.1 =:::= That the house of Israel may go no more astray from me, neither be polluted any more with all their transgressions;
 Ezekiel 14:11.2 =:::= but that they may be my people, and I may be their God, saith the Lord GOD.
+---
+ID: f3e90ae7-52c4-47d7-8064-803ed62e9b49
+Name: testing size
+Priority: NONE
+Last Rehearsed: 2024-09-10 13:38:12
+fdf =:::= fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq  fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq  fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq  fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq  fhdquifhqsdlf usqlfh sqlkfhsqfkjqhf sqlkjfh sqdkjfh sqjfh sqljfh sdfh sjkfh sqfh sdqlkfjhdsqflkjhsq fdqsfdsfdsfqsfqfdsqfdqsf sdqfqsdfdsqf sqfdsqfsqd fdsqf sqdfsqdf dqsfdqsf sfdqsf sqdf sqf sqf qs fdsqfdsqfsqjdfdsqkfjndsqfksqdjfnqskjfdsqfj sqdfqsjf qsf qsfjsd qfkqs fskdjf sqjkf sqkdjf dsqkjf sqf sqf sqdkfjsdqfkdsq fdjsqfdsqjf jqkdqskfdjsqfdjqsk fdqskf dsqkfjdqsfkjsdq fqf
 ---
