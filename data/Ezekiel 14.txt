@@ -3,7 +3,7 @@ Name: Ezekiel 14:9-10
 Priority: MEDIUM
 Last Rehearsed: 2024-09-05 14:28:37
 Ezekiel 14:9 =:::= And if the prophet be deceived when he hath spoken a thing, I the LORD have deceived that prophet, and I will stretch out my hand upon him, and will destroy him from the midst of my people Israel.
-Ezekiel 14:10 =:::= And they shall bear the punishment of their iniquity: the punishment of the prophet shall be even as the punishment of him that seekethunto him;
+Ezekiel 14:10 =:::= And they shall bear the punishment of their iniquity: the punishment of the prophet shall be even as the punishment of him that seeketh unto him;
 ---
 ID: d8342a64-4036-432c-96a6-0921a1c205f9
 Name: Ezekiel 14:6
