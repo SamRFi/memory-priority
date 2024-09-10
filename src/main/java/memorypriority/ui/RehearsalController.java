@@ -211,11 +211,17 @@ public class RehearsalController {
         String newKey = keyToValue ? keyLabel.getText() : valueTextArea.getText();
         String newValue = keyToValue ? valueTextArea.getText() : keyLabel.getText();
 
-        memorySetService.updateKeyValuePair(memorySet, originalKey, originalValue, newKey, newValue);
+        memorySetService.updateKeyValuePair(memorySet, currentPair.getKey(), currentPair.getValue(), newKey, newValue);
 
         currentPair = Map.entry(newKey, newValue);
         originalKey = newKey;
         originalValue = newValue;
+
+        // Update the visible text
+        keyLabel.setText(keyToValue ? newKey : newValue);
+        if (valueTextArea.isVisible()) {
+            valueTextArea.setText(keyToValue ? newValue : newKey);
+        }
 
         hideEditButtons();
     }
@@ -233,7 +239,7 @@ public class RehearsalController {
         showValueButton.setDisable(true);
 
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> pair : rehearsedPairs) {
+        for (Map.Entry<String, String> pair : memorySet.getPairList()) {
             sb.append(pair.getKey()).append(" : ").append(pair.getValue()).append("\n");
         }
         overviewLabel.setText(sb.toString());

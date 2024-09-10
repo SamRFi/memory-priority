@@ -122,15 +122,7 @@ public class MemorySetService {
     public void updateKeyValuePair(MemorySet memorySet, String originalKey, String originalValue, String newKey, String newValue) {
         memorySetRepository.updateKeyValuePair(loggedInUser, memorySet.getId(), originalKey, originalValue, newKey, newValue);
 
-        // Update the MemorySet object
-        List<Map.Entry<String, String>> pairList = memorySet.getPairList();
-        for (int i = 0; i < pairList.size(); i++) {
-            Map.Entry<String, String> entry = pairList.get(i);
-            if (entry.getKey().equals(originalKey) && entry.getValue().equals(originalValue)) {
-                pairList.set(i, Map.entry(newKey, newValue));
-                break;
-            }
-        }
+        memorySet.updateKeyValuePair(originalKey, originalValue, newKey, newValue);
     }
 
     private MemorySet findMemorySetById(UUID id) {

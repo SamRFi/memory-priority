@@ -80,6 +80,16 @@ public class MemorySet {
         return pairList.get(0);
     }
 
+    public void updateKeyValuePair(String originalKey, String originalValue, String newKey, String newValue) {
+        for (int i = 0; i < pairList.size(); i++) {
+            Map.Entry<String, String> entry = pairList.get(i);
+            if (entry.getKey().equals(originalKey) && entry.getValue().equals(originalValue)) {
+                pairList.set(i, Map.entry(newKey, newValue));
+                break;
+            }
+        }
+    }
+
     public void resetCurrentIndex() {
         this.currentIndex = 0;
     }

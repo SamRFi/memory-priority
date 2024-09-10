@@ -10,7 +10,7 @@ Name: Ezekiel 14:6
 Priority: MEDIUM
 Last Rehearsed: 2024-09-05 14:30:45
 Ezekiel 14:6.1 =:::= Therefore say unto the house of Israel, Thus saith the Lord GOD;
-Ezekiel 14:6.2 =:::= Repent, and turnyourselves from your idols;
+Ezekiel 14:6.2 =:::= Repent, and turn yourselves from your idols;
 Ezekiel 14:6.3 =:::= and turn away your faces from all your abominations.
 ---
 ID: 4a55973b-a2df-4065-9602-530efb64d703
