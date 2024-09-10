@@ -153,6 +153,15 @@ public class RehearsalController {
         modeButton.setText(keyToValue ? "Key to Value" : "Value to Key");
         showValueButton.setText(keyToValue ? "Show Value" : "Show Key");
 
+        // Adjust text area sizes
+        if (keyToValue) {
+            keyTextArea.setPrefRowCount(1);
+            valueTextArea.setPrefRowCount(3);
+        } else {
+            keyTextArea.setPrefRowCount(3);
+            valueTextArea.setPrefRowCount(1);
+        }
+
         if (valueTextArea.isVisible()) {
             String newValue = keyToValue ? currentPair.getValue() : currentPair.getKey();
             valueTextArea.setText(newValue);
