@@ -23,7 +23,12 @@ public class FileMemorySetRepository implements MemorySetRepository {
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("ID: ")) {
                     UUID id = UUID.fromString(line.split(":")[1].trim());
-                    String name = reader.readLine().split(":")[1].trim();
+
+                    // Read the entire name line
+                    String nameLine = reader.readLine();
+                    // Extract name, keeping everything after the first colon
+                    String name = nameLine.substring(nameLine.indexOf(":") + 1).trim();
+
                     PriorityLevel priorityLevel = PriorityLevel.valueOf(reader.readLine().split(":")[1].trim());
 
                     // Parse the date and time string using the format object
@@ -175,6 +180,46 @@ public class FileMemorySetRepository implements MemorySetRepository {
             }
         } else {
             throw new MemoryPriorityException("Memory set not found");
+        }
+    }
+
+    @Override
+    public void updateKeyValuePair(String username, UUID memorySetId, String originalKey, String originalValue, String newKey, String newValue) {
+        String filePath = getFilePath(username);
+        List<String> fileContent = new ArrayList<>();
+        boolean found = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("ID: " + memorySetId.toString())) {
+                    found = true;
+                    fileContent.add(line);
+                    while (!(line = reader.readLine()).equals("---")) {
+                        if (line.startsWith(originalKey + " =:::= " + originalValue)) {
+                            line = newKey + " =:::= " + newValue;
+                        }
+                        fileContent.add(line);
+                    }
+                    fileContent.add(line); // Add the "---" line
+                } else {
+                    fileContent.add(line);
+                }
+            }
+        } catch (IOException e) {
+            throw new MemoryPriorityException("Error reading from file", e);
+        }
+
+        if (!found) {
+            throw new MemoryPriorityException("Memory set not found");
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String contentLine : fileContent) {
+                writer.write(contentLine + "\n");
+            }
+        } catch (IOException e) {
+            throw new MemoryPriorityException("Error writing to file", e);
         }
     }
 

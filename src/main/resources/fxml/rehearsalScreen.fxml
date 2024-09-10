@@ -19,6 +19,10 @@
     <Button text="Show Value" fx:id="showValueButton" onAction="#showValue" disable="true"/>
     <Button text="Next" fx:id="nextButton" onAction="#nextPair" disable="true"/>
     <TextArea fx:id="valueTextArea" visible="false" editable="false" wrapText="true" prefRowCount="3" />
+    <HBox spacing="10">
+        <Button text="Save Changes" fx:id="saveChangesButton" onAction="#saveChanges"/>
+        <Button text="Reset" fx:id="resetButton" onAction="#resetChanges"/>
+    </HBox>
 
     <!-- ScrollPane to contain the VBox for the overview -->
     <ScrollPane visible="false" fx:id="overviewScrollPane">

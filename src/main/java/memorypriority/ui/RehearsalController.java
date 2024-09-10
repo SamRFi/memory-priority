@@ -48,6 +48,15 @@ public class RehearsalController {
     @FXML
     private Label overviewLabel;
 
+    @FXML
+    private Button saveChangesButton;
+
+    @FXML
+    private Button resetButton;
+
+    private String originalKey;
+    private String originalValue;
+
     private boolean inRandomOrder = false;
     private boolean keyToValue = true;
     private MemorySet memorySet;
@@ -75,6 +84,24 @@ public class RehearsalController {
 
     public void setMemorySetService(MemorySetService memorySetService) {
         this.memorySetService = memorySetService;
+    }
+
+    @FXML
+    private void initialize() {
+        saveChangesButton.setVisible(false);
+        resetButton.setVisible(false);
+
+        keyLabel.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals(originalKey)) {
+                showEditButtons();
+            }
+        });
+
+        valueTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals(originalValue)) {
+                showEditButtons();
+            }
+        });
     }
 
     @FXML
@@ -106,6 +133,7 @@ public class RehearsalController {
     private void showValue() {
         valueTextArea.setVisible(true);
         valueTextArea.setText(keyToValue ? currentPair.getValue() : currentPair.getKey());
+        originalValue = valueTextArea.getText();
     }
 
     @FXML
@@ -124,6 +152,40 @@ public class RehearsalController {
         rehearsedPairs.add(currentPair);
         keyLabel.setText(keyToValue ? currentPair.getKey() : currentPair.getValue());
         valueTextArea.setVisible(false);
+        originalKey = keyLabel.getText();
+        valueTextArea.clear();
+        hideEditButtons();
+    }
+
+    private void showEditButtons() {
+        saveChangesButton.setVisible(true);
+        resetButton.setVisible(true);
+    }
+
+    private void hideEditButtons() {
+        saveChangesButton.setVisible(false);
+        resetButton.setVisible(false);
+    }
+
+    @FXML
+    private void saveChanges() {
+        String newKey = keyToValue ? keyLabel.getText() : valueTextArea.getText();
+        String newValue = keyToValue ? valueTextArea.getText() : keyLabel.getText();
+
+        memorySetService.updateKeyValuePair(memorySet, originalKey, originalValue, newKey, newValue);
+
+        currentPair = Map.entry(newKey, newValue);
+        originalKey = newKey;
+        originalValue = newValue;
+
+        hideEditButtons();
+    }
+
+    @FXML
+    private void resetChanges() {
+        keyLabel.setText(originalKey);
+        valueTextArea.setText(originalValue);
+        hideEditButtons();
     }
 
     @FXML

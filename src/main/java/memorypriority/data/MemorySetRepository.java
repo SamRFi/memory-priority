@@ -12,4 +12,6 @@ public interface MemorySetRepository {
 
     void changePriority(String username, MemorySet memorySet, PriorityLevel newPriority);
     void removeMemorySet(String username, UUID id);
+
+    void updateKeyValuePair(String username, UUID memorySetId, String originalKey, String originalValue, String newKey, String newValue);
 }

@@ -1,0 +1,16 @@
+ID: 546d9210-8ff1-4f72-a9ac-0d5ce0680eeb
+Name: Ezekiel 18:5
+Priority: LOW
+Last Rehearsed: 2024-09-05 14:38:12
+Ezekiel 18:5.1 =:::= But if a man be just
+Ezekiel 18:5.2 =:::= and do that which is lawful and right
+---
+ID: ebbb7047-d6a0-47f7-aa8f-3b92b66a9bfa
+Name: Ezekiel 18:6
+Priority: HIGH
+Last Rehearsed: 2024-09-05 14:39:35
+Ezekiel 18:6.1 =:::= And hath not eaten upon the mountains
+Ezekiel 18:6.2 =:::= neither hath lifted up his eyes to the idols of the house of Israel
+Ezekiel 18:6.3 =:::= neither hath defiled his neighbour’s wife
+Ezekiel 18:6.4 =:::= neither hath come near to a menstruous woman
+---

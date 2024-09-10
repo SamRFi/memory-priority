@@ -13,7 +13,7 @@ Psalm 119:8 =:::= I will keep thy statutes: O forsake me not utterly.
 ---
 ID: 8db21c05-7f46-4ab8-84ab-357686bd6f4f
 Name: Gimel
-Priority: NONE
+Priority: LOW
 Last Rehearsed: 2024-04-21 14:42:54
 Psalm 119:17 =:::= Deal bountifully with thy servant, that I may live, and keep thy word.
 Psalm 119:18 =:::= Open thou mine eyes, that I may behold wondrous things out of thy law.

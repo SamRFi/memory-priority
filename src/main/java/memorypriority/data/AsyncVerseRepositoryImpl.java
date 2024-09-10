@@ -25,7 +25,11 @@ public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
     }
 
     public Future<String> getVerse(String verseReference) {
-        String formattedReference = formatVerseReference(verseReference);
+        String[] parts = verseReference.split("\\.");
+        String baseReference = parts[0];
+        int subVerse = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
+
+        String formattedReference = formatVerseReference(baseReference);
         String requestUrl = "/" + formattedReference + "?translation=kjv";
 
         return webClient.get(port, host, requestUrl)
@@ -37,16 +41,24 @@ public class AsyncVerseRepositoryImpl implements AsyncVerseRepository {
                     if (body.containsKey("error")) {
                         throw new RuntimeException(body.getString("error"));
                     }
-                    return body.getString("text");
+                    String fullText = body.getString("text");
+                    return subVerse > 0 ? extractSubVerse(fullText, subVerse) : fullText;
                 })
                 .onFailure(ex -> LOGGER.log(Level.SEVERE, "Could not load verse", ex));
     }
 
+    private String extractSubVerse(String fullText, int subVerse) {
+        String[] sentences = fullText.split("[,;.]");
+        if (subVerse <= sentences.length) {
+            return sentences[subVerse - 1].trim();
+        } else {
+            throw new RuntimeException("Subverse number exceeds the number of sentences in the verse.");
+        }
+    }
 
     private String formatVerseReference(String verseReference) {
         return verseReference.toLowerCase()
                 .replace(" ", "%20")
                 .replace(":", "%3A");
     }
-
 }
