@@ -56,6 +56,7 @@ public class RehearsalController {
     private Button resetButton;
 
     private boolean inRandomOrder = false;
+    private boolean isChangingOrder = false;
     private boolean keyToValue = true;
     private MemorySet memorySet;
     private MemorySetService memorySetService;
@@ -97,13 +98,13 @@ public class RehearsalController {
         valueTextArea.setEditable(true);
 
         keyLabel.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (originalKey != null && !newValue.equals(originalKey)) {
+            if (!isChangingOrder && originalKey != null && !newValue.equals(originalKey)) {
                 showEditButtons();
             }
         });
 
         valueTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (originalValue != null && !newValue.equals(originalValue)) {
+            if (!isChangingOrder && originalValue != null && !newValue.equals(originalValue)) {
                 showEditButtons();
             }
         });
@@ -111,9 +112,11 @@ public class RehearsalController {
 
     @FXML
     private void toggleOrder() {
+        isChangingOrder = true;
         inRandomOrder = !inRandomOrder;
         orderButton.setText(inRandomOrder ? "Random Order" : "Sequential Order");
         resetRehearsalOrder();
+        isChangingOrder = false;
     }
 
     private void resetRehearsalOrder() {
@@ -121,11 +124,26 @@ public class RehearsalController {
         if (inRandomOrder) {
             Collections.shuffle(currentRehearsalOrder);
         }
-        currentPairIndex = 0;
         if (!rehearsedPairs.isEmpty()) {
+            currentPairIndex = Math.min(currentPairIndex, currentRehearsalOrder.size() - 1);
             currentPair = currentRehearsalOrder.get(currentPairIndex);
-            updateKeyLabel();
+            updateKeyLabelSilently();
+            updateValueAreaSilently();
         }
+    }
+
+    private void updateKeyLabelSilently() {
+        isChangingOrder = true;
+        updateKeyLabel();
+        isChangingOrder = false;
+    }
+
+    private void updateValueAreaSilently() {
+        isChangingOrder = true;
+        if (valueTextArea.isVisible()) {
+            valueTextArea.setText(keyToValue ? currentPair.getValue() : currentPair.getKey());
+        }
+        isChangingOrder = false;
     }
 
     @FXML
