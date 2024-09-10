@@ -7,6 +7,7 @@ import memorypriority.domain.MemorySet;
 import memorypriority.service.MemorySetService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,9 @@ public class RehearsalController {
 
     private final List<Map.Entry<String, String>> rehearsedPairs = new ArrayList<>();
 
+    private List<Map.Entry<String, String>> currentRehearsalOrder;
+    private int currentPairIndex;
+
     private String originalKey;
     private String originalValue;
 
@@ -109,8 +113,18 @@ public class RehearsalController {
     private void toggleOrder() {
         inRandomOrder = !inRandomOrder;
         orderButton.setText(inRandomOrder ? "Random Order" : "Sequential Order");
+        resetRehearsalOrder();
+    }
+
+    private void resetRehearsalOrder() {
+        currentRehearsalOrder = new ArrayList<>(memorySet.getPairList());
         if (inRandomOrder) {
-            memorySet.shuffle();
+            Collections.shuffle(currentRehearsalOrder);
+        }
+        currentPairIndex = 0;
+        if (!rehearsedPairs.isEmpty()) {
+            currentPair = currentRehearsalOrder.get(currentPairIndex);
+            updateKeyLabel();
         }
     }
 
@@ -154,17 +168,13 @@ public class RehearsalController {
 
     @FXML
     private void nextPair() {
-        if (memorySet.getPairList().size() == rehearsedPairs.size()) {
+        if (rehearsedPairs.size() == currentRehearsalOrder.size()) {
             showOverview();
             return;
         }
 
-        currentPair = memorySet.getNextPair();
-
-        while (rehearsedPairs.contains(currentPair)) {
-            currentPair = memorySet.getNextPair();
-        }
-
+        currentPairIndex = rehearsedPairs.size();
+        currentPair = currentRehearsalOrder.get(currentPairIndex);
         rehearsedPairs.add(currentPair);
         updateKeyLabel();
         valueTextArea.clear();
@@ -176,13 +186,11 @@ public class RehearsalController {
     @FXML
     private void startRehearsal() {
         resetRehearsalState();
-        if (inRandomOrder) {
-            memorySet.shuffle();
-        }
-        currentPair = memorySet.getFirstPair();
+        resetRehearsalOrder();
+        currentPair = currentRehearsalOrder.get(currentPairIndex);
         updateKeyLabel();
 
-        orderButton.setDisable(true);
+        orderButton.setDisable(false);  // Allow changing order during rehearsal
         modeButton.setDisable(true);
         showValueButton.setDisable(false);
         nextButton.setDisable(false);
@@ -192,7 +200,6 @@ public class RehearsalController {
 
         rehearsedPairs.clear();
         nextPair();
-        orderButton.setDisable(true);
         modeButton.setDisable(false);
     }
 
@@ -213,7 +220,10 @@ public class RehearsalController {
 
         memorySetService.updateKeyValuePair(memorySet, currentPair.getKey(), currentPair.getValue(), newKey, newValue);
 
+        // Update both currentPair and the pair in currentRehearsalOrder
         currentPair = Map.entry(newKey, newValue);
+        currentRehearsalOrder.set(currentPairIndex, currentPair);
+
         originalKey = newKey;
         originalValue = newValue;
 
@@ -239,7 +249,7 @@ public class RehearsalController {
         showValueButton.setDisable(true);
 
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> pair : memorySet.getPairList()) {
+        for (Map.Entry<String, String> pair : currentRehearsalOrder) {
             sb.append(pair.getKey()).append(" : ").append(pair.getValue()).append("\n");
         }
         overviewLabel.setText(sb.toString());
@@ -252,8 +262,8 @@ public class RehearsalController {
     private void rehearseAgain() {
         overviewScrollPane.setVisible(false);
         resetRehearsalState();
+        startRehearsal();
     }
-
     @FXML
     private void returnToDashboard() {
         memorySetService.rehearseMemorySet(memorySet);
@@ -282,5 +292,7 @@ public class RehearsalController {
 
         originalKey = null;
         originalValue = null;
+        currentPairIndex = 0;
+        rehearsedPairs.clear();
     }
 }
