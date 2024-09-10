@@ -96,6 +96,7 @@ public class RehearsalController {
         saveChangesButton.setVisible(false);
         resetButton.setVisible(false);
         valueTextArea.setEditable(true);
+        keyTextArea.setEditable(true);
 
         keyTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!isChangingOrder && originalKey != null && !newValue.equals(originalKey)) {
@@ -231,8 +232,14 @@ public class RehearsalController {
 
     @FXML
     private void saveChanges() {
-        String newKey = keyToValue ? keyTextArea.getText() : valueTextArea.getText();
-        String newValue = keyToValue ? valueTextArea.getText() : keyTextArea.getText();
+        String newKey, newValue;
+        if (keyToValue) {
+            newKey = keyTextArea.getText();
+            newValue = valueTextArea.isVisible() ? valueTextArea.getText() : currentPair.getValue();
+        } else {
+            newKey = valueTextArea.isVisible() ? valueTextArea.getText() : currentPair.getKey();
+            newValue = keyTextArea.getText();
+        }
 
         memorySetService.updateKeyValuePair(memorySet, currentPair.getKey(), currentPair.getValue(), newKey, newValue);
 
